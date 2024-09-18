@@ -30,7 +30,7 @@
             </div>
 
             <div class="col-7 img-container full-height-img">
-                <img src="../resources/Chef6.png alt="Chef grande">
+                <img src="../resources/Chef6.png" alt="Chef grande">
             </div>
         </div>
     </div>

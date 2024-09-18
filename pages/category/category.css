@@ -19,6 +19,14 @@
   margin-top: 20px;
 }
 
+.container-fluid, .row, .col-5, .col-7 {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
 
 .full-height-img img {
   width: 120%;
