@@ -39,6 +39,8 @@ $baby: #FFFDF7;
 $poppy: #E32D40;
 $eerie: #202020;
 $onyx: #3F3F3F;
+$prussian: #003054;
+$mantis: #6AC25C;
 
 .title{
     font-family: 'Outfit-Bold';
@@ -50,19 +52,29 @@ $onyx: #3F3F3F;
     font-size: 20px;
 }
 
-.name{
-    font-family: 'Outfit-Bold';
-    font-size: 20px;
-}
-
 .detail{
     font-family: 'Outfit-Regular';
     font-size: 15px;
 }
 
+.description{
+    font-family: 'Outfit-Regular';
+    font-size: 24px;
+}
+
 .big-name{
     font-family: 'Outfit-Bold';
     font-size: 24px;
+}
+
+.name{
+    font-family: 'Outfit-Bold';
+    font-size: 32px;
+}
+
+.tiny-name{
+    font-family: 'Outfit-Bold';
+    font-size: 20px;
 }
 
 .poppy{
@@ -73,12 +85,36 @@ $onyx: #3F3F3F;
     color: $baby;
 }
 
+.eerie{
+    color: $eerie;
+}
+
+.prussian{
+    color: $prussian;
+}
+
+.mantis{
+    color: $mantis;
+}
+
+.back-poppy{
+    background-color: $poppy;
+}
+
+.back-baby{
+    background-color: $baby;
+}
+
 .back-eerie{
     background-color: $eerie;
 }
 
 .back-prussian{
-    background-color: #003054;
+    background-color: $prussian;
+}
+
+.back-mantis{
+    background-color: $mantis;
 }
 
 .red-button{

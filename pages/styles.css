@@ -44,19 +44,29 @@
   font-size: 20px;
 }
 
-.name {
-  font-family: "Outfit-Bold";
-  font-size: 20px;
-}
-
 .detail {
   font-family: "Outfit-Regular";
   font-size: 15px;
 }
 
+.description {
+  font-family: "Outfit-Regular";
+  font-size: 24px;
+}
+
 .big-name {
   font-family: "Outfit-Bold";
   font-size: 24px;
+}
+
+.name {
+  font-family: "Outfit-Bold";
+  font-size: 32px;
+}
+
+.tiny-name {
+  font-family: "Outfit-Bold";
+  font-size: 20px;
 }
 
 .poppy {
@@ -67,12 +77,36 @@
   color: #FFFDF7;
 }
 
+.eerie {
+  color: #202020;
+}
+
+.prussian {
+  color: #003054;
+}
+
+.mantis {
+  color: #6AC25C;
+}
+
+.back-poppy {
+  background-color: #E32D40;
+}
+
+.back-baby {
+  background-color: #FFFDF7;
+}
+
 .back-eerie {
   background-color: #202020;
 }
 
 .back-prussian {
   background-color: #003054;
+}
+
+.back-mantis {
+  background-color: #6AC25C;
 }
 
 .red-button {
