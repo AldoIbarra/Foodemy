@@ -1,0 +1,192 @@
+#bannerSection {
+  background-color: #003054; /* Color de fondo azul */
+  min-height: 100vh; /* Asegura que el contenedor ocupe al menos el 100% del alto de la ventana */
+  display: flex;
+  padding: 20px; /* Añadir algo de relleno si es necesario */
+}
+
+#bannerSection .text-container .filtros {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  width: 100%; /* Ajusta al 100% */
+}
+
+#bannerSection .text-container h1 {
+  margin-left: 60px;
+}
+
+#bannerSection .text-container .filtros .filtros-row {
+  background: white;
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 1200px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Para usar todo el ancho */
+}
+
+.filtros-fechas {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+
+.filtros-fechas label {
+  width: auto; 
+  margin-right: 10px; 
+}
+
+.filtros-fechas input {
+  width: 10%;
+}
+
+.filtros-fechas .option.a {
+  width: auto; 
+  margin-left: 10px;
+  margin-right: 10px; 
+}
+
+.filtros-selects {
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px; 
+}
+
+.filtros-selects label {
+  width: auto; 
+  margin-right: 10px; 
+}
+
+.filtros-selects select {
+  width: 50%; /* Ajustar el ancho del select */
+}
+
+#bannerSection .text-container .filtros select {
+  width: 40%;
+  font-family: "Outfit-Regular";
+  font-size: 18px;
+  background-color: #FFFDF7;
+  color: #003054;
+  border: 2px solid #E32D40;
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+#bannerSection .text-container .filtros input[type="date"] {
+  width: 30%; /* Hacer que los inputs ocupen todo el ancho del contenedor */
+  font-family: "Outfit-Regular";
+  font-size: 18px;
+  background-color: #FFFDF7;
+  color: #003054;
+  border: 2px solid #E32D40;
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+#bannerSection .text-container .filtros select:focus,
+#bannerSection .text-container .filtros input[type="date"]:focus {
+  border-color: #6AC25C;
+}
+
+#bannerSection .text-container .filtros button {
+  background-color: #E32D40; /* Botón rojo */
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%; /* Botón ocupa todo el ancho */
+}
+
+#bannerSection .text-container .filtros button:hover {
+  background-color: #C81D32;
+}
+
+.error {
+  border: 1px solid red;
+}
+
+.input-field {
+  font-family: "Outfit-Regular";
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #FFFDF7; 
+  color: #202020;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #6AC25C; 
+}
+
+.card {
+  border: 3px solid #E32D40;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 1rem;
+  background: #fff;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card p {
+  margin: 5px 0;
+}
+
+ul li a {
+  text-decoration: none; 
+  color: black; 
+  display: block; 
+  padding: 8px 0; 
+  transition: color 0.3s ease; 
+}
+
+ul li a:hover {
+  color: red; 
+}
+
+ul li a.active {
+  color: red; 
+}
+
+.ventas {
+  background: white;
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 900px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tablas, #resumen-ventas, #tabla-cursos {
+  background: white;
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 900px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+table, th, td {
+  border: 3px solid #b22102;
+  border-collapse: collapse;
+  padding: 10px;
+  text-align: left;
+}
