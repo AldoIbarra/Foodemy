@@ -1,0 +1,94 @@
+
+#bannerSection .text-container {
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+#bannerSection .text-container h2 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+#bannerSection .text-container .input-box {
+  margin-top: 20px;
+}
+
+
+#dynamic-categories-container {
+  margin-top: 20px;
+}
+
+
+.full-height-img img {
+  width: 120%;
+  height: 100vh;
+  object-fit: cover;
+  margin-left: -12px;
+}
+
+
+.category {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+#bannerSection .input-box select {
+  font-family: "Outfit-Regular";
+  font-size: 20px;
+  background-color: #FFFDF7;
+  color: #003054;
+  border: 2px solid #E32D40;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+#bannerSection .input-box select:focus {
+  border-color: #6AC25C;
+}
+
+#bannerSection .input-box select option {
+  font-family: "Outfit-Regular";
+  color: #003054;
+  background-color: #FFFDF7;
+  padding: 10px;
+}
+
+.red-button {
+  margin-top: 45px;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  border: 1px solid red;
+}
+
+.input-field {
+  font-family: "Outfit-Regular";
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #FFFDF7; 
+  color: #202020;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #6AC25C; 
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
