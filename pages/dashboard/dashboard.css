@@ -1,0 +1,17 @@
+#bannerSection .text-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#dashboardSection {
+  padding: 70px 0px;
+}
+#dashboardSection .course div {
+  display: flex;
+}
+#dashboardSection .course div img {
+  margin-top: -8px;
+  margin-left: 5px;
+}
+
+/*# sourceMappingURL=dashboard.css.map */

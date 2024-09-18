@@ -1,0 +1,22 @@
+#bannerSection{
+    .text-container{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .img-container{
+    }
+}
+
+#dashboardSection{
+    padding: 70px 0px;
+    .course{
+        div{
+            display: flex;
+            img{
+                margin-top: -8px;
+                margin-left: 5px;
+            }
+        }
+    }
+}

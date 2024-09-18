@@ -1,0 +1,137 @@
+@font-face {
+  font-family: "Outfit-Black";
+  src: url(resources/outfit/Outfit-Black.ttf) format(truetype);
+}
+@font-face {
+  font-family: "Outfit-Bold";
+  src: url(resources/outfit/Outfit-Bold.ttf) format(truetype);
+}
+@font-face {
+  font-family: "Outfit-ExtraBold";
+  src: url(resources/outfit/Outfit-ExtraBold.ttf) format(truetype);
+}
+@font-face {
+  font-family: "Outfit-ExtraLight";
+  src: url(resources/outfit/Outfit-ExtraLight.ttf) format(truetype);
+}
+@font-face {
+  font-family: "Outfit-Light";
+  src: url(resources/outfit/Outfit-Light.ttf) format(truetype);
+}
+@font-face {
+  font-family: "Outfit-Medium";
+  src: url(resources/outfit/Outfit-Medium.ttf) format(truetype);
+}
+@font-face {
+  font-family: "Outfit-Regular";
+  src: url(resources/outfit/Outfit-Regular.ttf) format(truetype);
+}
+@font-face {
+  font-family: "Outfit-SemiBold";
+  src: url(resources/outfit/Outfit-SemiBold.ttf) format(truetype);
+}
+@font-face {
+  font-family: "Outfit-Thin";
+  src: url(resources/outfit/Outfit-Thin.ttf) format(truetype);
+}
+.title {
+  font-family: "Outfit-Bold";
+  font-size: 48px;
+}
+
+.option {
+  font-family: "Outfit-Regular";
+  font-size: 20px;
+}
+
+.name {
+  font-family: "Outfit-Bold";
+  font-size: 20px;
+}
+
+.detail {
+  font-family: "Outfit-Regular";
+  font-size: 15px;
+}
+
+.big-name {
+  font-family: "Outfit-Bold";
+  font-size: 24px;
+}
+
+.poppy {
+  color: #E32D40;
+}
+
+.baby {
+  color: #FFFDF7;
+}
+
+.back-eerie {
+  background-color: #202020;
+}
+
+.back-prussian {
+  background-color: #003054;
+}
+
+.red-button {
+  color: #FFFDF7;
+  font-family: "Outfit-Bold";
+  border: none;
+  background-color: #E32D40;
+  font-size: 25px;
+  border-radius: 25px;
+  padding: 0px 15px 5px 15px;
+}
+.red-button:hover {
+  background-color: #FFFDF7;
+  color: #E32D40;
+  transition: ease-in-out 0.4s;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px 0px;
+}
+nav #category-button {
+  padding-top: 8px;
+  display: flex;
+  background-color: transparent;
+  border: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+nav #category-button img {
+  width: 12px;
+  margin-left: 10px;
+}
+nav #searchBarContainer {
+  padding: 3px;
+  width: 35%;
+  background-color: #3F3F3F;
+  border-radius: 10px;
+}
+nav #searchBarContainer button {
+  border: none;
+  background-color: transparent;
+}
+nav #searchBarContainer button img {
+  width: 30px;
+  padding: 2px 4px;
+}
+nav #searchBarContainer input {
+  font-family: "Outfit-Regular";
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #FFFDF7;
+  width: 90%;
+}
+
+/*# sourceMappingURL=styles.css.map */

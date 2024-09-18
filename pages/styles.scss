@@ -1,0 +1,142 @@
+@font-face {
+    font-family: 'Outfit-Black';
+    src: url(resources/outfit/Outfit-Black.ttf) format(truetype);
+}
+@font-face {
+    font-family: 'Outfit-Bold';
+    src: url(resources/outfit/Outfit-Bold.ttf) format(truetype);
+}
+@font-face {
+    font-family: 'Outfit-ExtraBold';
+    src: url(resources/outfit/Outfit-ExtraBold.ttf) format(truetype);
+}
+@font-face {
+    font-family: 'Outfit-ExtraLight';
+    src: url(resources/outfit/Outfit-ExtraLight.ttf) format(truetype);
+}
+@font-face {
+    font-family: 'Outfit-Light';
+    src: url(resources/outfit/Outfit-Light.ttf) format(truetype);
+}
+@font-face {
+    font-family: 'Outfit-Medium';
+    src: url(resources/outfit/Outfit-Medium.ttf) format(truetype);
+}
+@font-face {
+    font-family: 'Outfit-Regular';
+    src: url(resources/outfit/Outfit-Regular.ttf) format(truetype);
+}
+@font-face {
+    font-family: 'Outfit-SemiBold';
+    src: url(resources/outfit/Outfit-SemiBold.ttf) format(truetype);
+}
+@font-face {
+    font-family: 'Outfit-Thin';
+    src: url(resources/outfit/Outfit-Thin.ttf) format(truetype);
+}
+
+$baby: #FFFDF7;
+$poppy: #E32D40;
+$eerie: #202020;
+$onyx: #3F3F3F;
+
+.title{
+    font-family: 'Outfit-Bold';
+    font-size: 48px;
+}
+
+.option{
+    font-family: 'Outfit-Regular';
+    font-size: 20px;
+}
+
+.name{
+    font-family: 'Outfit-Bold';
+    font-size: 20px;
+}
+
+.detail{
+    font-family: 'Outfit-Regular';
+    font-size: 15px;
+}
+
+.big-name{
+    font-family: 'Outfit-Bold';
+    font-size: 24px;
+}
+
+.poppy{
+    color: $poppy;
+}
+
+.baby{
+    color: $baby;
+}
+
+.back-eerie{
+    background-color: $eerie;
+}
+
+.back-prussian{
+    background-color: #003054;
+}
+
+.red-button{
+    color: $baby;
+    font-family: 'Outfit-Bold';
+    border: none;
+    background-color: $poppy;
+    font-size: 25px;
+    border-radius: 25px;
+    padding: 0px 15px 5px 15px;
+    &:hover{
+        background-color: $baby;
+        color: $poppy;
+        transition: ease-in-out .4s;
+    }
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px 0px;
+    #category-button{
+        padding-top: 8px;
+        display: flex;
+        background-color: transparent;
+        border: none;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        img{
+            width: 12px;
+            margin-left: 10px;
+        }
+    }
+    #searchBarContainer{
+        padding: 3px;
+        width: 35%;
+        background-color: $onyx;
+        border-radius: 10px;
+        button{
+            border: none;
+            background-color: transparent;
+            img {
+                width: 30px;
+                padding: 2px 4px;
+            }
+        }
+        input{
+            font-family: 'Outfit-Regular';
+            background-color: transparent;
+            border: none;
+            outline: none;
+            color: $baby;
+            width: 90%;
+        }
+    }
+}
+
