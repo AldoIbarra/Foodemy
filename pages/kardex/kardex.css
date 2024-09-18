@@ -1,32 +1,72 @@
+#bannerSection {
+  background-color: #003054; /* Color de fondo azul */
+  min-height: 100vh; /* Asegura que el contenedor ocupe al menos el 100% del alto de la ventana */
+  display: flex;
+  padding: 20px; /* Añadir algo de relleno si es necesario */
+}
+
 #bannerSection .text-container .filtros {
   display: flex;
   flex-direction: column;
   margin-top: 40px;
+  width: 100%; /* Ajusta al 100% */
 }
 
 #bannerSection .text-container .filtros .filtros-row {
+  background: white;
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 1200px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Para usar todo el ancho */
+}
+
+.filtros-fechas {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
   margin-bottom: 20px;
+  gap: 10px;
 }
 
-#bannerSection .text-container .filtros .filtros-row > div {
-  flex: 1 1 calc(50% - 20px); /* Ajusta el ancho para que los filtros se alineen en dos líneas */
-  min-width: 0; /* Evita que los elementos se desborden */
+
+.filtros-fechas label {
+  width: auto; 
+  margin-right: 10px; 
 }
 
-#bannerSection .text-container .filtros label,
-#bannerSection .text-container .filtros input[type="date"],
-#bannerSection .text-container .filtros select,
-#bannerSection .text-container .filtros button {
-  width: 80%;
-  margin-top: 10px;
+.filtros-fechas input {
+  width: 10%;
+}
+
+.filtros-fechas .option.a {
+  width: auto; 
+  margin-left: 10px;
+  margin-right: 10px; 
+}
+
+.filtros-selects {
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px; 
+}
+
+.filtros-selects label {
+  width: auto; 
+  margin-right: 10px; 
+}
+
+.filtros-selects select {
+  width: 50%; /* Ajustar el ancho del select */
 }
 
 #bannerSection .text-container .filtros select {
+  width: 40%;
   font-family: "Outfit-Regular";
-  font-size: 20px;
+  font-size: 18px;
   background-color: #FFFDF7;
   color: #003054;
   border: 2px solid #E32D40;
@@ -36,7 +76,21 @@
   cursor: pointer;
 }
 
-#bannerSection .text-container .filtros select:focus {
+#bannerSection .text-container .filtros input[type="date"] {
+  width: 30%; /* Hacer que los inputs ocupen todo el ancho del contenedor */
+  font-family: "Outfit-Regular";
+  font-size: 18px;
+  background-color: #FFFDF7;
+  color: #003054;
+  border: 2px solid #E32D40;
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+#bannerSection .text-container .filtros select:focus,
+#bannerSection .text-container .filtros input[type="date"]:focus {
   border-color: #6AC25C;
 }
 
@@ -47,32 +101,23 @@
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 20px;
+  width: 100%; /* Botón ocupa todo el ancho */
 }
 
 #bannerSection .text-container .filtros button:hover {
-  background-color: #C81D32; /* Rojo más oscuro para hover */
+  background-color: #C81D32;
 }
 
 .kardex {
+  margin: 20px auto;
   margin-top: 20px;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 15px;
-  width: 90%;
-}
-
-/* Estilos adicionales para la imagen */
-.full-height-img img {
-  width: 100%;
-  height: 100vh;
-  object-fit: cover;
-  margin-left: -12px;
-}
-
-/* Otros estilos de los elementos */
-.button:hover {
-  background-color: #0056b3;
+  width: 91.5%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 .error {
@@ -93,11 +138,6 @@
 .input-field:focus {
   outline: none;
   border-color: #6AC25C; 
-}
-
-.button-container {
-  text-align: center;
-  margin-top: 40px;
 }
 
 .progreso-barra {
