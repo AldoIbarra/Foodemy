@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const cursos = [
             { nombre: 'Curso de Cocina Internacional', fechaInscripcion: '2024-01-10', ultimaEntrada: '2024-02-05', fechaTerminacion: '2024-03-10', estado: 'completo', categoria: 'Cocina Internacional', activo: false, progreso: 100 },
             { nombre: 'Curso de Repostería y Pastelería', fechaInscripcion: '2024-02-15', ultimaEntrada: '2024-03-01', fechaTerminacion: null, estado: 'incompleto', categoria: 'Repostería y Pastelería', activo: true, progreso: 60 },
-            // Agrega más cursos según sea necesario
+            { nombre: 'Cocina de Temporada', fechaInscripcion: '2024-05-29', ultimaEntrada: '2024-09-14', fechaTerminacion: null, estado: 'incompleto', categoria: 'Cocina de Temporada', activo: true, progreso: 20 },
+            // Agregar más cursos según sea necesario
         ];
 
         // Filtrar datos según los criterios seleccionados

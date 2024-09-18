@@ -12,6 +12,10 @@
   width: 100%; /* Ajusta al 100% */
 }
 
+#bannerSection .text-container h1 {
+  margin-left: 60px;
+}
+
 #bannerSection .text-container .filtros .filtros-row {
   background: white;
   padding: 1rem;
@@ -159,7 +163,7 @@
 }
 
 .card {
-  border: 1px solid #b22102;
+  border: 3px solid #E32D40;
   border-radius: 8px;
   margin-bottom: 10px;
   padding: 1rem;
