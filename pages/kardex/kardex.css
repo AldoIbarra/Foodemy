@@ -1,0 +1,135 @@
+#bannerSection .text-container .filtros {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+#bannerSection .text-container .filtros .filtros-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#bannerSection .text-container .filtros .filtros-row > div {
+  flex: 1 1 calc(50% - 20px); /* Ajusta el ancho para que los filtros se alineen en dos líneas */
+  min-width: 0; /* Evita que los elementos se desborden */
+}
+
+#bannerSection .text-container .filtros label,
+#bannerSection .text-container .filtros input[type="date"],
+#bannerSection .text-container .filtros select,
+#bannerSection .text-container .filtros button {
+  width: 80%;
+  margin-top: 10px;
+}
+
+#bannerSection .text-container .filtros select {
+  font-family: "Outfit-Regular";
+  font-size: 20px;
+  background-color: #FFFDF7;
+  color: #003054;
+  border: 2px solid #E32D40;
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+#bannerSection .text-container .filtros select:focus {
+  border-color: #6AC25C;
+}
+
+#bannerSection .text-container .filtros button {
+  background-color: #E32D40; /* Botón rojo */
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#bannerSection .text-container .filtros button:hover {
+  background-color: #C81D32; /* Rojo más oscuro para hover */
+}
+
+.kardex {
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  width: 90%;
+}
+
+/* Estilos adicionales para la imagen */
+.full-height-img img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  margin-left: -12px;
+}
+
+/* Otros estilos de los elementos */
+.button:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  border: 1px solid red;
+}
+
+.input-field {
+  font-family: "Outfit-Regular";
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #FFFDF7; 
+  color: #202020;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #6AC25C; 
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.progreso-barra {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progreso {
+  height: 20px;
+  background-color: #4caf50;
+  text-align: center;
+  line-height: 20px;
+  color: white;
+  font-size: 14px;
+  width: 0%;
+}
+
+.card {
+  border: 1px solid #b22102;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 1rem;
+  background: #fff;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card p {
+  margin: 5px 0;
+}
