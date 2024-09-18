@@ -29,10 +29,9 @@ body {
 
 
 .full-height-img img {
-  width: 120%;
+  width: 105%;
   height: 100vh;
   object-fit: cover;
-  margin-left: -12px;
 }
 
 
@@ -68,10 +67,6 @@ body {
   padding: 10px;
 }
 
-.red-button {
-  margin-top: 45px;
-}
-
 .button:hover {
   background-color: #0056b3;
 }
@@ -98,5 +93,5 @@ body {
 
 .button-container {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 40px;
 }

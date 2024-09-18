@@ -1,6 +1,6 @@
 <?php 
     $titlename = "Foodemy";
-    $stylename = "category.css"; /* Ahora usa category.css */
+    $stylename = "category.css";
     $javascript = "category.js";
 
     require_once("../header.php");
