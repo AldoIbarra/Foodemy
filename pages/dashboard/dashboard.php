@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="col-5 text-container">
-                <h1 class="title baby">Cientos de <span class="poppy">cursos</span> de <span class="poppy">cocina</span>, prepara tus platillos favoritos de todo el <span class="poppy">mundo</span> desde casa.</h1>
+                <h1 class="title baby">Cientos de <span class="poppy">cursos</span> de <span class="poppy">cocina</span>, prepara tus platillos favoritos de tooodo el <span class="poppy">mundo</span> desde casa.</h1>
             </div>
             <div class="col-7 img-container">
                 <img src="../resources/Chef1.png" alt="">
