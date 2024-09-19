@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             
             card.innerHTML = `
-                <h3>${curso.nombre}</h3>
+                <h3 class="name eerie">${curso.nombre}</h3>
                 <p><strong>Fecha de Inscripción:</strong> ${curso.fechaInscripcion}</p>
                 <p><strong>Última Entrada:</strong> ${curso.ultimaEntrada || 'N/A'}</p>
                 <p><strong>Fecha de Terminación:</strong> ${curso.fechaTerminacion || 'En curso'}</p>
