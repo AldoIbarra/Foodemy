@@ -1,0 +1,100 @@
+#addCourseBody{
+    padding: 20px 0px;
+    .course-info{
+        form{
+            margin-bottom: 30px;
+            input, textarea{
+                width: 100%;
+                border: none;
+                outline: none;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+            textarea{
+                height: 200px;
+            }
+            #title{
+                max-width: 70%;
+            }
+            .file-zone{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-items: center;
+                justify-content: space-evenly;
+                input{
+                    max-width: 50%;
+                    margin: 0px;
+                    &::-webkit-file-upload-button{
+                        border: none;
+                        background-color: rgba($color: #fffdf7, $alpha: 0.4);
+                        color: white;
+                    }
+                }
+            }
+        }
+        .button-container{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+    }
+    .level-info{
+        form{
+            margin-bottom: 30px;
+            input, textarea{
+                border: none;
+                outline: none;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+            textarea{
+                height: 200px;
+                width: 100%;
+            }
+            .title-price-container{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+                input{
+                    &:first-child{
+                        width: 64%;
+                    }
+                    &:nth-child(2){
+                        width: 34%;
+                    }
+                }
+            }
+            .file-zone{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-items: center;
+                justify-content: space-evenly;
+                input{
+                    max-width: 50%;
+                    margin: 0px;
+                    &::-webkit-file-upload-button{
+                        border: none;
+                        background-color: rgba($color: #fffdf7, $alpha: 0.4);
+                        color: white;
+                    }
+                }
+            }
+        }
+        .add-level-container{
+            button{
+                border: none;
+                border-radius: 10px;
+                width: 100%;
+            }
+        }
+        .addnewlevelcontainer{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+    }
+}

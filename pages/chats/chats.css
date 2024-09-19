@@ -1,0 +1,57 @@
+#chats-body .contact-list .contact {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 7px 0px;
+}
+#chats-body .chat .name-container {
+  height: 10vh;
+  background-color: #16242f;
+  padding: 10px;
+  border-radius: 10px;
+}
+#chats-body .chat .messages {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+#chats-body .chat .messages .message {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin: 5px 0px 5px 0px;
+}
+#chats-body .chat .messages .message p {
+  margin: 0px;
+  background-color: rgba(255, 253, 247, 0.15);
+  padding: 5px;
+  border-radius: 10px;
+}
+#chats-body .chat .messages .message img {
+  max-width: 50px;
+}
+#chats-body .chat .message-bar {
+  padding: 5px 0px;
+  height: 9vh;
+  display: flex;
+}
+#chats-body .chat .message-bar input {
+  width: 90%;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(255, 253, 247, 0.15);
+  outline: none;
+}
+#chats-body .chat .message-bar button {
+  width: 10%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+/*# sourceMappingURL=chats.css.map */

@@ -1,0 +1,94 @@
+#addCourseBody {
+  padding: 20px 0px;
+}
+#addCourseBody .course-info form {
+  margin-bottom: 30px;
+}
+#addCourseBody .course-info form input, #addCourseBody .course-info form textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+#addCourseBody .course-info form textarea {
+  height: 200px;
+}
+#addCourseBody .course-info form #title {
+  max-width: 70%;
+}
+#addCourseBody .course-info form .file-zone {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#addCourseBody .course-info form .file-zone input {
+  max-width: 50%;
+  margin: 0px;
+}
+#addCourseBody .course-info form .file-zone input::-webkit-file-upload-button {
+  border: none;
+  background-color: rgba(255, 253, 247, 0.4);
+  color: white;
+}
+#addCourseBody .course-info .button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+#addCourseBody .level-info form {
+  margin-bottom: 30px;
+}
+#addCourseBody .level-info form input, #addCourseBody .level-info form textarea {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+#addCourseBody .level-info form textarea {
+  height: 200px;
+  width: 100%;
+}
+#addCourseBody .level-info form .title-price-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+#addCourseBody .level-info form .title-price-container input:first-child {
+  width: 64%;
+}
+#addCourseBody .level-info form .title-price-container input:nth-child(2) {
+  width: 34%;
+}
+#addCourseBody .level-info form .file-zone {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#addCourseBody .level-info form .file-zone input {
+  max-width: 50%;
+  margin: 0px;
+}
+#addCourseBody .level-info form .file-zone input::-webkit-file-upload-button {
+  border: none;
+  background-color: rgba(255, 253, 247, 0.4);
+  color: white;
+}
+#addCourseBody .level-info .add-level-container button {
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+}
+#addCourseBody .level-info .addnewlevelcontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/*# sourceMappingURL=addcourse.css.map */
