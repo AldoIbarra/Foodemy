@@ -33,14 +33,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const certificadoHTML = `
             <style>
                 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
-                @import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
                 body {
                     background-color: #003054;
-                    color: #fff; /* Cambia el color del texto para que sea legible sobre el fondo oscuro */
+                    color: #fff;
                     font-family: 'Outfit', sans-serif;
                 }
                 h2.nombre-estudiante {
-                    font-family: 'Allura', cursive;
+                    font-family: 'Dancing Script', cursive;
                     font-size: 60px;
                     color: #E32D40;
                     margin-bottom: 5px;
@@ -91,17 +91,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p style="font-size: 20px; margin-bottom: 10px; margin-top: 80px; color: #202020;">OTORGADO A:</p>
                 <h2 class="nombre-estudiante" style="color: #003054;">${nombreEstudiante}</h2>
                 <div class="nombre-estudiante-línea" style="border-bottom: 2px solid #003054;"></div>
-                <p style="font-size: 20px; margin-bottom: 10px; color: #202020;">Por haber completado y aprobado satisfactoriamente el curso virtual de</p>
+                <p style="font-size: 20px; margin-bottom: 10px; color: #202020;">Por haber completado satisfactoriamente el curso virtual de</p>
                 <h2 style="display: inline-block; margin-bottom: 20px; font-size: 24px; color: #003054;">${nombreCurso}</h2>
                 <p style="font-size: 20px; margin-bottom: 10px; color: #202020;">en la fecha</p>
                 <h2 style="display: inline-block; margin-bottom: 20px; font-size: 24px; color: #003054;">${fechaFinalizacion}</h2>
-                <p style="font-size: 20px; margin-bottom: 10px; color: #202020;">Ofrecido a través de la página oficial de Foodemy</p>
+                <p style="font-size: 20px; margin-bottom: 10px; color: #202020;">Impartido a través de la página oficial de Foodemy</p>
                 <p style="font-size: 20px; margin-bottom: 10px; margin-top: 50px; color: #202020;">Instructor:</p>
                 <h2 style="display: inline-block; margin-bottom: 40px; font-size: 24px; color: #003054;">${nombreInstructor}</h2>
                 <div style="border-top: 2px solid #E32D40; width: 200px; margin: 20px auto; margin-top: 60px; height: 30px;"></div>
                 <img class="firma-director" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Jon_Kirsch%27s_Signature.png" alt="Firma del Director">
                 <p style="font-size: 18px; color: #E32D40; margin-top: -35px;">Firma del Director:</p>
-                <p style="font-size: 16px; color: #E32D40; margin-top: 80px;">&copy; 2024 Foodemy</p>
                 <button class="descargar-pdf" onclick="descargarPDF()">Descargar PDF</button>
             </div>
 
@@ -127,9 +126,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 doc.setFontSize(16);
                 doc.setFont('Outfit', 'regular');
                 doc.text(`OTORGADO A: ${nombreEstudiante}`, 105, 40, { align: 'center' });
-                doc.text(`Por haber completado y aprobado satisfactoriamente el curso virtual de ${nombreCurso}`, 105, 60, { align: 'center' });
+                doc.text(`Por haber completado satisfactoriamente el curso virtual de ${nombreCurso}`, 105, 60, { align: 'center' });
                 doc.text(`en la fecha ${fechaFinalizacion}`, 105, 80, { align: 'center' });
-                doc.text(`Ofrecido a través de la página oficial de Foodemy`, 105, 100, { align: 'center' });
+                doc.text(`Impartido a través de la página oficial de Foodemy`, 105, 100, { align: 'center' });
                 doc.text(`Instructor: ${nombreInstructor}`, 105, 120, { align: 'center' });
                 
                 // Añadir la firma y línea de firma
