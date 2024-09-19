@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </style>
             <div class="certificado-container">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
-                    <img src="https://png.pngtree.com/element_our/20200702/ourlarge/pngtree-red-ribbon-gold-medal-png-transparent-bottom-image_2284002.jpg" alt="Logo Izquierda" style="max-width: 100px; max-height: 100px; border-radius: 10px;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/214/214282.png" alt="Logo Izquierda" style="max-width: 100px; max-height: 100px; border-radius: 10px;">
                     <div style="border-bottom: 3px solid #efb810; padding-bottom: 10px; width: 100%; text-align: center;">
                         <h1 style="color: #efb810; font-size: 36px;">Certificado de Finalización</h1>
                     </div>
