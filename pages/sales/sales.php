@@ -71,7 +71,7 @@
                 </div>
 
                 <div id="tabla-cursos">
-
+                    <caption></caption>
                 </div>
 
                 <div id="resumen-ventas">

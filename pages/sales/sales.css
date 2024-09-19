@@ -177,8 +177,8 @@ ul li a.active {
 .tablas, #resumen-ventas, #tabla-cursos {
   background: white;
   padding: 1rem;
-  margin: 1rem auto;
-  max-width: 900px;
+  max-width: 1200px;
+  margin: 20px auto;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: none;
@@ -189,4 +189,24 @@ table, th, td {
   border-collapse: collapse;
   padding: 10px;
   text-align: left;
+}
+
+#tabla-cursos caption {
+  caption-side: top;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+#tabla-cursos, #tabla-ventas, #resumen-ventas {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+.tabla-curso {
+  width: 100%;
 }

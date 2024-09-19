@@ -53,7 +53,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Resumen de ingresos por forma de pago
         document.getElementById('resumen-ventas').innerHTML = `
-            <h3>Total por forma de pago:</h3>
+            <h3 class="big-name eerie">Total por forma de pago:</h3>
+            <br>
             <p>Efectivo: $5,700.00</p>
             <p>Tarjeta: $3,730.50</p>
         `;
@@ -91,9 +92,9 @@ document.addEventListener('DOMContentLoaded', function() {
         for (const [curso, alumnos] of Object.entries(datosAgrupados)) {
             const tablaCurso = document.createElement('table');
             tablaCurso.className = 'tabla-curso';
-
+            tablaCurso.style.marginBottom = '20px';
             tablaCurso.innerHTML = `
-                <caption>${curso}</caption>
+                <caption class="option eerie">${curso}</caption>
                 <thead>
                     <tr>
                         <th>Alumno</th>
@@ -123,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const totalIngresos = datosFiltrados.reduce((total, alumno) => total + parseFloat(alumno.precioPagado), 0);
         document.getElementById('resumen-ventas').innerHTML = `
-            <h3>Total de Ingresos:</h3>
+            <h3 class="big-name eerie">Total de Ingresos:</h3>
             <p>${totalIngresos.toLocaleString('en-US', {
                 style: 'currency',
                 currency: 'USD'
@@ -135,20 +136,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Datos ficticios para los cursos generales
     const datosVentasGenerales = [
-        { curso: 'Nutrición Balanceada', inscritos: 10, nivelPromedio: '2.5', ingresos: '1,250.00', categoria: 'Cocina Saludable', fechaCreacion: '2024-09-01', activo: true },
-        { curso: 'Sabores del Mundo', inscritos: 8, nivelPromedio: '3.2', ingresos: '980.50', categoria: 'Cocina Internacional', fechaCreacion: '2024-08-15', activo: true },
+        { curso: 'Nutrición Balanceada', inscritos: 10, nivelPromedio: '2.0', ingresos: '1,250.00', categoria: 'Cocina Saludable', fechaCreacion: '2024-09-01', activo: true },
+        { curso: 'Sabores del Mundo', inscritos: 8, nivelPromedio: '3.0', ingresos: '980.50', categoria: 'Cocina Internacional', fechaCreacion: '2024-08-15', activo: true },
         { curso: 'Dulces y Postres Caseros', inscritos: 15, nivelPromedio: '4.0', ingresos: '1,500.00', categoria: 'Repostería y Pastelería', fechaCreacion: '2024-07-22', activo: false },
-        { curso: 'Cocina Vegana para Todos', inscritos: 20, nivelPromedio: '3.8', ingresos: '2,000.00', categoria: 'Cocina Vegetariana y Vegana', fechaCreacion: '2024-01-10', activo: true },
-        { curso: 'Técnicas Básicas de Cocina', inscritos: 12, nivelPromedio: '2.9', ingresos: '1,000.00', categoria: 'Técnicas de Cocina Básicas', fechaCreacion: '2024-04-01', activo: false },
-        { curso: 'Sabores de Temporada', inscritos: 18, nivelPromedio: '3.6', ingresos: '1,800.00', categoria: 'Cocina de Temporada', fechaCreacion: '2024-06-10', activo: false },
-        { curso: 'Cenas Rápidas y Fáciles', inscritos: 9, nivelPromedio: '2.7', ingresos: '900.00', categoria: 'Platos Rápidos', fechaCreacion: '2024-05-05', activo: true }
+        { curso: 'Cocina Vegana para Todos', inscritos: 20, nivelPromedio: '5.0', ingresos: '2,000.00', categoria: 'Cocina Vegetariana y Vegana', fechaCreacion: '2024-01-10', activo: true },
+        { curso: 'Técnicas Básicas de Cocina', inscritos: 12, nivelPromedio: '1.0', ingresos: '1,000.00', categoria: 'Técnicas de Cocina Básicas', fechaCreacion: '2024-04-01', activo: false },
+        { curso: 'Sabores de Temporada', inscritos: 18, nivelPromedio: '3.0', ingresos: '1,800.00', categoria: 'Cocina de Temporada', fechaCreacion: '2024-06-10', activo: false },
+        { curso: 'Cenas Rápidas y Fáciles', inscritos: 9, nivelPromedio: '2.0', ingresos: '900.00', categoria: 'Platos Rápidos', fechaCreacion: '2024-05-05', activo: true }
     ];
 
     // Datos ficticios para los cursos detallados (alumnos)
     const datosVentasDetalladas = [
         { alumno: 'Juan Pérez', fechaInscripcion: '12 Sep 2024', nivelAvance: '2.0', precioPagado: '500.00', formaPago: 'Tarjeta', curso: 'Nutrición Balanceada', categoria: 'Cocina Saludable', fechaCreacion: '2024-09-01', activo: true },
         { alumno: 'María López', fechaInscripcion: '14 Sep 2024', nivelAvance: '3.0', precioPagado: '250.00', formaPago: 'Efectivo', curso: 'Técnicas Básicas de Cocina', categoria: 'Platos Rápidos', fechaCreacion: '2024-04-01', activo: true },
-        { alumno: 'Carlos Ruiz', fechaInscripcion: '20 Ago 2024', nivelAvance: '1.5', precioPagado: '750.00', formaPago: 'Tarjeta', curso: 'Dulces y Postres Caseros', categoria: 'Repostería y Pastelería', fechaCreacion: '2024-07-22', activo: false },
+        { alumno: 'Carlos Ruiz', fechaInscripcion: '20 Ago 2024', nivelAvance: '7.0', precioPagado: '750.00', formaPago: 'Tarjeta', curso: 'Dulces y Postres Caseros', categoria: 'Repostería y Pastelería', fechaCreacion: '2024-07-22', activo: false },
         { alumno: 'Ana González', fechaInscripcion: '05 Jul 2024', nivelAvance: '4.0', precioPagado: '500.00', formaPago: 'Efectivo', curso: 'Sabores de Temporada', categoria: 'Cocina de Temporada', fechaCreacion: '2024-06-10', activo: false }
     ];
 
