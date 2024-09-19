@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 h2.nombre-estudiante {
                     font-family: 'Dancing Script', cursive;
                     font-size: 60px;
-                    color: #E32D40;
+                    color: #efb810;
                     margin-bottom: 5px;
                 }
                 .nombre-estudiante-línea {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     margin: 0 auto 20px auto;
                 }
                 .certificado-container {
-                    border: 5px solid #E32D40;
+                    border: 5px solid #efb810;
                     padding: 20px;
                     max-width: 800px;
                     margin: auto;
@@ -83,13 +83,13 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="certificado-container">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
                     <img src="https://png.pngtree.com/element_our/20200702/ourlarge/pngtree-red-ribbon-gold-medal-png-transparent-bottom-image_2284002.jpg" alt="Logo Izquierda" style="max-width: 100px; max-height: 100px; border-radius: 10px;">
-                    <div style="border-bottom: 3px solid #E32D40; padding-bottom: 10px; width: 100%; text-align: center;">
-                        <h1 style="color: #E32D40; font-size: 36px;">Certificado de Finalización</h1>
+                    <div style="border-bottom: 3px solid #efb810; padding-bottom: 10px; width: 100%; text-align: center;">
+                        <h1 style="color: #efb810; font-size: 36px;">Certificado de Finalización</h1>
                     </div>
                     <img src="../resources/logoCurso.png" alt="Logo Derecha" style="max-width: 100px; max-height: 100px; border-radius: 10px;">
                 </div>
                 <p style="font-size: 20px; margin-bottom: 10px; margin-top: 80px; color: #202020;">OTORGADO A:</p>
-                <h2 class="nombre-estudiante" style="color: #003054;">${nombreEstudiante}</h2>
+                <h2 class="nombre-estudiante" style="color: #efb810;">${nombreEstudiante}</h2>
                 <div class="nombre-estudiante-línea" style="border-bottom: 2px solid #003054;"></div>
                 <p style="font-size: 20px; margin-bottom: 10px; color: #202020;">Por haber completado satisfactoriamente el curso virtual de</p>
                 <h2 style="display: inline-block; margin-bottom: 20px; font-size: 24px; color: #003054;">${nombreCurso}</h2>
@@ -98,9 +98,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p style="font-size: 20px; margin-bottom: 10px; color: #202020;">Impartido a través de la página oficial de Foodemy</p>
                 <p style="font-size: 20px; margin-bottom: 10px; margin-top: 50px; color: #202020;">Instructor:</p>
                 <h2 style="display: inline-block; margin-bottom: 40px; font-size: 24px; color: #003054;">${nombreInstructor}</h2>
-                <div style="border-top: 2px solid #E32D40; width: 200px; margin: 20px auto; margin-top: 60px; height: 30px;"></div>
+                <div style="border-top: 2px solid #efb810; width: 200px; margin: 20px auto; margin-top: 60px; height: 30px;"></div>
                 <img class="firma-director" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Jon_Kirsch%27s_Signature.png" alt="Firma del Director">
-                <p style="font-size: 18px; color: #E32D40; margin-top: -35px;">Firma del Director:</p>
+                <p style="font-size: 18px; color: #efb810; margin-top: -35px;">Firma del Director:</p>
                 <button class="descargar-pdf" onclick="descargarPDF()">Descargar PDF</button>
             </div>
 
