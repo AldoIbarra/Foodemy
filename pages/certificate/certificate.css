@@ -1,0 +1,171 @@
+#bannerSection .text-container {
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+#bannerSection .text-container h2 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+#bannerSection .text-container .input-box {
+  margin-top: 20px;
+}
+
+#dynamic-categories-container {
+  margin-top: 20px;
+}
+
+.container-fluid, .row, .col-5, .col-7 {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.full-height-img img {
+  width: 105%;
+  height: 110vh;
+  object-fit: cover;
+}
+
+.category {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+#bannerSection .input-box input {
+  font-family: "Outfit-Regular";
+  font-size: 20px;
+  background-color: #FFFDF7;
+  color: #003054;
+  border: 2px solid;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#bannerSection .input-box input:focus {
+  border-color: #6AC25C;
+}
+
+#bannerSection .input-box select option {
+  font-family: "Outfit-Regular";
+  color: #003054;
+  background-color: #FFFDF7;
+  padding: 10px;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  border: 1px solid red;
+}
+
+.input-field {
+  font-family: "Outfit-Regular";
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #FFFDF7; 
+  color: #202020;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #6AC25C; 
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+ul li a {
+  text-decoration: none; 
+  color: black; 
+  display: block; 
+  padding: 8px 0; 
+  transition: color 0.3s ease; 
+}
+
+ul li a:hover {
+  color: red; 
+}
+
+ul li a.active {
+  color: red; 
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.certificado {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 5px solid #003054;
+  border-radius: 15px;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.certificado h1 {
+  font-size: 36px;
+  color: #003054;
+  margin-bottom: 10px;
+}
+
+.certificado p {
+  font-size: 18px;
+  color: #003054;
+}
+
+.certificado h2 {
+  font-size: 24px;
+  color: #003054;
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+.certificado .signature {
+  margin-top: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #003054;
+}
+
+.certificado .date {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #003054;
+}
+
+.certificado .footer-certificado {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #003054;
+}
+
+#certificado-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+}
