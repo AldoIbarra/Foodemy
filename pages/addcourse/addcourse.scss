@@ -1,4 +1,5 @@
 #addCourseBody{
+    min-height: 100vh;
     padding: 20px 0px;
     .course-info{
         form{
@@ -13,7 +14,7 @@
             textarea{
                 height: 200px;
             }
-            #title{
+            #course-title{
                 max-width: 70%;
             }
             .file-zone{

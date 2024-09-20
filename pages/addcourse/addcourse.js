@@ -1,11 +1,27 @@
 $(document ).ready(function() {
-    console.log('ola');
     $("#addlevel").slideToggle();
     $("#show-form").click(function(){
         $("#addlevel").slideToggle("slow");
     });
     
     $("#addNNewLevel").click(function(){
-        alert('Por favor llene todos los campos');
     });
+});
+
+$("#save-course").click(function(){
+    if($("#course-title").val() == '' || $("#course-desc").val() == '' || $("#course-img").val() == ''){
+        alert('Falta algunos de los datos del curso');
+    }else if($("#level-title").val() == '' || $("#level-desc").val() == '' || $("#level-price").val() == '' || $("#level-video").val() == ''){
+        alert('Falta algunos de los datos del nivel');
+    }else{
+        alert('Curso agregado correctamente');
+    }
+});
+
+$("#addNNewLevel").click(function(){
+    if($("#level-title").val() == '' || $("#level-desc").val() == '' || $("#level-price").val() == '' || $("#level-video").val() == ''){
+        alert('Falta algunos de los datos del nivel');
+    }else{
+        alert('Nivel agregado correctamente');
+    }
 });

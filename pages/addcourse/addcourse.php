@@ -12,15 +12,15 @@
             <div class="col-6 course-info">
                 <h1 class="big-name baby">Agregar Curso</h1>
                 <form action="">
-                    <input type="text" name="Title" id="title" placeholder="Titulo" class="title">
-                    <textarea name="" id="" placeholder="Descripción..."></textarea>
+                    <input type="text" name="Title" id="course-title" placeholder="Titulo" class="title">
+                    <textarea name="" id="course-desc" placeholder="Descripción..."></textarea>
                     <div class="file-zone">
                         <label for="" class="description baby">Imagen del curso</label>
-                        <input type="file" id="" name="" class="description baby">
+                        <input type="file" id="course-img" name="" class="description baby">
                     </div>
                 </form>
                 <div class="button-container">
-                    <button class="red-button">Guardar curso</button>
+                    <button class="red-button" id="save-course">Guardar curso</button>
                 </div>
             </div>
             <div class="col-6 level-info">
@@ -28,17 +28,17 @@
                 <div id="addlevel">
                     <form action="" class="level-info">
                         <div class="title-price-container">
-                            <input type="text" name="" id="" class="description" placeholder="Titulo del nivel">
-                            <input type="number" name="" id="" class="description" placeholder="Precio">
+                            <input type="text" name="" id="level-title" class="description" placeholder="Titulo del nivel">
+                            <input type="number" name="" id="level-price" class="description" placeholder="Precio">
                         </div>
-                        <textarea name="" id="" placeholder="Descripción..."></textarea>
+                        <textarea name="" id="level-desc" placeholder="Descripción..."></textarea>
                         <div class="file-zone">
                             <label for="" class="description baby">Video del nivel</label>
-                            <input type="file" id="" name="">
+                            <input type="file" id="level-video" name="">
                         </div>
                         <div class="file-zone">
                             <label for="" class="description baby">Archivo relacionado</label>
-                            <input type="file" id="" name="">
+                            <input type="file" id="level-file" name="">
                         </div>
                     </form>
                     <div class="addnewlevelcontainer">
