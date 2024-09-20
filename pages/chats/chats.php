@@ -25,15 +25,15 @@
                     <h3>Eliud Ramirez</h3>
                 </div>
                 <div class="messages">
-                    <div class="message">
+                    <div class="message me">
                         <p class="message-content">Hola Instructor, ¿la salsa de almeja tiene que ser de la que sale en el video?</p>
                         <img src="../resources/profilepic.png" alt="">
                     </div>
-                    <div class="message">
+                    <div class="message you">
                         <img src="../resources/profilepic.png" alt="">
                         <p class="message-content">Hola, puede ser de cualquiera</p>
                     </div>
-                    <div class="message">
+                    <div class="message me">
                         <p class="message-content">Gracias</p>
                         <img src="../resources/profilepic.png" alt="">
                     </div>

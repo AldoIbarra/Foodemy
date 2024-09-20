@@ -37,6 +37,12 @@
                 img{
                     max-width: 50px
                 }
+                &.me{
+                    justify-content: flex-end;
+                }
+                &.you{
+                    justify-content: flex-start;
+                }
             }
         }
         .message-bar{

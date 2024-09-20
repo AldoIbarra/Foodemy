@@ -35,6 +35,12 @@
 #chats-body .chat .messages .message img {
   max-width: 50px;
 }
+#chats-body .chat .messages .message.me {
+  justify-content: flex-end;
+}
+#chats-body .chat .messages .message.you {
+  justify-content: flex-start;
+}
 #chats-body .chat .message-bar {
   padding: 5px 0px;
   height: 9vh;
