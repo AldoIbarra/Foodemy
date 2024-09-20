@@ -1,0 +1,79 @@
+#bannerSection{
+    .text-container{
+        padding: 25px 0px;
+        .rate-stars{
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            img{
+                object-fit: contain;
+                margin-left: 10px;
+            }
+            h5{
+                margin: 0px;
+            }
+        }
+        .price-and-button{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+    .img-container{
+        img{
+            height: 100%;
+        }
+    }
+}
+
+#levelSection{
+    padding: 20px 0px;
+    .headers{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+    .levels{
+        .level{
+            display: flex;
+            margin: 10px 0px;
+            background-color: rgba($color: #fffdf7, $alpha: 0.08);
+            h4{
+                padding: 8px;
+            }
+        }
+    }
+}
+
+#commentSection{
+    padding: 20px 0px;
+    .comments-body{
+        background-color: rgba($color: #fffdf7, $alpha: 0.08);
+        border-radius: 20px;
+        padding: 15px;
+        .comments-container{
+            margin: 20px 0px;
+            .comment{
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                img{
+                    object-fit: contain;
+                }
+                .texts-container{
+                    margin-left: 10px;
+                    .name-and-stars{
+                        display: flex;
+                        h5{
+                            margin: 0px;
+                        }
+                        img{
+                            margin-left: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
