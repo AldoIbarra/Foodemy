@@ -1,0 +1,76 @@
+#bannerSection .text-container {
+    padding: 25px 0px;
+  }
+  #bannerSection .text-container .rate-stars {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  #bannerSection .text-container .rate-stars img {
+    object-fit: contain;
+    margin-left: 10px;
+  }
+  #bannerSection .text-container .rate-stars h5 {
+    margin: 0px;
+  }
+  #bannerSection .text-container .price-and-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  #bannerSection .img-container img {
+    height: 100%;
+  }
+  
+  #levelSection {
+    padding: 20px 0px;
+  }
+  #levelSection .headers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  #levelSection .levels .level {
+    display: flex;
+    margin: 10px 0px;
+    background-color: rgba(255, 253, 247, 0.08);
+  }
+  #levelSection .levels .level h4 {
+    padding: 8px;
+  }
+  
+  #commentSection {
+    padding: 20px 0px;
+  }
+  #commentSection .comments-body {
+    background-color: rgba(255, 253, 247, 0.08);
+    border-radius: 20px;
+    padding: 15px;
+  }
+  #commentSection .comments-body .comments-container {
+    margin: 20px 0px;
+  }
+  #commentSection .comments-body .comments-container .comment {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  #commentSection .comments-body .comments-container .comment img {
+    object-fit: contain;
+  }
+  #commentSection .comments-body .comments-container .comment .texts-container {
+    margin-left: 10px;
+  }
+  #commentSection .comments-body .comments-container .comment .texts-container .name-and-stars {
+    display: flex;
+  }
+  #commentSection .comments-body .comments-container .comment .texts-container .name-and-stars h5 {
+    margin: 0px;
+  }
+  #commentSection .comments-body .comments-container .comment .texts-container .name-and-stars img {
+    margin-left: 10px;
+  }
+  
+  /*# sourceMappingURL=course.css.map */
+  

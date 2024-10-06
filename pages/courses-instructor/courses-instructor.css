@@ -1,0 +1,65 @@
+.title {
+    font-family: "Outfit-Bold";
+    font-size: 48px;
+    color: #FFFDF7;
+}
+
+.course {
+    
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.course img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.tiny-name {
+    font-family: "Outfit-Bold";
+    font-size: 20px;
+    color: #FFFDF7;
+}
+
+.detail {
+    font-family: "Outfit-Regular";
+    font-size: 15px;
+    color: #FFFDF7;
+}
+
+.stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.stats img {
+    width: 20px;
+    margin-right: 5px;
+}
+
+.red-button {
+    color: #FFFDF7;
+    font-family: "Outfit-Bold";
+    border: none;
+    background-color: #E32D40;
+    font-size: 20px;
+    border-radius: 25px;
+    padding: 10px 20px;
+}
+
+.red-button:hover {
+    background-color: #FFFDF7;
+    color: #E32D40;
+    transition: ease-in-out 0.4s;
+}
+
+body {
+    background-color:#202020; 
+    margin: 0; 
+    padding: 0;
+}

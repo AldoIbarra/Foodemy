@@ -1,0 +1,161 @@
+.header-container {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+    margin-bottom: 20px;
+}
+
+.cart-icon {
+    width: 40px;
+    height: auto; 
+}
+
+
+.title {
+    margin: 0; 
+}
+
+@keyframes swing {
+    0% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(-10px); }
+  }
+  
+  .cart-icon {
+    animation: swing 1s ease-in-out infinite;
+  }
+  
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+
+.cart-img {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.cart-details {
+    flex-grow: 1;
+    margin-left: 15px;
+}
+
+.summary {
+    padding: 20px;
+    border-radius: 15px;
+    height: auto; 
+}
+
+.remove-button {
+    font-size: 16px;
+    background-color: #FFFDF7;
+    color: #E32D40;
+}
+
+.remove-button:hover {
+    background-color: #E32D40;
+    color: #FFFDF7;
+    transition: ease-in-out;
+}
+
+.checkout-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+.itemResume {
+    padding-left: 20px;
+    font-family: "Outfit-Regular";
+    font-size: 24px;
+}
+
+.itemResume:hover {
+    color: #E32D40;
+    transition: ease-in-out;
+}
+
+
+.suggestions {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #FFFDF7;
+}
+
+.suggestion-title {
+    color: #FFFDF7;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.suggestion-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.suggestion-details {
+    flex-grow: 1;
+}
+
+.suggestion-details h5 {
+    font-family: "Outfit-Bold";
+    font-size: 16px;
+    color: #FFFDF7;
+}
+
+.suggestion-details p {
+    font-family: "Outfit-Regular";
+    font-size: 12px;
+    color: #FFFDF7;
+    margin: 5px 0;
+}
+
+.suggestion-details h4 {
+    font-family: "Outfit-Bold";
+    font-size: 18px;
+    color: #FFFDF7;
+}
+
+
+.add-button {
+    font-size: 16px;
+    background-color: #FFFDF7;
+    color: #4CAF50; 
+    border-radius: 10px;
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-button:hover {
+    background-color: #4CAF50;
+    color: #FFFDF7;
+}
+
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+body{
+    background-color:#202020;
+    margin: 0; 
+    padding: 0;
+}
