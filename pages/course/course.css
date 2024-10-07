@@ -36,9 +36,47 @@
   margin: 10px 0px;
   background-color: rgba(255, 253, 247, 0.08);
 }
+
 #levelSection .levels .level h4 {
   padding: 8px;
 }
+
+
+
+#levelSection .levels .level {
+  display: flex;
+  justify-content: space-between; /* Asegura que la imagen y la sección compra estén separadas */
+  margin: 10px 0px;
+  background-color: rgba(255, 253, 247, 0.08);
+  padding: 10px;
+  align-items: center; /* Centra verticalmente los elementos */
+}
+
+#levelSection .levels .level .compra {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el precio y el botón horizontalmente */
+  margin-left: auto; /* Mueve el contenedor .compra al borde derecho */
+  padding: 10px;
+}
+
+#levelSection .levels .level .boton-compra {
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: #FFFDF7;
+  border-radius: 10px;
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease; 
+  width: 150px;
+  margin-top: 10px; /* Añade espacio entre el precio y el botón */
+}
+
+#levelSection .levels .level .boton-compra:hover {
+  background-color: #FFFDF7;
+  color: #4CAF50;
+}
+
 
 #commentSection {
   padding: 20px 0px;
@@ -71,5 +109,89 @@
 #commentSection .comments-body .comments-container .comment .texts-container .name-and-stars img {
   margin-left: 10px;
 }
+
+#commentSection .comments-body .comments-container .comment .contenedor-der {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el precio y el botón horizontalmente */
+  margin-left: auto; /* Mueve el contenedor .compra al borde derecho */
+  padding: 10px;
+}
+
+#commentSection .comments-body .comments-container .comment .contenedor-der .boton-reporte{
+  font-size: 14px;
+  background-color: #E32D40;
+  color: #FFFDF7;
+  border-radius: 10px;
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease; 
+  width: 100px;
+  margin-top: 10px; /* Añade espacio entre el precio y el botón */
+}
+
+#commentSection .comments-body .comments-container .comment .contenedor-der .boton-reporte:hover{
+  
+  background-color: #FFFDF7;
+  color: #E32D40;
+  
+}
+
+#commentSection .contenedor-formulario {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+#commentSection .contenedor-formulario .stars {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+#commentSection .contenedor-formulario select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #FFFDF7;
+}
+
+#commentSection .contenedor-formulario .comment-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#commentSection .contenedor-formulario textarea {
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #FFFDF7;
+}
+
+#commentSection .contenedor-formulario .boton-enviar {
+  margin-top: 10px;
+  align-self: flex-end;
+  font-size: 14px;
+  background-color: #E32D40;
+  color: #FFFDF7;
+  border-radius: 10px;
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+.report-menu {
+  position: absolute;
+  background-color: #202020;
+  border: 1px solid #FFFDF7;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  width: 200px;
+}
+
 
 /*# sourceMappingURL=course.css.map */
