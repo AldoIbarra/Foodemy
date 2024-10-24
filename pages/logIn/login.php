@@ -24,7 +24,7 @@
             <div class="login-container">
                 <form action="" id="formulario">
                      <img class= "avatar" src="../resources/logoCursosCocina.jpg" alt="Imagen predeterminada" >
-                     <h1 class="title baby">Bienvenido <span class="poppy">.</span></h1>
+                     <h1 class="title baby"> Bienvenido <span class="poppy">.</span></h1>
                     
                      <div class="input-div one">
                         <div class="i">
