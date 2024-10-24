@@ -1,5 +1,19 @@
-
 const inputs= document.querySelectorAll('.input');
+var session;
+
+$( document ).ready(function() {
+    $.ajaxSetup({cache: false})
+    $.get('../../api/getSession.php', function (data) {
+        console.log(data);
+        if(data){
+            session = JSON.parse(data);
+            console.log(session);
+        }else{
+            console.error("Error al analizar JSON");
+        }
+    });
+});
+
 
 function focusFunc(){
     let parent= this.parentNode.parentNode;

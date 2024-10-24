@@ -26,16 +26,15 @@
 
             <!-- ===== ===== Work Contaienr ===== ===== -->
             <div class="work">
-
                 <div class="primary">
                     <h1 class="tiny-name eerie" >Acerca de mí </h1>
                     <p class="detail baby"> Apasionado por la comida  <br> mexicanaaaa</p>
                 </div>
-                <button class="red-button" onclick="window.location.href='editar.php';">
-                    Editar perfil
-                </button>
             
+                <a href="editar.php" class="red-button">Editar perfil</a>
+            </div>
 
+                
             
         </section>
 

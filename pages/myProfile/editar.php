@@ -1,9 +1,14 @@
 <?php
+    require("../../config/sessionVerif.php");
     $titlename = "Foodemy";
     $stylename = "editar.css";
     $javascript = "editar.js";
-   
-    require_once("../header.php");
+
+    if($_SESSION){
+        require_once("../userHeader.php");
+    }else{
+        require_once("../header.php");
+    }
 ?>
 <section id="dashboardSection">
     <div class="container">   
@@ -72,7 +77,5 @@
                 
     </div>
 </section>
-
-<script src='editar.js'></script>
 
 <?php include("../footer.php"); ?>

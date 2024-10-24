@@ -1,9 +1,14 @@
 <?php
+    require("../../config/sessionVerif.php");
     $titlename = "Foodemy";
     $stylename = "login.css";
-   
+    $javascript = "login.js";
 
-    require_once("../header.php");
+    if($_SESSION){
+        require_once("../userHeader.php");
+    }else{
+        require_once("../header.php");
+    }
 ?>
 
 
@@ -12,7 +17,7 @@
     <div class="container">   
             <div class= "img">
                 <a class="red-button" href="../signup/signup.php">
-                    Iniciar sesión
+                    Registrate
                 </a>
             </div>
 
@@ -52,9 +57,7 @@
                 
             
             </div>
-            <script src='login.js'></script>
 
-<?php include("../footer.php"); 
-
-
+<?php 
+    include("../footer.php"); 
 ?>

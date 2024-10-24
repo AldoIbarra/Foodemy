@@ -161,6 +161,7 @@ function signup() {
     formData.append('email', correo);
     formData.append('password', contra);
     formData.append('userType', usuarioTipo);
+    formData.append('option', 'signUp');
 
     $.ajax({
         type: "POST",

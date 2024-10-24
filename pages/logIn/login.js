@@ -1,4 +1,20 @@
 const inputs= document.querySelectorAll('.input');
+var correo;
+var contra;
+var session;
+
+$( document ).ready(function() {
+    $.ajaxSetup({cache: false})
+    $.get('../../api/getSession.php', function (data) {
+        console.log(data);
+        if(data){
+            session = JSON.parse(data);
+            console.log(session);
+        }else{
+            console.error("Error al analizar JSON");
+        }
+    });
+});
 
 function focusFunc(){
     let parent= this.parentNode.parentNode;
@@ -25,8 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
 
         // Obtiene los valores de los campos
-        const correo = document.getElementById('correo')?.value.trim() || '';
-        const contra = document.getElementById('contra')?.value.trim() || '';
+        correo = document.getElementById('correo')?.value.trim() || '';
+        contra = document.getElementById('contra')?.value.trim() || '';
 
         let TODOcorrecto = 2;
 
@@ -57,10 +73,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Si todo es válido, envía el formulario
         if (TODOcorrecto === 2) {
-            alert(`Formulario enviado correctamente!\nCorreo: ${correo}`);
+            login();
              // Descomenta esto para enviar el formulario realmente
         } else {
             alert('Datos incorrectos');
         }
     });
 });
+
+function login() {
+    $.ajax({
+        type: "POST",
+        url: "../../api/usersController.php",
+        data: {
+            email: correo,
+            password: contra,
+            option: 'logIn'
+        },
+        success: function(data) {
+            location.reload();
+            console.log(data);
+        },
+        error: function(xhr, status, error) {
+            console.log('error');
+            console.log(error);
+        },
+    });
+}
