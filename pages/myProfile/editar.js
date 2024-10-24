@@ -1,5 +1,9 @@
 const inputs= document.querySelectorAll('.input');
+var nombre;
+var sexo;
+var fechaN;
 var session;
+var id;
 
 $( document ).ready(function() {
     $.ajaxSetup({cache: false})
@@ -59,67 +63,32 @@ inputFoto.addEventListener('change', function(event) {
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    event.preventDefault();
     document.getElementById('formulariosp').addEventListener('submit', function(event) {
         // Previene el envío del formulario si hay errores
         event.preventDefault();
 
         // Obtiene los valores de los campos
-        const nombre = document.getElementById('nombre')?.value.trim() || '';
-        const correo = document.getElementById('correo')?.value.trim() || '';
-        const contra = document.getElementById('contra')?.value.trim() || '';
-        const sexo = document.getElementById('sexo')?.value || '';
-        const fechaN = document.getElementById('fecha')?.value || '';
-        const inputFoto = document.getElementById('inputFoto')?.value || '';
+        nombre = document.getElementById('nombre')?.value.trim() || '';
+        sexo = document.getElementById('sexo')?.value || '';
+        fechaN = document.getElementById('fecha')?.value || '';
+        id = document.getElementById('id')?.value.trim() || '';
        
-        let TODOcorrecto = 6;
+        let TODOcorrecto = 3;
 
-
-        //1. foto
-        if (inputFoto === '') {
-            TODOcorrecto -= 1;
-            alert('Selecciona al menos una foto');
-        }
-
-        // 2. Valida el campo de nombre
+        // 1. Valida el campo de nombre
         if (nombre === '') {
             TODOcorrecto -= 1;
             alert('Ingresar un nombre válido');
         }
 
-        // 3. Valida el campo de correo
-        if (correo === '') {
-            TODOcorrecto -= 1;
-            alert('Ingresar un correo');
-        } else if (!/\S+@\S+\.\S+/.test(correo)) {
-            TODOcorrecto -= 1;
-            alert('Ingresar un correo válido');
-        }
-
-        // 4. Valida el campo de contraseña
-        if (contra === '') {
-            TODOcorrecto -= 1;
-            alert('Ingresar una contraseña');
-        } else if (contra.length < 8) {
-            TODOcorrecto -= 1;
-            alert('La contraseña debe tener al menos 8 caracteres.');
-        } else if (!/[A-Z]/.test(contra)) {
-            TODOcorrecto -= 1;
-            alert('La contraseña debe contener al menos una letra mayúscula.');
-        } else if (!/\d/.test(contra)) {
-            TODOcorrecto -= 1;
-            alert('La contraseña debe contener al menos un número.');
-        } else if (!/[!@#$%^&*()]/.test(contra)) { 
-            TODOcorrecto -= 1;
-            alert('La contraseña debe contener al menos un carácter especial: !@#$%^&*() .');
-        }
-
-        // 5. Valida el campo de sexo
+        // 2. Valida el campo de sexo
         if (sexo === '') {
             TODOcorrecto -= 1;
             alert('Seleccionar un sexo');
         }
 
-        // 6. Valida el campo de fecha
+        // 3. Valida el campo de fecha
 
         const fechaC = new Date(fechaN);
         const fechaMin = new Date('1900-01-01');
@@ -135,11 +104,34 @@ document.addEventListener('DOMContentLoaded', function() {
         
 
         // Si todo es válido, envía el formulario
-        if (TODOcorrecto === 6) {
-            alert(`Formulario enviado correctamente!`);
-            // Descomenta esto para enviar el formulario realmente
+        if (TODOcorrecto === 3) {
+            event.preventDefault();
+            alert(nombre + sexo + fechaN + id);
+            updateInfo();
         } else {
             alert('Datos incorrectos');
         }
     });
 });
+
+function updateInfo(){
+    $.ajax({
+        type: "POST",
+        url: "../../api/usersController.php",
+        data: {
+            name: nombre,
+            gender: sexo,
+            bornDate: fechaN,
+            id: id,
+            option: 'updateInfo'
+        },
+        success: function(data) {
+            location.reload();
+            console.log(data);
+        },
+        error: function(xhr, status, error) {
+            console.log('error');
+            console.log(error);
+        },
+    });
+}

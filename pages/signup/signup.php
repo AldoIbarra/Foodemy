@@ -93,7 +93,7 @@
                             <select  class= "option eerie" id="usuarioTipo" name="usuarioTipo" >
                                 <option value="">--Seleccionar--</option>
                                 <option value="Estudiante">Estudiante</option>
-                                <option value="Maestro">Instructor</option>
+                                <option value="Instructor">Instructor</option>
                             </select>
                         </div>
                     </div>

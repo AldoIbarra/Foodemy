@@ -78,5 +78,55 @@
             }
             return $user;
         }
+    
+        static function updateInfo($id, $name, $gender, $bornDate){
+            self::initializeConnection();
+            
+            try{
+                $sqlInsert="CALL Actualizar_Basicos_Usuario(:id, :name, :gender, :bornDate);";
+                $consultaInsert= self::$connection->prepare($sqlInsert);
+                $consultaInsert->execute(array(
+                    ':id'=>$id,
+                    ':name'=>$name,
+                    ':gender'=>$gender,
+                    ':bornDate'=>$bornDate
+                ));
+
+                $user = UserClass::getUserById($id);
+                
+                $_SESSION['Nombre_Completo']=$user["Nombre_Completo"];
+                $_SESSION['Genero']=$user["Genero"];
+                $_SESSION['Fecha_Nacimiento']=$user["Fecha_Nacimiento"];
+        
+                return array(true,"insertado con exito");
+            
+            }catch(PDOException $e){
+                if ($e->errorInfo[1] == 1062) {
+                    $cadena = "El usuario ya ha sido agregado.";
+                    return array(false, $cadena);
+                } else {
+                    return array(false, "Error al agregar usuario: " . $e->getMessage());
+                }
+            }
+        }
+
+        static function getUserById($id){
+            
+            self::initializeConnection();
+            $sqlInsert="CALL Consultar_Usuario(:id);";
+            $consultaInsert= self::$connection->prepare($sqlInsert);
+            $consultaInsert->execute(array(
+                ':id'=>$id
+            ));
+        
+            $usuario = $consultaInsert->fetch(PDO::FETCH_ASSOC);
+            
+        
+            if(!$usuario) {
+               return null;
+            }else{
+                return $usuario;
+            }
+        }
     }
 ?>
