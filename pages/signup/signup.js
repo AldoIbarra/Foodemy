@@ -1,4 +1,17 @@
 const inputs= document.querySelectorAll('.input');
+var nombre;
+var correo;
+var contra;
+var sexo;
+var fechaN; 
+var inputFoto;
+var usuarioTipo;
+var formData;
+var archivo;
+
+$(document ).ready(function() {
+    console.log('cargo');
+});
 
 function focusFunc(){
     let parent= this.parentNode.parentNode;
@@ -17,7 +30,7 @@ inputs.forEach(input=>{
     input.addEventListener('blur',blurFunc);
 })
 
-const inputFoto = document.getElementById('inputFoto');
+inputFoto = document.getElementById('inputFoto');
 const imagenPrevisualizada = document.getElementById('imagenPrevisualizada');
 
 // Agregar un evento cuando se seleccione un archivo
@@ -47,14 +60,15 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
 
         // Obtiene los valores de los campos
-        const nombre = document.getElementById('nombre')?.value.trim() || '';
-        const correo = document.getElementById('correo')?.value.trim() || '';
-        const contra = document.getElementById('contra')?.value.trim() || '';
-        const sexo = document.getElementById('sexo')?.value || '';
-        const fechaN = document.getElementById('fecha')?.value || '';
-        const inputFoto = document.getElementById('inputFoto')?.value || '';
+        nombre = document.getElementById('nombre')?.value.trim() || '';
+        correo = document.getElementById('correo')?.value.trim() || '';
+        contra = document.getElementById('contra')?.value.trim() || '';
+        sexo = document.getElementById('sexo')?.value || '';
+        usuarioTipo = document.getElementById('usuarioTipo')?.value || '';
+        fechaN = document.getElementById('fecha')?.value || '';
+        inputFoto = document.getElementById('inputFoto')?.value || '';
 
-        let TODOcorrecto = 6;
+        let TODOcorrecto = 7;
 
         //1. foto
         if (inputFoto === '') {
@@ -114,14 +128,52 @@ document.addEventListener('DOMContentLoaded', function() {
             TODOcorrecto -= 1;
             alert('La fecha debe estar entre el 1 de enero de 1930 y el 31 de diciembre de 2009.');
         }
+
+        //7. Tipo de usuario
+        
+        if (usuarioTipo === '') {
+            TODOcorrecto -= 1;
+            alert('Seleccionar un tipo de usuario');
+        }
         
 
         // Si todo es válido, envía el formulario
-        if (TODOcorrecto === 6) {
+        if (TODOcorrecto === 7) {
+            event.preventDefault();
             alert(`Formulario enviado correctamente!`);
-            // Descomenta esto para enviar el formulario realmente
+            signup();
         } else {
             alert('Datos incorrectos');
         }
     });
 });
+
+function signup() {
+    formData = new FormData();
+    archivo = document.getElementById('inputFoto').files[0];
+    if (archivo) {
+        formData.append('imagen', archivo);
+    }
+
+    formData.append('name', nombre);
+    formData.append('gender', sexo);
+    formData.append('bornDate', fechaN);
+    formData.append('email', correo);
+    formData.append('password', contra);
+    formData.append('userType', usuarioTipo);
+
+    $.ajax({
+        type: "POST",
+        url: "../../api/usersController.php",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(data) {
+            console.log(data);
+        },
+        error: function(xhr, status, error) {
+            console.log('error');
+            console.log(error);
+        },
+    });
+}
