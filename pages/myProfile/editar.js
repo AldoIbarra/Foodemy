@@ -126,7 +126,8 @@ function updateInfo(){
             option: 'updateInfo'
         },
         success: function(data) {
-            location.reload();
+            //location.reload();
+            window.location.replace("profile.php");
             console.log(data);
         },
         error: function(xhr, status, error) {

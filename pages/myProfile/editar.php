@@ -7,6 +7,7 @@
     if($_SESSION){
         require_once("../userHeader.php");
     }else{
+        header("Location:../login/login.php");
         require_once("../header.php");
     }
 ?>

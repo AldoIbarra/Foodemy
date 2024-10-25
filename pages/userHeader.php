@@ -24,5 +24,5 @@
             <input type="text" name="search-bar" id="search-bar" placeholder="Busca algún curso...">
         </div>
         <a class="red-button" href="../../config/cerrarSesion.php">Cerrar sesión</a>
-        <a href="../myProfile/editar.php" class="red-button">Perfil</a>
+        <a href="../myProfile/profile.php" class="red-button">Perfil</a>
     </nav>

@@ -1,17 +1,19 @@
 <?php
+    require("../../config/sessionVerif.php");
     $titlename = "Foodemy";
     $stylename = "profile.css";
+    $javascript = "profile.js";
    
-
-    require_once("../header.php");
+    if($_SESSION){
+        require_once("../userHeader.php");
+    }else{
+        header("Location:../login/login.php");
+        require_once("../header.php");
+    }
 ?>
 
 <section id="bannerSection" >
  <!-- ===== ===== Body Main-Background ===== ===== -->
- <span class="main_bg"></span>
-
-
-
     <div class="container">
         <!-- ===== ===== User Main-Profile ===== ===== -->
         <section class="userProfile">
@@ -30,7 +32,6 @@
                     <h1 class="tiny-name eerie" >Acerca de mí </h1>
                     <p class="detail baby"> Apasionado por la comida  <br> mexicanaaaa</p>
                 </div>
-            
                 <a href="editar.php" class="red-button">Editar perfil</a>
             </div>
 
@@ -42,9 +43,21 @@
         <!-- ===== ===== User Details Sections ===== ===== -->
         <section class="userDetails card">
             <div class="userName">
-                <h1 class="title prussian">Byun Baekhyun</h1>
+                <?php
+                    if($_SESSION){
+                        echo '<h1 class="title prussian">'.$_SESSION['Nombre_Completo'].'</h1>';
+                    }else{
+                        echo '<h1 class="title prussian">Byun Baekhyun</h1>';
+                    }
+                ?>
+                <?php
+                    if($_SESSION){
+                        echo '<p class="big-name mantis">'.$_SESSION['Rol'].'</p>';
+                    }else{
+                        echo '<p class="big-name mantis">Estudiante</p>';
+                    }
+                ?>
                 
-                <p class="big-name mantis">Estudiante</p>
             </div>
 
             <div class="rank">
@@ -86,12 +99,26 @@
                 <ul>
                     <li class="birthday">
                         <h1 class="tiny-name eerie">Cumpleaños:</h1>
-                        <span class="info">Mayo 5, 2000</span>
+                        <?php
+                            if($_SESSION){
+                                echo '<span class="info">'.$_SESSION['Fecha_Nacimiento'].'</span>';
+                            }else{
+                                echo '<span class="info">Mayo 5, 2000</span>';
+                            }
+                        ?>
+                        
                     </li>
 
                     <li class="sex">
                         <h1 class="tiny-name eerie">Género:</h1>
-                        <span class="info">Masculino</span>
+                        <?php
+                            if($_SESSION){
+                                echo '<span class="info">'.$_SESSION['Genero'].'</span>';
+                            }else{
+                                echo '<span class="info">Masculino</span>';
+                            }
+                        ?>
+                        
                     </li>
                 </ul>
             </div>
@@ -220,10 +247,6 @@
     
 </section>
 
-
-<script src='profile.js'></script>
-
-<?php include("../footer.php"); 
-
-
+<?php 
+    include("../footer.php"); 
 ?>

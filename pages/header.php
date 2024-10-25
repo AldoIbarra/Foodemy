@@ -23,7 +23,7 @@
             </button>
             <input type="text" name="search-bar" id="search-bar" placeholder="Busca algún curso...">
         </div>
-        <button class="red-button">
+        <a href="../login/login.php" class="red-button">
             Ingresar
-        </button>
+        </a>
     </nav>

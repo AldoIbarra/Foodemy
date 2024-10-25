@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Si todo es válido, envía el formulario
         if (TODOcorrecto === 2) {
             login();
-             // Descomenta esto para enviar el formulario realmente
         } else {
             alert('Datos incorrectos');
         }
@@ -91,10 +90,12 @@ function login() {
             option: 'logIn'
         },
         success: function(data) {
+            alert('¡Acceso correcto!');
             location.reload();
             console.log(data);
         },
         error: function(xhr, status, error) {
+            alert('Error.');
             console.log('error');
             console.log(error);
         },
