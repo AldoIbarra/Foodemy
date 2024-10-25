@@ -140,7 +140,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Si todo es válido, envía el formulario
         if (TODOcorrecto === 7) {
             event.preventDefault();
-            alert(`Formulario enviado correctamente!`);
             signup();
         } else {
             alert('Datos incorrectos');
@@ -170,6 +169,8 @@ function signup() {
         processData: false,
         contentType: false,
         success: function(data) {
+            alert(`¡Usuario registrado con exito!`);
+            window.location.replace("../login/login.php");
             console.log(data);
         },
         error: function(xhr, status, error) {
