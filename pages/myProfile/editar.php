@@ -3,12 +3,14 @@
     $titlename = "Foodemy";
     $stylename = "editar.css";
     $javascript = "editar.js";
+   
+    require_once("../header.php");
 
     if($_SESSION){
-        require_once("../userHeader.php");
+        require_once("../userNav.php");
     }else{
         header("Location:../login/login.php");
-        require_once("../header.php");
+        require_once("../emptyNav.php");
     }
 ?>
 <section id="dashboardSection">

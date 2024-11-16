@@ -167,5 +167,56 @@ nav #searchBarContainer input {
   color: #FFFDF7;
   width: 90%;
 }
+nav .cart-user {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+nav .cart-user .cart-icon {
+  margin-right: 15px;
+}
+nav .cart-user .cart-icon img {
+  width: 3vw;
+}
+nav .cart-user .user-menu img {
+  width: 4vw;
+}
+
+.user-menu.show .user-dropdown {
+  box-shadow: -2px 4px 7px #ccc;
+  display: block;
+  z-index: 2;
+}
+
+.user-menu img:hover {
+  cursor: pointer;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 13vh;
+  display: none;
+  right: 1vw;
+  width: 220px;
+  background-color: #fff;
+}
+@media (min-width: 1400px) {
+  .user-dropdown {
+    right: 5vw;
+  }
+}
+.user-dropdown .dropdown-item {
+  color: #000;
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+}
+.user-dropdown a:active, .user-dropdown a:hover {
+  background-color: #EBF5FF;
+  cursor: pointer;
+}
+.user-dropdown p {
+  font-size: 20px;
+}
 
 /*# sourceMappingURL=styles.css.map */

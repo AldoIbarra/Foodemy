@@ -174,5 +174,65 @@ nav{
             width: 90%;
         }
     }
+    .cart-user {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        
+        .cart-icon{
+            margin-right: 15px;
+            img {
+                width: 3vw;
+            }
+        }
+        .user-menu{
+            img{
+                width: 4vw;
+            }
+        }
+    }
+}
+
+.user-menu.show {
+    .user-dropdown {
+      box-shadow: -2px 4px 7px #ccc;
+      display: block;
+      z-index: 2;
+    }
+}
+
+.user-menu{
+    img{
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+  
+.user-dropdown {
+    position: absolute;
+    top: 13vh;
+    display: none;
+    right: 1vw;
+    @media (min-width: 1400px){
+        right: 5vw;
+    }
+    width: 220px;
+    background-color: #fff;
+    .dropdown-item{
+        color: #000;
+        display: block;
+        padding: 1rem;
+        text-decoration: none;
+    }
+    a{
+        &:active, &:hover {
+          background-color: #EBF5FF;
+          cursor: pointer;
+        }
+    }
+    p{
+        font-size: 20px;
+    }
 }
 

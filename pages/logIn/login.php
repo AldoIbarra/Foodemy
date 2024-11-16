@@ -3,11 +3,13 @@
     $titlename = "Foodemy";
     $stylename = "login.css";
     $javascript = "login.js";
+   
+    require_once("../header.php");
 
     if($_SESSION){
-        require_once("../userHeader.php");
+        require_once("../userNav.php");
     }else{
-        require_once("../header.php");
+        require_once("../emptyNav.php");
     }
 ?>
 
