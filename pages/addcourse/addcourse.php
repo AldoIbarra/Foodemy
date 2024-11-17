@@ -4,6 +4,12 @@
     $javascript = "addcourse.js";
    
     require_once("../header.php");
+   
+    if($_SESSION['Rol'] == 'Instructor'){
+        require_once("../teacherNav.php");
+    }else{
+        header("Location:../dashboard/dashboard.php");
+    }
 ?>
 
 <section id="addCourseBody" class="back-prussian">

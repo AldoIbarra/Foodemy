@@ -7,7 +7,7 @@
     require_once("../header.php");
 
     if($_SESSION){
-        require_once("../userNav.php");
+        header("Location:../myProfile/profile.php");
     }else{
         require_once("../emptyNav.php");
     }

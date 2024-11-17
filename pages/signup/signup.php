@@ -1,8 +1,15 @@
 <?php
+    require("../../config/sessionVerif.php");
     $titlename = "Foodemy";
     $stylename = "signup.css";
     $javascript = "signup.js";
     require_once("../header.php");
+
+    if($_SESSION){
+        header("Location:../myProfile/profile.php");
+    }else{
+        require_once("../emptyNav.php");
+    }
 ?>
 
 

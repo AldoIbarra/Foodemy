@@ -20,9 +20,8 @@
                 <div class="user-dropdown">
                     <p class="dropdown-item" id="user_name"></p>
                     <a class="dropdown-item" href="../userprofile/userprofile.php">Perfil</a>
-                    <a class="dropdown-item" href="../cotizacionesAuth/cotizacionesAuth.php">Cotizaciones</a>
-                    <a class="dropdown-item" href="../favorites/favorites.php">Favoritos</a>
-                    <a class="dropdown-item" href="../orders/orders.php">Mis pedidos</a>
+                    <a class="dropdown-item" href="../cotizacionesAuth/cotizacionesAuth.php">Cursos</a>
+                    <a class="dropdown-item" href="../favorites/favorites.php">Kardex</a>
                     <a class="dropdown-item" href="../../config/cerrarSesion.php">Cerrar sesión</a>
                 </div>
             </div>

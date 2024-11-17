@@ -1,9 +1,16 @@
 <?php
+    require("../../config/sessionVerif.php");
     $titlename = "Foodemy";
     $stylename = "dashboard.css";
     $javascript = "dashboard.js";
    
     require_once("../header.php");
+   
+    if($_SESSION){
+        require_once("../studentNav.php");
+    }else{
+        require_once("../emptyNav.php");
+    }
 ?>
 
 
