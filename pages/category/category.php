@@ -1,9 +1,16 @@
 <?php 
+    require("../../config/sessionVerif.php");
     $titlename = "Foodemy";
     $stylename = "category.css";
     $javascript = "category.js";
 
     require_once("../header.php");
+
+    if (isset($_SESSION['Nombre_Completo']) && !empty($_SESSION['Nombre_Completo'])) {
+        echo '<h1 class="title prussian">' . htmlspecialchars($_SESSION['Nombre_Completo']) . '</h1>';
+    } else {
+        echo '<h1 class="title prussian">Usuario Invitado</h1>';
+    }
 ?>
 
 <section id="bannerSection" class="back-prussian">
@@ -15,14 +22,6 @@
                     <span class="details"></span>
                     <select id="number-of-categories" required>
                         <option value="categorías">Categorías</option>
-                        <option value="1">Cocina Saludable</option>
-                        <option value="2">Cocina Internacional</option>
-                        <option value="3">Repostería y Pastelería</option>
-                        <option value="4">Cocina Vegetariana y Vegana</option>
-                        <option value="5">Técnicas de Cocina Básicas</option>
-                        <option value="6">Cocina de Temporada</option>
-                        <option value="7">Platos Rápidos</option>
-                        <option value="+ Agregar">+ Agregar</option>
                     </select>
                 </div>
 
