@@ -2,70 +2,60 @@ document.addEventListener("DOMContentLoaded", function () {
     const categoriesContainer = document.getElementById('dynamic-categories-container');
     const numberOfCategories = document.getElementById('number-of-categories');
 
-    // Variable para almacenar todas las categorías
     let allCategories = [];
 
-    // Usamos URLSearchParams para enviar el parámetro 'option'
-    const params = new URLSearchParams();
-    params.append('option', 'getAllCategories');
-
+    // Fetch initial categories
+    const params = new URLSearchParams({ option: 'getAllCategories' });
     $.ajax({
         type: "GET",
         url: "../../api/categoryController.php?" + params.toString(),
-        dataType: "json", // Asegúrate de que los datos se manejen como JSON
-        success: function(response) {
-            try {
-                console.log("Respuesta:", response); // Verifica qué es lo que llega
-                
-                // Verifica que response.success es verdadero y que response.categories es un array
-                if (response.success && Array.isArray(response.categories)) {
-                    allCategories = response.categories;  // Almacenamos todas las categorías
-                    
-                    response.categories.forEach(category => { 
-                        console.log("Categoría:", category);
-                        addCategoryToSelect(category);
-                    });
-                    // Añadir la opción "+ Agregar"
-                    addCategoryToSelect({ ID_Categoria: '', Titulo: '+ Agregar' });
-                } else {
-                    console.log('Respuesta inesperada:', response);
-                }
-            } catch (error) {
-                console.error('Error al procesar la respuesta:', error);
+        dataType: "json",
+        success: function (response) {
+            if (response.success && Array.isArray(response.categories)) {
+                allCategories = response.categories;
+                response.categories.forEach(category => addCategoryToSelect(category));
+                addCategoryToSelect({ ID_Categoria: '', Titulo: '+ Agregar' });
+            } else {
+                console.error('Error al cargar categorías:', response);
             }
         },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
+        error: function (xhr, status, error) {
+            console.error('Error en la solicitud:', error);
         }
     });
 
     function addCategoryToSelect(category) {
         const option = document.createElement('option');
-        option.value = category.ID_Categoria; // Asegúrate de usar las propiedades correctas
-        option.textContent = category.Titulo; // Asegúrate de usar las propiedades correctas
+        option.value = category.ID_Categoria;
+        option.textContent = category.Titulo;
         numberOfCategories.appendChild(option);
     }
 
     numberOfCategories.addEventListener('change', function () {
         const selectedCategoryId = numberOfCategories.value;
         if (selectedCategoryId === '') {
-            addCategoryForm(); // Si no se seleccionó categoría, muestra el formulario para agregar
+            addCategoryForm();
         } else {
-            // Aquí obtenemos la categoría seleccionada de los datos almacenados
-            const selectedCategory = allCategories.find(category => category.ID_Categoria == selectedCategoryId);
-            if (selectedCategory) {
-                displayCategory(selectedCategory);
-            }
+            const selectedCategory = allCategories.find(cat => cat.ID_Categoria == selectedCategoryId);
+            if (selectedCategory) displayCategory(selectedCategory);
         }
     });
 
     function addCategoryForm() {
         categoriesContainer.innerHTML = `
             <div class="category">
-                <h4>Agregar nueva Categoría</h4>
-                <input type="text" id="new-category-title" placeholder="Título" required>
-                <input type="text" id="new-category-description" placeholder="Descripción" required>
-                <button id="save-category">Guardar</button>
+                <h4 class="name eerie" >Agregar nueva Categoría</h4>
+                <div class="input-box">
+                    <span class="description eerie">Título</span>
+                    <input type="text" id="new-category-title" placeholder="Ingrese el título de la categoría" class="input-field title_input" required>
+                </div>
+                <div class="input-box">
+                    <span class="description eerie">Descripción</span>
+                    <input type="text" id="new-category-description" placeholder="Ingrese la descripción de la categoría" class="input-field desc_input" required>
+                </div>
+                <div class="button-container">
+                <button id="save-category" class="red-button save-btn">Guardar</button>
+                </div>
             </div>`;
         document.getElementById('save-category').addEventListener('click', saveCategory);
     }
@@ -73,64 +63,113 @@ document.addEventListener("DOMContentLoaded", function () {
     function saveCategory() {
         const title = document.getElementById('new-category-title').value;
         const description = document.getElementById('new-category-description').value;
-    
         if (!title || !description) {
-            alert('Por favor completa todos los campos');
+            alert('Por favor, completa todos los campos.');
             return;
         }
-    
         const formData = new FormData();
         formData.append('title', title);
         formData.append('description', description);
         formData.append('option', 'createCategory');
-   
         $.ajax({
             type: "POST",
             url: "../../api/categoryController.php",
             data: formData,
             processData: false,
             contentType: false,
-            success: function(response) {
-                console.log('Respuesta del servidor:', response);
+            success: function (response) {
                 if (response.success) {
-                    alert('¡Categoría registrada con éxito!');
-                    
-                    // Verificar si el nuevo ID de categoría llega correctamente
-                    console.log('Nuevo ID de categoría:', response.newCategoryId);
-                    
-                    // Crear la nueva categoría con el ID recibido
-                    const newCategory = {
-                        ID_Categoria: response.newCategoryId,  // Usar el ID recibido
-                        Titulo: title
-                    };
-            
-                    // Añadir la nueva categoría al select
-                    addCategoryToSelect(newCategory);
-            
-                    // Limpiar los campos del formulario
-                    document.getElementById('new-category-title').value = '';  
-                    document.getElementById('new-category-description').value = '';
-            
-                    // Redirigir después de unos segundos
-                    setTimeout(function() {
-                        window.location.replace("../category/category.php");  // Redirigir después de unos segundos
-                    }, 1000); // 1 segundo
+                    alert('¡Categoría creada con éxito!');
+                    addCategoryToSelect({ ID_Categoria: response.newCategoryId, Titulo: title });
                 } else {
-                    alert('Error al crear la categoría');
+                    alert('Error al crear la categoría.');
                 }
             }
-            
         });
     }
-   
 
     function displayCategory(category) {
         categoriesContainer.innerHTML = `
             <div class="category" data-id="${category.ID_Categoria}">
-                <h4>${category.Titulo}</h4>
-                <p>${category.Descripcion}</p>
-                <button class="edit-btn" data-id="${category.ID_Categoria}">Editar</button>
-                <button class="delete-btn" data-id="${category.ID_Categoria}">Eliminar</button>
+                <h4 class="name eerie">${category.Titulo}</h4>
+                <div class="input-box">
+                    <span class="description eerie">Título</span>
+                    <input type="text" value="${category.Titulo}" class="input-field category_title" readonly>
+                </div>
+                 <div class="input-box">
+                    <span class="description eerie">Descripción</span>
+                    <input type="text" value="${category.Descripcion}" class="input-field category_desc" readonly>
+                </div>
+                <br>
+                <button class="red-button edit-btn">Editar</button>
+                <button class="red-button delete-btn">Eliminar</button>
             </div>`;
+
+        const editBtn = categoriesContainer.querySelector('.edit-btn');
+        const deleteBtn = categoriesContainer.querySelector('.delete-btn');
+        editBtn.addEventListener('click', () => toggleEditMode(category.ID_Categoria));
+        deleteBtn.addEventListener('click', () => deleteCategory(category.ID_Categoria));
+    }
+
+    function toggleEditMode(categoryId) {
+        const categoryElement = document.querySelector(`.category[data-id="${categoryId}"]`);
+        let titleInput = categoryElement.querySelector('.category_title');
+        let descriptionInput = categoryElement.querySelector('.category_desc');
+        const editBtn = categoryElement.querySelector('.edit-btn');
+
+        if (editBtn.textContent === 'Editar') {
+            // Enable editing
+            titleInput.readOnly = false;
+            descriptionInput.readOnly = false;
+            editBtn.textContent = 'Guardar';
+
+            titleInput = categoryElement.querySelector('.category-title');
+            descriptionInput = categoryElement.querySelector('.category-description');
+        } else {
+            if (!titleInput.value || !descriptionInput.value) {
+                alert('Por favor, completa todos los campos.');
+                return;
+            }
+            // Save changes
+            console.log(categoryId, titleInput.value, descriptionInput.value)
+            const updatedCategory = {
+                id_category: categoryId,
+                title: titleInput.value,
+                description: descriptionInput.value
+            };
+            $.ajax({
+                type: "POST",
+                url: "../../api/categoryController.php",
+                data: { option: 'updateCategory', ...updatedCategory },
+                success: function (response) {
+                    if (response.success) {
+                        alert('Categoría actualizada correctamente.');
+                        titleInput.readOnly = true;
+                        descriptionInput.readOnly = true;
+                        editBtn.textContent = 'Editar';
+                    } else {
+                        alert('Error al actualizar la categoría.');
+                    }
+                }
+            });
+        }
+    }
+
+    function deleteCategory(categoryId) {
+        if (confirm('¿Estás seguro de que deseas eliminar esta categoría?')) {
+            $.ajax({
+                type: "POST",
+                url: "../../api/categoryController.php",
+                data: { option: 'deleteCategory', id_category: categoryId },
+                success: function (response) {
+                    if (response.success) {
+                        alert('Categoría eliminada con éxito.');
+                        document.querySelector(`.category[data-id="${categoryId}"]`).remove();
+                    } else {
+                        alert('Error al eliminar la categoría.');
+                    }
+                }
+            });
+        }
     }
 });

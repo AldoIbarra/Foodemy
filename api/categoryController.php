@@ -74,6 +74,21 @@
                 echo json_encode(["success" => false, "message" => $resultadoFuncion[1]]); 
             } 
             exit;
+    } elseif ($option == 'deleteCategory') { 
+        // Lógica para eliminar la categoría seleccionada 
+        $id_category = $_POST['id_category'];
+        $resultadoFuncion = CategoryClass::deleteCategory($id_category); 
+
+        if ($resultadoFuncion[0]) { 
+            ob_clean(); 
+            http_response_code(200); 
+            echo json_encode(["success" => true, "message" => "Categoría eliminada con éxito."]); 
+            // Envolver en un objeto con 'success' y 'categories' 
+            } else { 
+                http_response_code(400); 
+                echo json_encode(["success" => false, "message" => $resultadoFuncion[1]]); 
+            } 
+            exit;
     } else {
         echo json_encode(["success" => false, "message" => "Opción no válida"]);
     }

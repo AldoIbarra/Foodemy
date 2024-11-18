@@ -72,7 +72,7 @@
             self::initializeConnection();
         
             try {
-                // Aquí no se filtra por ID de instructor, se obtienen todas las categorías.
+                
                 $sqlSelect = "CALL ObtenerTodasLasCategorias();"; 
                 $consultaSelect = self::$connection->prepare($sqlSelect);
                 $consultaSelect->execute();
@@ -81,6 +81,28 @@
                 return [true, $categorias];
             } catch (PDOException $e) {
                 return array(false, "Error al obtener categorías: " . $e->getMessage());
+            }
+        }
+
+        static function deleteCategory($id_category) {
+            self::initializeConnection();
+        
+            try {
+                $sqlInsert = "CALL EliminarCategoria(:id_category);"; 
+                $consultaInsert = self::$connection->prepare($sqlInsert);
+                $consultaInsert->execute(array(
+                    ':id_category'=>$id_category
+                ));
+                
+        
+                return array(true,"Categoría eliminada con éxito");
+            }catch(PDOException $e){
+                if ($e->errorInfo[1] == 1062) {
+                    $cadena = "La Categoría ya ha sido eliminada.";
+                    return array(false, $cadena);
+                } else {
+                    return array(false, "Error al agregar usuario: " . $e->getMessage());
+                }
             }
         }
         
