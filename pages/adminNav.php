@@ -21,8 +21,8 @@
                 <p class="dropdown-item" id="user_name"></p>
                 <a class="dropdown-item" href="../userprofile/userprofile.php">Perfil</a>
                 <a class="dropdown-item" href="../cotizacionesAuth/cotizacionesAuth.php">Usuarios</a>
-                <a class="dropdown-item" href="../favorites/favorites.php">Categorias</a>
-                <a class="dropdown-item" href="../favorites/favorites.php">Reportes</a>
+                <a class="dropdown-item" href="../category/category.php">Categorias</a>
+                <a class="dropdown-item" href="../report/report.php">Reportes</a>
                 <a class="dropdown-item" href="../../config/cerrarSesion.php">Cerrar sesión</a>
             </div>
         </div>

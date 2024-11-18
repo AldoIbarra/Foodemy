@@ -13,7 +13,7 @@
         case 'Instructor':
             require_once("../teacherNav.php");
             break;
-        case 'Admin':
+        case 'Administrador':
             require_once("../adminNav.php");
             break;
         default:
