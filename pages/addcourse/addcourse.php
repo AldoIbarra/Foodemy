@@ -1,4 +1,5 @@
 <?php
+    require("../../config/sessionVerif.php");
     $titlename = "Foodemy";
     $stylename = "addcourse.css";
     $javascript = "addcourse.js";
@@ -17,12 +18,30 @@
         <div class="row">
             <div class="col-6 course-info">
                 <h1 class="big-name baby">Agregar Curso</h1>
-                <form action="">
+                <form id="course-form" enctype="multipart/form-data">
                     <input type="text" name="Title" id="course-title" placeholder="Titulo" class="title">
-                    <textarea name="" id="course-desc" placeholder="Descripción..."></textarea>
+                    <textarea name="Description" id="course-desc" placeholder="Descripción..."></textarea>
+
+                    <br>
+
+                    <div>
+                        <label for="course-category" class="description baby">Categoría del curso</label>
+                        <select id="course-category" class="description" required>
+                            <option value="">Seleccione una categoría</option>
+                        </select>
+                    </div>
+                    <br>
+
                     <div class="file-zone">
                         <label for="" class="description baby">Imagen del curso</label>
-                        <input type="file" id="course-img" name="" class="description baby">
+                        <input type="file" id="course-img" name="course-img" class="description baby" accept="image/jpeg,image/png,image/gif,image/jpg">
+                        
+                    </div>
+                    <br>
+                    
+                    <!-- Input para el precio del curso -->
+                    <div class="price-container">
+                        <input type="number" name="course-price" id="course-price" class="description" placeholder="Precio del curso en general">
                     </div>
                 </form>
                 <div class="button-container">
@@ -31,33 +50,31 @@
             </div>
             <div class="col-6 level-info">
                 <h1 class="title baby">Agregar niveles</h1>
-                <div id="addlevel">
-                    <form action="" class="level-info">
-                        <div class="title-price-container">
-                            <input type="text" name="" id="level-title" class="description" placeholder="Titulo del nivel">
-                            <input type="number" name="" id="level-price" class="description" placeholder="Precio">
-                        </div>
-                        <textarea name="" id="level-desc" placeholder="Descripción..."></textarea>
-                        <div class="file-zone">
-                            <label for="" class="description baby">Video del nivel</label>
-                            <input type="file" id="level-video" name="">
-                        </div>
-                        <div class="file-zone">
-                            <label for="" class="description baby">Archivo relacionado</label>
-                            <input type="file" id="level-file" name="">
-                        </div>
-                    </form>
-                    <div class="addnewlevelcontainer">
-                        <button class="red-button" id="addNNewLevel">Agegar nivel</button>
-                    </div>
+                <!-- Select para escoger la cantidad de niveles -->
+                <div>
+                    <label for="level-count" class="baby">Cantidad de niveles</label>
+                    <select id="level-count" class="description">
+                        <option value="0">Selecciona cantidad de niveles</option>
+                        <option value="1">1 nivel</option>
+                        <option value="2">2 niveles</option>
+                        <option value="3">3 niveles</option>
+                        <option value="4">4 niveles</option>
+                        <option value="5">5 niveles</option>
+                        <option value="6">6 niveles</option>
+                        <option value="7">7 niveles</option>
+                        <option value="8">8 niveles</option>
+                    </select>
                 </div>
-                <div class="add-level-container">
-                    <button class="baby back-eerie big-name" id="show-form">+</button>
+
+                <div id="addlevel">
+                    <!-- Formulario dinámico para niveles -->
+                    <div id="level-forms-container">
+                        <!-- Los formularios de niveles se generarán aquí -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 
 <?php include("../footer.php"); ?>

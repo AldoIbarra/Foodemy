@@ -65,3 +65,8 @@ BEGIN
     RETURN existe;
 END//
 DELIMITER ;
+
+
+-- Modificar el valor default del campo fecha de la tabla Curso
+ALTER TABLE Curso 
+MODIFY Fecha_Creacion_Curso TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
