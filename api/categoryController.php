@@ -29,13 +29,20 @@
 
         $resultadoFuncion = CategoryClass::createCategory($id_admin, $title, $description);
 
-        if ($resultadoFuncion[0]) {
+        if (isset($resultadoFuncion['error']) && !$resultadoFuncion['error']) {
             ob_clean();
             http_response_code(200);
-            echo json_encode(["success" => true, "newCategoryId" => $resultadoFuncion[2]]);  // Incluimos el ID
+            echo json_encode([
+                "success" => true,
+                "newCategoryId" => $resultadoFuncion['id']  // Usar la clave 'id'
+            ]);
         } else {
+            ob_clean();
             http_response_code(400);
-            echo json_encode(["error" => true]);
+            echo json_encode([
+                "error" => true,
+                "message" => $resultadoFuncion['message']  // Usar la clave 'message'
+            ]);
         }
         exit;
     } elseif ($option == 'updateCategory') {

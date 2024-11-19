@@ -13,29 +13,36 @@
         static function createCategory($id_admin, $title, $description){
             self::initializeConnection();
             
-            try{
-                $sqlInsert="CALL CrearCategoria(:id_admin, :title, :description);";
-                $consultaInsert= self::$connection->prepare($sqlInsert);
-                $consultaInsert->execute(array(
-                    ':id_admin'=>$id_admin,
-                    ':title'=>$title,
-                    ':description'=>$description
+            try {
+                // Verificar si el título ya existe usando la función
+                $sqlCheck = "SELECT fn_categoria_duplicada(:title) AS Existe;";
+                $stmtCheck = self::$connection->prepare($sqlCheck);
+                $stmtCheck->execute(array(':title' => $title));
+                $resultCheck = $stmtCheck->fetch(PDO::FETCH_ASSOC);
+        
+                // Validar que se haya obtenido un resultado
+                if ($resultCheck && $resultCheck['Existe']) {
+                    return array("error" => true, "message" => "El título de la categoría ya existe.");
+                }
+        
+                // Insertar la categoría si no existe
+                $sqlInsert = "CALL CrearCategoria(:id_admin, :title, :description);";
+                $stmtInsert = self::$connection->prepare($sqlInsert);
+                $stmtInsert->execute(array(
+                    ':id_admin' => $id_admin,
+                    ':title' => $title,
+                    ':description' => $description
                 ));
         
-                $lastInsertId = self::$connection->lastInsertId();  // Método para obtener el último ID insertado
+                $lastInsertId = self::$connection->lastInsertId();
         
-                // Retornar éxito con el ID de la nueva categoría
-                return array(true, "insertado con éxito", $lastInsertId);  // Incluimos el ID
-            
-            }catch(PDOException $e){
-                if ($e->errorInfo[1] == 1062) {
-                    $cadena = "Nueva Categoría agregada correctamente.";
-                    return array(false, $cadena);
-                } else {
-                    return array(false, "Error al agregar usuario: " . $e->getMessage());
-                }
+                return array("error" => false, "message" => "Categoría creada con éxito.", "id" => $lastInsertId);
+        
+            } catch (PDOException $e) {
+                return array("error" => true, "message" => "Error al crear la categoría: " . $e->getMessage());
             }
         }
+        
     
         static function updateCategory($id_category, $title, $description){
             self::initializeConnection();

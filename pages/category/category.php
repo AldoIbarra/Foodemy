@@ -6,11 +6,11 @@
 
     require_once("../header.php");
 
-    if (isset($_SESSION['Nombre_Completo']) && !empty($_SESSION['Nombre_Completo'])) {
-        echo '<h1 class="title prussian">' . htmlspecialchars($_SESSION['Nombre_Completo']) . '</h1>';
-    } else {
-        echo '<h1 class="title prussian">Usuario Invitado</h1>';
-    }
+    // if (isset($_SESSION['Nombre_Completo']) && !empty($_SESSION['Nombre_Completo'])) {
+    //     echo '<h1 class="title prussian">' . htmlspecialchars($_SESSION['Nombre_Completo']) . '</h1>';
+    // } else {
+    //     echo '<h1 class="title prussian">Usuario Invitado</h1>';
+    // }
 ?>
 
 <section id="bannerSection" class="back-prussian">

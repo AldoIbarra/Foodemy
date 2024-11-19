@@ -78,12 +78,18 @@ document.addEventListener("DOMContentLoaded", function () {
             processData: false,
             contentType: false,
             success: function (response) {
+                console.log(response);
                 if (response.success) {
                     alert('¡Categoría creada con éxito!');
                     addCategoryToSelect({ ID_Categoria: response.newCategoryId, Titulo: title });
                 } else {
                     alert('Error al crear la categoría.');
                 }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error en la solicitud:', error);
+                var errorResponse = JSON.parse(xhr.responseText);
+        alert('Error en la solicitud: ' + errorResponse.message);
             }
         });
     }

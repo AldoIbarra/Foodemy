@@ -48,3 +48,20 @@ BEGIN
     FROM Categoria;
 END //
 DELIMITER ;
+
+
+-- Función verificar categoría existente
+DELIMITER //
+CREATE FUNCTION fn_categoria_duplicada(titulo_param VARCHAR(255)) 
+RETURNS TINYINT
+DETERMINISTIC
+BEGIN
+    DECLARE existe TINYINT;
+    SET existe = EXISTS (
+        SELECT 1 
+        FROM Categoria 
+        WHERE Titulo = titulo_param
+    );
+    RETURN existe;
+END//
+DELIMITER ;
