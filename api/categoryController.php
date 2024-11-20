@@ -17,6 +17,8 @@
 
     if ($option == 'createCategory') {
         // Lógica para crear categoría
+        header('Content-Type: application/json');
+
         $id_admin = $_SESSION['ID_Usuario'];
         $title = $_POST['title'];
         $description = $_POST['description'];
@@ -47,6 +49,8 @@
         exit;
     } elseif ($option == 'updateCategory') {
         // Lógica para actualizar categoría
+        header('Content-Type: application/json');
+
         $id_category = $_POST['id_category'];
         $title = $_POST['title'];
         $description = $_POST['description'];
@@ -83,6 +87,9 @@
             exit;
     } elseif ($option == 'deleteCategory') { 
         // Lógica para eliminar la categoría seleccionada 
+        header('Content-Type: application/json');
+
+        
         $id_category = $_POST['id_category'];
         $resultadoFuncion = CategoryClass::deleteCategory($id_category); 
 

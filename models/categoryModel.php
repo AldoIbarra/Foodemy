@@ -108,7 +108,7 @@
                     $cadena = "La Categoría ya ha sido eliminada.";
                     return array(false, $cadena);
                 } else {
-                    return array(false, "Error al agregar usuario: " . $e->getMessage());
+                    return array(false, "Error al eliminar la categoría: " . $e->getMessage());
                 }
             }
         }

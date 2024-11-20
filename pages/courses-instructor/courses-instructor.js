@@ -23,10 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Función para agregar los cursos a la página
     function addCourseToPage(course) {
         const courseHTML = `
-            <div class="col-4 course">
+            <div class="col-4 course" data-id="${course.ID_Curso}">
                 <img src="../${course.Curso_Imagen}" alt="Imagen del curso" class="course img">
                 <h5 class="tiny-name baby">${course.Curso_Titulo}</h5>
-                <p class="detail baby">${course.Total_Students} estudiantes inscritos</p>
+                <p class="detail baby">${course.Total_Ventas} estudiantes inscritos</p>
                 <div class="stats">
                     <h5 class="tiny-name baby">Valoración:</h5>
                     ${generateStars(course.Promedio_Calificacion)}
@@ -35,29 +35,50 @@ document.addEventListener("DOMContentLoaded", function () {
                 <button class="red-button" onclick="deleteCourse(${course.ID_Curso});">Eliminar curso</button>
             </div>
         `;
-        coursesContainer.insertAdjacentHTML('beforeend', courseHTML);  // Insertar el nuevo curso en la fila
+        coursesContainer.insertAdjacentHTML('beforeend', courseHTML);
     }
+    
 
     // Función para generar las estrellas de valoración
     function generateStars(rating) {
         let starsHTML = '';
         for (let i = 0; i < 5; i++) {
-            if (i < rating) {
-                starsHTML += '<img src="../resources/star.svg" alt="Estrella">';
+            if (i < Math.floor(rating)) {
+                // Estrella completa
+                starsHTML += '<i class="fa fa-star" aria-hidden="true"></i>';
             } else if (i === Math.floor(rating) && rating % 1 !== 0) {
-                starsHTML += '<img src="../resources/half-star.svg" alt="Media estrella">';
+                // Media estrella
+                starsHTML += '<i class="fa fa-star-half-o" aria-hidden="true"></i>';
             } else {
-                starsHTML += '<img src="../resources/star-empty.svg" alt="Estrella vacía">';
+                // Estrella vacía
+                starsHTML += '<i class="fa fa-star-o" aria-hidden="true"></i>';
             }
         }
         return starsHTML;
     }
 
-    // Función para eliminar curso (como ejemplo)
-    function deleteCourse(courseId) {
-        if (confirm('¿Estás seguro de que deseas eliminar este curso?')) {
-            // Aquí puedes agregar lógica para eliminar el curso
-            console.log('Eliminando curso con ID:', courseId);
-        }
-    }
 });
+
+
+// Función para eliminar curso (como ejemplo)
+function deleteCourse(courseId) {
+    if (confirm('¿Estás seguro de que deseas eliminar este curso?')) {
+        $.ajax({
+            type: "POST",
+            url: "../../api/courseController.php",
+            data: { option: 'deleteCourse', id_course: courseId },
+            success: function (response) {
+                if (response.success) {
+                    alert('Curso eliminado con éxito.');
+                    $(`.course[data-id="${courseId}"]`).remove(); // Selecciona y elimina el curso por su ID
+                } else {
+                    alert('Error al eliminar el curso.');
+                }
+            },
+            error: function (xhr, status, error) {
+                alert('Hubo un problema al intentar eliminar el curso. Intenta nuevamente.');
+                console.error('Error en la solicitud:', error);
+            }
+        });
+    }
+}

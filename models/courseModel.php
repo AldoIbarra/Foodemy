@@ -104,7 +104,7 @@
             self::initializeConnection();
         
             try {
-                $sqlCourse = "SELECT * FROM Vista_Cursos_Instructor WHERE Instructor_ID = :id_instructor";
+                $sqlCourse = "SELECT * FROM Vista_Cursos_Instructor WHERE Instructor_ID = :id_instructor AND Curso_Estatus != 0;";
                 $stmtCourse = self::$connection->prepare($sqlCourse);
                 $stmtCourse->execute([
                     ':id_instructor' => $id_instructor,
@@ -125,21 +125,28 @@
             }
         }
 
-        static function deleteCategory($id_category) {
+        static function deleteCourse($id_course) {
             self::initializeConnection();
         
             try {
-                $sqlInsert = "CALL EliminarCategoria(:id_category);"; 
+                $sqlCheck = "SELECT COUNT(*) FROM Curso WHERE ID_Curso = :id_course";
+                $consultaCheck = self::$connection->prepare($sqlCheck);
+                $consultaCheck->execute([':id_course' => $id_course]);
+                if ($consultaCheck->fetchColumn() == 0) {
+                    return array(false, "El curso no existe o ya ha sido eliminado.");
+                }
+
+                $sqlInsert = "UPDATE Curso SET Estatus = 0 WHERE ID_Curso = :id_course;"; 
                 $consultaInsert = self::$connection->prepare($sqlInsert);
                 $consultaInsert->execute(array(
-                    ':id_category'=>$id_category
+                    ':id_course'=>$id_course
                 ));
                 
         
-                return array(true,"Categoría eliminada con éxito");
+                return array(true,"Curso eliminado con éxito");
             }catch(PDOException $e){
                 if ($e->errorInfo[1] == 1062) {
-                    $cadena = "La Categoría ya ha sido eliminada.";
+                    $cadena = "El Curso ya ha sido eliminado.";
                     return array(false, $cadena);
                 } else {
                     return array(false, "Error al agregar usuario: " . $e->getMessage());

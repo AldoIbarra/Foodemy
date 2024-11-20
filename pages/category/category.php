@@ -11,6 +11,12 @@
     // } else {
     //     echo '<h1 class="title prussian">Usuario Invitado</h1>';
     // }
+
+    if($_SESSION['Rol'] == 'Administrador'){
+        require_once("../teacherNav.php");
+    }else{
+        header("Location:../dashboard/dashboard.php");
+    }
 ?>
 
 <section id="bannerSection" class="back-prussian">

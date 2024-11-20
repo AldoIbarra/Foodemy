@@ -219,4 +219,9 @@ nav .cart-user .user-menu img {
   font-size: 20px;
 }
 
+.fa {
+  color: #FFD700; /* Color dorado */
+  font-size: 18px; /* Tamaño de las estrellas */
+  margin-right: 5px; /* Espaciado entre las estrellas */
+}
 /*# sourceMappingURL=styles.css.map */

@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function deleteCategory(categoryId) {
-        if (confirm('¿Estás seguro de que deseas eliminar esta categoría?')) {
+        if (confirm('¿Estás seguro de que deseass eliminar esta categoría?')) {
             $.ajax({
                 type: "POST",
                 url: "../../api/categoryController.php",
@@ -170,7 +170,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 success: function (response) {
                     if (response.success) {
                         alert('Categoría eliminada con éxito.');
-                        document.querySelector(`.category[data-id="${categoryId}"]`).remove();
+                        // Eliminar el contenedor de la categoría en la pantalla
+                        const categoryElement = document.querySelector(`.category[data-id="${categoryId}"]`);
+                        if (categoryElement) categoryElement.remove();
+                        
+                        // Eliminar el <option> correspondiente del <select>
+                        const optionElement = numberOfCategories.querySelector(`option[value="${categoryId}"]`);
+                        if (optionElement) optionElement.remove();
                     } else {
                         alert('Error al eliminar la categoría.');
                     }

@@ -16,6 +16,8 @@
     }
 
     if ($option == 'createCourse') {
+        header('Content-Type: application/json');
+
         try {
             if (!isset($_SESSION['ID_Usuario'])) {
                 throw new Exception("Usuario no autenticado.");
@@ -128,21 +130,33 @@
         }
         exit;
     } elseif ($option == 'deleteCourse') { 
-        // Lógica para eliminar la categoría seleccionada 
-        $id_category = $_POST['id_category'];
-        $resultadoFuncion = CategoryClass::deleteCategory($id_category); 
-
-        if ($resultadoFuncion[0]) { 
-            ob_clean(); 
-            http_response_code(200); 
-            echo json_encode(["success" => true, "message" => "Categoría eliminada con éxito."]); 
-            // Envolver en un objeto con 'success' y 'categories' 
-            } else { 
-                http_response_code(400); 
-                echo json_encode(["success" => false, "message" => $resultadoFuncion[1]]); 
-            } 
+        header('Content-Type: application/json'); // Asegúrate de que la respuesta sea JSON
+    
+        // Lógica para eliminar el curso seleccionado
+        $id_course = $_POST['id_course'];
+    
+        if (empty($id_course) || !is_numeric($id_course)) {
+            http_response_code(400);
+            echo json_encode(["success" => false, "message" => "ID de curso inválido."]);
             exit;
+        }
+        
+        $resultadoFuncion = CourseClass::deleteCourse($id_course); 
+    
+        if ($resultadoFuncion[0]) { 
+            ob_clean();
+            http_response_code(200); 
+            echo json_encode(["success" => true, "message" => "Curso eliminado con éxito."]); 
+        } else { 
+            ob_clean();
+            http_response_code(400); 
+            echo json_encode(["success" => false, "message" => $resultadoFuncion[1]]); 
+        } 
+        exit;
     } else {
+        ob_clean();
+        header('Content-Type: application/json');
         echo json_encode(["success" => false, "message" => "Opción no válida"]);
-    }
+        exit;
+    }  
 ?>

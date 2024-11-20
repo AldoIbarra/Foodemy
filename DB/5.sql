@@ -71,6 +71,10 @@ DELIMITER ;
 ALTER TABLE Curso 
 MODIFY Fecha_Creacion_Curso TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 
+-- Modificar tabla niveles vendidos
+ALTER TABLE Niveles_Vendidos_Comprados
+MODIFY COLUMN Fecha_Finalizacion DATE NULL;
+
 
 -- Función verificar curso existente
 DELIMITER //
