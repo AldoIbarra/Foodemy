@@ -95,7 +95,7 @@ function login() {
             console.log(data);
         },
         error: function(xhr, status, error) {
-            alert('Error.');
+            alert('Credenciales incorrectas');
             console.log('error');
             console.log(error);
         },

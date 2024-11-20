@@ -1,8 +1,13 @@
 <?php
     include "../models/usersModel.php";
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
 
     if($_POST['option'] == 'signUp'){
+        header('Content-Type: application/json');
+
         $name = $_POST['name'];
         $gender = $_POST['gender'];
         $bornDate = $_POST['bornDate'];
@@ -43,19 +48,21 @@
             }
             exit;
     }else if($_POST['option'] == 'logIn'){
+        header('Content-Type: application/json');
+
         $email = $_POST['email'];
         $password = $_POST['password'];
 
         $data = json_decode(file_get_contents('php://input'), true);
         if(empty($email) || empty($password)){
             http_response_code(400);
-            echo json_encode(array("status" => "error", "message" => "algun dato vacio"));
+            echo json_encode(array("status" => "error", "message" => "Campos incompletos"));
         }
         $resultadoFuncion = UserClass::logIn($email, $password);
 
         if($resultadoFuncion==null){
             http_response_code(400);
-            echo json_encode(array("status" => "error", "message" => "ningun usuario encontrado"));
+            echo json_encode(array("status" => "error", "message" => "Ningun usuario encontrado"));
         }else{
             http_response_code(200);
             echo json_encode($resultadoFuncion);
