@@ -15,18 +15,6 @@
     
             try {
                 self::$connection->beginTransaction();
-    
-                // Verificar si el título ya existe usando la función
-                $sqlCheck = "SELECT fn_curso_duplicado(:title) AS Existe;";
-                $stmtCheck = self::$connection->prepare($sqlCheck);
-                $stmtCheck->execute(array(':title' => $title));
-                $resultCheck = $stmtCheck->fetch(PDO::FETCH_ASSOC);
-        
-                // Validar que se haya obtenido un resultado
-                if ($resultCheck && $resultCheck['Existe']) {
-                    return array("error" => true, "message" => "Ya existe un curso con este título.");
-                }
-
 
                 // Insertar el curso
                 $sqlCourse = "INSERT INTO Curso (ID_Categoria, ID_Usuario_Instructor, Titulo, Descripcion, Estatus, Imagen, Precio) 
@@ -77,6 +65,29 @@
                 self::$connection->commit();
     
                 return ["error" => false, "id" => $courseId];
+            } catch (PDOException $e) {
+                self::$connection->rollBack();
+                return ["error" => true, "message" => "Error al crear el curso: " . $e->getMessage()];
+            }
+        }
+
+
+        static function verifyCourse($title) {
+            self::initializeConnection();
+    
+            try {
+                // Verificar si el título ya existe usando la función
+                $sqlCheck = "SELECT fn_curso_duplicado(:title) AS Existe;";
+                $stmtCheck = self::$connection->prepare($sqlCheck);
+                $stmtCheck->execute(array(':title' => $title));
+                $resultCheck = $stmtCheck->fetch(PDO::FETCH_ASSOC);
+        
+                // Validar que se haya obtenido un resultado
+                if ($resultCheck && $resultCheck['Existe']) {
+                    return array("error" => true, "message" => "Ya existe un curso con este título.");
+                }
+    
+                return ["error" => false, "id" => $title];
             } catch (PDOException $e) {
                 self::$connection->rollBack();
                 return ["error" => true, "message" => "Error al crear el curso: " . $e->getMessage()];

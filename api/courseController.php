@@ -29,6 +29,12 @@
             $description = $_POST['description'];
             $category = $_POST['category'];
             $price = $_POST['price'];
+
+            //Verificar si ya existe un curso con ese título
+            $resultado1 = CourseClass::verifyCourse($title);
+            if ($resultado1['error']) {
+                throw new Exception($resultado1['message']);
+            }
     
             $imagePath = null;
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
