@@ -87,3 +87,35 @@ BEGIN
     RETURN existe;
 END//
 DELIMITER ;
+
+
+-- Vista para cursos
+CREATE VIEW Vista_Cursos_Instructor AS
+SELECT 
+    c.ID_Curso,
+    c.Titulo AS Curso_Titulo,
+    c.Descripcion AS Curso_Descripcion,
+    c.Imagen AS Curso_Imagen,
+    c.Precio AS Curso_Precio,
+    c.Fecha_Creacion_Curso,
+    c.Estatus AS Curso_Estatus,
+    u.ID_Usuario AS Instructor_ID,
+    u.Nombre_Completo AS Instructor_Nombre,
+    cat.Titulo AS Categoria_Titulo,
+    COUNT(DISTINCT n.ID_Nivel) AS Total_Niveles,
+    AVG(com.Calificacion) AS Promedio_Calificacion,
+    COUNT(DISTINCT cv.ID_Ventas) AS Total_Ventas
+FROM 
+    Curso c
+JOIN 
+    Usuario u ON c.ID_Usuario_Instructor = u.ID_Usuario
+JOIN 
+    Categoria cat ON c.ID_Categoria = cat.ID_Categoria
+LEFT JOIN 
+    Nivel n ON c.ID_Curso = n.ID_Curso
+LEFT JOIN 
+    Comentario com ON c.ID_Curso = com.ID_Curso
+LEFT JOIN 
+    Cursos_Vendidos_Comprados cv ON c.ID_Curso = cv.ID_Curso
+GROUP BY 
+    c.ID_Curso, u.ID_Usuario, cat.Titulo;
