@@ -79,31 +79,35 @@ document.addEventListener("DOMContentLoaded", function () {
             // Validar los niveles
             let allLevelsValid = true;
             let levelsData = [];
-        
+    
             // Recorremos cada formulario de nivel
-            $("form[id^='level-form-']").each(function() {
+            $("form[id^='level-form-']").each(function(index) {
                 let levelTitle = $(this).find("input[id^='level-title-']").val();
                 let levelDesc = $(this).find("textarea").val();
                 let levelPrice = $(this).find("input[id^='level-price-']").val();
                 let levelVideo = $(this).find("input[id^='level-video-']").val();
-                let levelFile = $(this).find("input[id^='level-file-']").val();
-        
+                let levelFilesInput = $(this).find("input[id^='level-file-']");
+                let levelFiles = levelFilesInput.length > 0 ? levelFilesInput[0].files : [];  // Archivos adicionales
+            
                 // Comprobamos si falta algún campo en el nivel
                 if (levelTitle == '' || levelDesc == '' || levelPrice == '' || levelVideo == '') {
                     allLevelsValid = false;
                     return false; // Salir del ciclo si falta algún dato
                 }
-        
+            
+                console.log(`Nivel ${index + 1}: Título=${levelTitle}, Descripción=${levelDesc}, Precio=${levelPrice}, Video=${levelVideo}, Archivos=${levelFiles.length}`);
+            
                 // Guardamos los datos de cada nivel
                 levelsData.push({
                     title: levelTitle,
                     description: levelDesc,
                     price: levelPrice,
                     video: levelVideo,
-                    file: levelFile
+                    files: levelFiles
                 });
             });
-        
+            
+    
             // Si todos los niveles son válidos
             if (allLevelsValid) {
                 // Crear el FormData para enviar los datos
@@ -119,33 +123,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Agregar los niveles
                 levelsData.forEach((level, index) => {
                     const videoInput = $(`#level-video-${index + 1}`)[0]; // Video del nivel
-                    const fileInput = $(`#level-file-${index + 1}`)[0];   // Archivo opcional del nivel
-            
+                
                     formData.append(`levels[${index}][title]`, level.title);
                     formData.append(`levels[${index}][description]`, level.description);
                     formData.append(`levels[${index}][price]`, level.price);
-            
+                
                     // Verificar si se seleccionó un video para este nivel
                     if (videoInput.files.length > 0) {
                         formData.append(`levels[${index}][video]`, videoInput.files[0]);
                     } else {
                         console.warn(`No se seleccionó un video para el nivel ${index + 1}`);
                     }
-            
-                    // Verificar si se seleccionó un archivo para este nivel
-                    if (fileInput.files.length > 0) {
-                        formData.append(`levels[${index}][file]`, fileInput.files[0]);
-                    } else {
-                        console.log(`No se seleccionó un archivo opcional para el nivel ${index + 1}`);
+                
+                    // Verificar si se seleccionaron archivos adicionales para este nivel
+                    for (let file of level.files) {
+                        formData.append(`levels[${index}][files][]`, file);
                     }
                 });
-            
+                
                 // Agregar la opción para crear el curso
                 formData.append('option', 'createCourse');
-            
+                
                 // Imprimir los datos en consola antes de enviar
                 console.log("Datos del curso enviados:", formData);
-            
+                
                 // Enviar los datos con AJAX usando FormData
                 $.ajax({
                     type: "POST",
@@ -155,6 +156,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     contentType: false,  // No establecer el tipo de contenido
                     success: function(response) {
                         console.log(response);
+                        formData.forEach(function(value, key) {
+                            console.log(key + ": " + value);
+                        });
+                        
                         if (response.success) {
                             alert('¡Curso creado con éxito!');
             
@@ -176,10 +181,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         alert('Error en la solicitud: ' + errorResponse.message);
                     }
                 });
+            } else {
+                alert('Faltan datos en los niveles.');
             }
-            
         }
     });
+    
     
     
 });

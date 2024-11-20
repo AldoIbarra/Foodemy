@@ -12,10 +12,10 @@
     
         static function createCourse($id_instructor, $title, $description, $category, $price, $imagePath, $levels) {
             self::initializeConnection();
-        
+    
             try {
                 self::$connection->beginTransaction();
-        
+    
                 // Insertar el curso
                 $sqlCourse = "INSERT INTO Curso (ID_Categoria, ID_Usuario_Instructor, Titulo, Descripcion, Estatus, Imagen, Precio) 
                               VALUES (:category, :id_instructor, :title, :description, :estatus, :image, :price)";
@@ -29,11 +29,11 @@
                     ':image' => $imagePath,
                     ':price' => $price,
                 ]);
-        
+    
                 $courseId = self::$connection->lastInsertId();
-        
+    
                 // Insertar los niveles
-                $sqlLevel = "INSERT INTO Nivel (ID_Curso, Titulo, Descripcion, Precio, video) 
+                $sqlLevel = "INSERT INTO Nivel (ID_Curso, Titulo, Descripcion, Precio, Video) 
                              VALUES (:course_id, :title, :description, :price, :video)";
                 $stmtLevel = self::$connection->prepare($sqlLevel);
                 foreach ($levels as $level) {
@@ -44,17 +44,32 @@
                         ':price' => $level['price'],
                         ':video' => $level['video'],
                     ]);
+    
+                    $levelId = self::$connection->lastInsertId(); // Obtener el ID del nivel insertado
+    
+                    // Guardar archivos adicionales
+                    if (!empty($level['files'])) {
+                        $sqlFile = "INSERT INTO Nivel_Archivo (ID_Nivel, Archivo) VALUES (:level_id, :file)";
+                        $stmtFile = self::$connection->prepare($sqlFile);
+                        foreach ($level['files'] as $filePath) {
+                            if (!$stmtFile->execute([
+                                ':level_id' => $levelId,
+                                ':file' => $filePath,
+                            ])) {
+                                throw new Exception("Error al insertar archivo en la base de datos.");
+                            }
+                        }
+                    }
                 }
-        
+    
                 self::$connection->commit();
-        
+    
                 return ["error" => false, "id" => $courseId];
             } catch (PDOException $e) {
                 self::$connection->rollBack();
                 return ["error" => true, "message" => "Error al crear el curso: " . $e->getMessage()];
             }
         }
-        
         
     
         static function updateCategory($id_category, $title, $description){
