@@ -89,8 +89,11 @@
                 throw new Exception($resultado['message']);
             }
     
+            ob_clean(); 
+            http_response_code(200);
             echo json_encode(["success" => true, "newCourseId" => $resultado['id']]);
         } catch (Exception $e) {
+            ob_clean();
             http_response_code(400);
             echo json_encode(["success" => false, "message" => $e->getMessage()]);
         }

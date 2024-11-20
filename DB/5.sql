@@ -70,3 +70,20 @@ DELIMITER ;
 -- Modificar el valor default del campo fecha de la tabla Curso
 ALTER TABLE Curso 
 MODIFY Fecha_Creacion_Curso TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+
+-- Función verificar curso existente
+DELIMITER //
+CREATE FUNCTION fn_curso_duplicado(titulo_param VARCHAR(255)) 
+RETURNS TINYINT
+DETERMINISTIC
+BEGIN
+    DECLARE existe TINYINT;
+    SET existe = EXISTS (
+        SELECT 1 
+        FROM Curso 
+        WHERE Titulo = titulo_param
+    );
+    RETURN existe;
+END//
+DELIMITER ;
