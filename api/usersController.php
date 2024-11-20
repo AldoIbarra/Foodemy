@@ -54,19 +54,24 @@
         $password = $_POST['password'];
 
         $data = json_decode(file_get_contents('php://input'), true);
-        if(empty($email) || empty($password)){
+        if (empty($email) || empty($password)) {
             http_response_code(400);
             echo json_encode(array("status" => "error", "message" => "Campos incompletos"));
+            exit;
         }
+        
         $resultadoFuncion = UserClass::logIn($email, $password);
 
-        if($resultadoFuncion==null){
-            http_response_code(400);
-            echo json_encode(array("status" => "error", "message" => "Ningun usuario encontrado"));
-        }else{
+        if ($resultadoFuncion["success"]) {
+            ob_clean();
             http_response_code(200);
-            echo json_encode($resultadoFuncion);
+            echo json_encode(["success" => true, "message" => $resultadoFuncion["message"]]);
+        } else {
+            ob_clean();
+            http_response_code(400);
+            echo json_encode(["success" => false, "message" => $resultadoFuncion["message"]]);
         }
+        
     }else if($_POST['option'] == 'updateInfo'){
         $name = $_POST['name'];
         $gender = $_POST['gender'];

@@ -1,9 +1,6 @@
 <?php
     include_once '../config/bd_conexion.php';
-    
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+    session_start();
 
     class UserClass{
 
@@ -41,56 +38,47 @@
             }
         }
     
-        static function logIn($email, $password) {
+        static function logIn($email, $password){
             self::initializeConnection();
-        
-            try {
-                // Consultar usuario por correo
-                $sqlConsult = "CALL Consultar_Usuario_Por_Correo(:email);";
-                $consulta = self::$connection->prepare($sqlConsult);
-                $consulta->execute([':email' => $email]);
-        
-                $user = $consulta->fetch();
-                $consulta->closeCursor(); // Liberar el cursor después de obtener resultados
-        
-                if (!$user) {
-                    // El correo no existe
-                    return [
-                        "status" => "error",
-                        "message" => "Ningun usuario encontrado"
-                    ];
+            
+            try{
+                $sqlInsert="CALL Consultar_Usuario_Por_Correo(:email);";
+                $consultaInsert= self::$connection->prepare($sqlInsert);
+                $consultaInsert->execute([':email' => $email]);
+                $user = $consultaInsert->fetch();
+                $consultaInsert->closeCursor();
+
+                if(!$user) {
+                    return ["success" => false, "message" => "Correo no encontrado"];
                 }
-        
+
                 // Verificar si el usuario está deshabilitado
                 if ($user["Estatus"] == 0) {
-                    return [
-                        "status" => "error",
-                        "message" => "Usuario deshabilitado por intentos fallidos."
-                    ];
+                    return ["success" => false, "message" => "Usuario deshabilitado por intentos fallidos."];
                 }
-        
+            
                 if ($password == $user["Contrasena"]) {
                     // Contraseña correcta, reiniciar intentos fallidos
                     $sqlResetAttempts = "CALL Actualizar_Intentos_Usuario(:id_usuario, :intento_fallido);";
                     $resetAttempts = self::$connection->prepare($sqlResetAttempts);
                     $resetAttempts->execute([
                         ':id_usuario' => $user["ID_Usuario"],
-                        ':intento_fallido' => false // Reiniciar intentos
+                        ':intento_fallido' => 0 // Reiniciar intentos
                     ]);
-                    $resetAttempts->closeCursor(); // Liberar cursor
-        
+                
                     // Iniciar sesión
-                    if (session_status() === PHP_SESSION_NONE) {
-                        session_start();
-                    }
                     $_SESSION['ID_Usuario'] = $user["ID_Usuario"];
                     $_SESSION['Nombre_Completo'] = $user["Nombre_Completo"];
-                    // Agrega las demás variables de sesión necesarias
-        
-                    return [
-                        "status" => "success",
-                        "message" => "Inicio de sesión exitoso"
-                    ];
+                    $_SESSION['Genero'] = $user["Genero"];
+                    $_SESSION['Fecha_Nacimiento'] = $user["Fecha_Nacimiento"];
+                    $_SESSION['Foto_Perfil'] = $user["Foto_Perfil"];
+                    $_SESSION['Correo_Electronico'] = $user["Correo_Electronico"];
+                    $_SESSION['Estatus'] = $user["Estatus"];
+                    $_SESSION['Fecha_Registro'] = $user["Fecha_Registro"];
+                    $_SESSION['Fecha_Actualizacion'] = $user["Fecha_Actualizacion"];
+                    $_SESSION['Rol'] = $user["Rol"];
+                
+                    return ["success" => true, "message" => "Inicio de sesión exitoso"];
                 } else {
                     // Contraseña incorrecta, incrementar intentos
                     $sqlIncrementAttempts = "CALL Actualizar_Intentos_Usuario(:id_usuario, :intento_fallido);";
@@ -99,15 +87,13 @@
                         ':id_usuario' => $user["ID_Usuario"],
                         ':intento_fallido' => true // Incrementar intentos
                     ]);
-                    $incrementAttempts->closeCursor(); // Liberar cursor
-        
+                
                     // Consultar nuevamente los intentos actualizados
                     $sqlCheckAttempts = "SELECT Intentos FROM Usuario WHERE ID_Usuario = :id_usuario;";
                     $checkAttempts = self::$connection->prepare($sqlCheckAttempts);
                     $checkAttempts->execute([':id_usuario' => $user["ID_Usuario"]]);
                     $updatedUser = $checkAttempts->fetch();
-                    $checkAttempts->closeCursor(); // Liberar cursor
-        
+                
                     if ($updatedUser["Intentos"] >= 3) {
                         // Deshabilitar usuario si tiene 3 o más intentos fallidos
                         $sqlDisableUser = "CALL Gestionar_Estatus_Usuario(:id_usuario, :habilitar);";
@@ -116,27 +102,16 @@
                             ':id_usuario' => $user["ID_Usuario"],
                             ':habilitar' => 0 // Deshabilitar usuario
                         ]);
-                        $disableUser->closeCursor(); // Liberar cursor
-        
-                        return [
-                            "status" => "error",
-                            "message" => "Usuario deshabilitado por superar los intentos fallidos."
-                        ];
+                    
+                        return ["success" => false, "message" => "Usuario deshabilitado por superar los intentos fallidos."];
                     }
-        
-                    return [
-                        "status" => "error",
-                        "message" => "Contraseña incorrecta. Intentos fallidos: " . $updatedUser["Intentos"]
-                    ];
+                
+                    return ["success" => false, "message" => "Contraseña incorrecta. Intentos fallidos: " . $updatedUser["Intentos"]];
                 }
             } catch (PDOException $e) {
-                return [
-                    "status" => "error",
-                    "message" => "Error en el sistema: " . $e->getMessage()
-                ];
+                return ["success" => false, "message" => "Error en el sistema: " . $e->getMessage()];
             }
         }
-        
     
         static function updateInfo($id, $name, $gender, $bornDate){
             self::initializeConnection();
