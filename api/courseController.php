@@ -105,41 +105,28 @@
         }
         exit;
     }   elseif ($option == 'updateCourse') {
-        // Lógica para actualizar categoría
-        $id_category = $_POST['id_category'];
-        $title = $_POST['title'];
-        $description = $_POST['description'];
+        
 
-        if (empty($id_category) || empty($title) || empty($description)) {
-            http_response_code(400);
-            echo json_encode(array("status" => "error", "message" => "Favor de completar todos los campos"));
-            exit;
+
+    } elseif ($option == 'getCoursesById') { 
+
+        if (!isset($_SESSION['ID_Usuario'])) {
+            throw new Exception("Usuario no autenticado.");
         }
+        $id_instructor = $_SESSION['ID_Usuario'];
 
-        $resultadoFuncion = CategoryClass::updateCategory($id_category, $title, $description);
+        // Lógica para obtener todas las categorías con id específico
+        $resultadoFuncion = CourseClass::getCoursesById($id_instructor); 
 
         if ($resultadoFuncion[0]) {
             ob_clean(); 
             http_response_code(200);
-            echo json_encode(["success" => true]);
+            echo json_encode(["success" => true, "courses" => $resultadoFuncion[1]]);
         } else {
             http_response_code(400);
-            echo json_encode(["error" => true]);
+            echo json_encode(["error" => "Error al obtener los cursos: " . $resultadoFuncion[1]]);
         }
         exit;
-    } elseif ($option == 'getAllCourses') { 
-        // Lógica para obtener todas las categorías 
-        $resultadoFuncion = CategoryClass::getAllCategories(); 
-        if ($resultadoFuncion[0]) { 
-            ob_clean(); 
-            http_response_code(200); 
-            echo json_encode(["success" => true, "categories" => $resultadoFuncion[1]]); 
-            // Envolver en un objeto con 'success' y 'categories' 
-            } else { 
-                http_response_code(400); 
-                echo json_encode(["success" => false, "message" => $resultadoFuncion[1]]); 
-            } 
-            exit;
     } elseif ($option == 'deleteCourse') { 
         // Lógica para eliminar la categoría seleccionada 
         $id_category = $_POST['id_category'];

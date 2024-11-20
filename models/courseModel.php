@@ -96,49 +96,32 @@
         
     
         static function updateCategory($id_category, $title, $description){
-            self::initializeConnection();
             
-            try{
-                $sqlInsert="CALL EditarCategoria(:id_category, :title, :description);";
-                $consultaInsert= self::$connection->prepare($sqlInsert);
-                $consultaInsert->execute(array(
-                    ':id_category'=>$id_category,
-                    ':title'=>$title,
-                    ':description'=>$description
-                ));
-
-                // $user = CategoryClass::getUserById($id_category);
-                
-                // $_SESSION['Nombre_Completo']=$user["Nombre_Completo"];
-                // $_SESSION['Genero']=$user["Genero"];
-                // $_SESSION['Fecha_Nacimiento']=$user["Fecha_Nacimiento"];
-        
-                return array(true,"Categoría actualizada con éxito");
-            
-            }catch(PDOException $e){
-                if ($e->errorInfo[1] == 1062) {
-                    $cadena = "La Categoría ya ha sido agregada.";
-                    return array(false, $cadena);
-                } else {
-                    return array(false, "Error al agregar usuario: " . $e->getMessage());
-                }
-            }
         }
 
 
-        static function getAllCategories() {
+        static function getCoursesById($id_instructor) {
             self::initializeConnection();
         
             try {
+                $sqlCourse = "SELECT * FROM Vista_Cursos_Instructor WHERE Instructor_ID = :id_instructor";
+                $stmtCourse = self::$connection->prepare($sqlCourse);
+                $stmtCourse->execute([
+                    ':id_instructor' => $id_instructor,
+                ]);
+                $courses = $stmtCourse->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($courses as &$course) {
+                    $course['Curso_Imagen'] = str_replace("pages/", "", $course['Curso_Imagen']);
+                }
                 
-                $sqlSelect = "CALL ObtenerTodasLasCategorias();"; 
-                $consultaSelect = self::$connection->prepare($sqlSelect);
-                $consultaSelect->execute();
-                $categorias = $consultaSelect->fetchAll(PDO::FETCH_ASSOC);
         
-                return [true, $categorias];
+                if ($courses) {
+                    return [true, $courses]; // Retorna los cursos obtenidos
+                } else {
+                    return [false, "No se encontraron cursos para este instructor."];
+                }
             } catch (PDOException $e) {
-                return array(false, "Error al obtener categorías: " . $e->getMessage());
+                return array(false, "Error al obtener los cursos del instructor: " . $e->getMessage());
             }
         }
 
