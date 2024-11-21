@@ -223,7 +223,6 @@
                 return [false, "Error al bloquear/desbloquear usuario: " . $e->getMessage()];
             }
         }
-        
-        
+
     }
 ?>

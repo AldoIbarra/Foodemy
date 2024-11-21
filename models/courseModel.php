@@ -300,8 +300,76 @@
             }
 
         
-        
-        
+            static function searchCourses($query, $category, $startDate, $endDate) {
+                self::initializeConnection();
+            
+                try {
+                    $sql = "
+                        SELECT 
+                            c.ID_Curso,
+                            c.Titulo AS Curso_Titulo,
+                            c.Descripcion AS Curso_Descripcion,
+                            c.Imagen AS Curso_Imagen,
+                            c.Precio AS Curso_Precio,
+                            c.Fecha_Creacion_Curso,
+                            c.Estatus AS Curso_Estatus,
+                            u.Nombre_Completo AS Instructor_Nombre,
+                            cat.Titulo AS Categoria_Titulo,
+                            COUNT(DISTINCT n.ID_Nivel) AS Total_Niveles,
+                            AVG(com.Calificacion) AS Promedio_Calificacion,
+                            COUNT(DISTINCT cv.ID_Ventas) AS Total_Ventas
+                        FROM 
+                            Curso c
+                        JOIN 
+                            Usuario u ON c.ID_Usuario_Instructor = u.ID_Usuario
+                        JOIN 
+                            Categoria cat ON c.ID_Categoria = cat.ID_Categoria
+                        LEFT JOIN 
+                            Nivel n ON c.ID_Curso = n.ID_Curso
+                        LEFT JOIN 
+                            Comentario com ON c.ID_Curso = com.ID_Curso
+                        LEFT JOIN 
+                            Cursos_Vendidos_Comprados cv ON c.ID_Curso = cv.ID_Curso
+                        WHERE c.Estatus = 1 -- Filtrar solo los cursos activos
+                    ";
+                            
+                    $params = [];
+                            
+                    // Filtrar por nombre del curso
+                    if ($query) {
+                        $sql .= " AND c.Titulo LIKE :query";
+                        $params[':query'] = "%" . $query . "%";
+                    }
+                
+                    // Filtrar por categoría
+                    if ($category) {
+                        $sql .= " AND c.ID_Categoria = :category";
+                        $params[':category'] = $category;
+                    }
+                
+                    // Filtrar por fechas
+                    if ($startDate) {
+                        $sql .= " AND DATE(c.Fecha_Creacion_Curso) >= :startDate";
+                        $params[':startDate'] = $startDate;
+                    }
+                
+                    if ($endDate) {
+                        $sql .= " AND DATE(c.Fecha_Creacion_Curso) <= :endDate";
+                        $params[':endDate'] = $endDate;
+                    }
+                
+                    $sql .= " GROUP BY c.ID_Curso ORDER BY c.Fecha_Creacion_Curso DESC";
+                
+                    $stmt = self::$connection->prepare($sql);
+                    $stmt->execute($params);
+                
+                    return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna los resultados en forma de arreglo asociativo
+                } catch (PDOException $e) {
+                    error_log("Error al obtener los cursos: " . $e->getMessage());
+                    return false;
+                }
+            }
+            
         
     }
 ?>

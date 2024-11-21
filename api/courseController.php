@@ -191,6 +191,38 @@
             ]);
         }
         exit;
+    } elseif ($option == 'searchCourses') {
+        header('Content-Type: application/json'); // Especificamos que la respuesta será en formato JSON
+    
+        try {
+            $query = $_GET['query'] ?? ''; 
+            $category = $_GET['category'] ?? ''; 
+            $startDate = $_GET['startDate'] ?? ''; 
+            $endDate = $_GET['endDate'] ?? ''; 
+            // Llama a la función del modelo para obtener los cursos filtrados
+            $courses = CourseClass::searchCourses($query, $category, $startDate, $endDate);
+            
+            if ($courses) {
+                ob_clean();
+                echo json_encode([
+                    "success" => true,
+                    "courses" => $courses // Cambié "course" a "courses" para reflejar que puede haber varios
+                ]);
+            } else {
+                ob_clean();
+                echo json_encode([
+                    "success" => false,
+                    "message" => "No se encontraron cursos" // Cambié el mensaje para pluralizar
+                ]);
+            }
+        } catch (Exception $e) {
+            // Si ocurre algún error, devolvemos el mensaje de error
+            echo json_encode([
+                "success" => false,
+                "message" => $e->getMessage()
+            ]);
+        }
+        exit;
     } else {
         ob_clean();
         header('Content-Type: application/json');

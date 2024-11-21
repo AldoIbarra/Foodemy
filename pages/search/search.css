@@ -40,6 +40,24 @@ button img {
   width: 20px; 
 }
 
+#date-start, #date-end {
+  padding: 10px;
+  border: 1px solid #E32D40;
+  border-radius: 5px;
+  background-color: #3F3F3F;
+  color: #FFFDF7;
+  width: auto; /* Ajusta esto si necesitas un tamaño específico */
+}
+
+#date-start::-webkit-calendar-picker-indicator,
+#date-end::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Para que el ícono del calendario sea visible en fondos oscuros */
+}
+
+#date-start:focus, #date-end:focus {
+  outline: none;
+  border-color: #FFFDF7; /* Cambia el borde al enfocar */
+}
 
 
 
@@ -110,7 +128,7 @@ button img {
 .course img, .level img {
   border-radius: 10px;
   max-width: 100%;
-  height: auto;
+  height: 300px;
 }
 
 .user {

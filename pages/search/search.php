@@ -16,16 +16,18 @@
         <div class="row search">
             <div class="col-12">
                 <form id="searchBarContainer" class="back-eerie">
-                    <div style="display: flex; align-items: center; gap: 10px; width: 1000px">
-                        <input type="text" placeholder="Buscar..." id="search-input">
-                        <select id="category-select" name="category" class="form-control">
-                            <option value="título">Título</option>
-                            <option value="curso">Curso</option>
-                            <option value="usuario">Usuario</option>
-                            <option value="ultimos 7 dias">Esta semana</option>
-                            <option value="ultimo mes">Hace un mes</option>
-                            <option value="ultimo año">Hace un año</option>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <input type="text" placeholder="Buscar..." id="search-input" name="search-input" style="flex: 2; width: 350px;">
+                        <select id="category-select" name="category" class="form-control" style="width: 250px;">
+                            <option value="">Cualquiera</option>
                         </select>
+                        <!-- Campos de rango de fechas -->
+                        <div style="display: flex; align-items: center; gap: 5px;">
+                            <label for="start-date" class="detail baby" style="color: white;">Desde:</label>
+                            <input type="date" id="date-start" name="date-start" class="form-control" style="width: 150px;">
+                            <label for="end-date" class="detail baby" style="color: white;">Hasta:</label>
+                            <input type="date" id="date-end" name="date-end" class="form-control" style="width: 150px;">
+                        </div>
                         <button type="submit"><img src="../resources/search.svg" alt="Buscar"></button>
                     </div>
                 </form>
@@ -38,7 +40,8 @@
         <!-- SECCIÓN DE RESULTADO DE "---" -->
         <div class="row">
             <div class="col-12">
-                <h2 class="title baby">Resultados de búsqueda para: "<span id="search-query">mex</span>"</h2>
+                <br>
+                <h2 class="title baby" id="results">Resultados de búsqueda para: "<span id="search-query"></span>"</h2>
             </div>
         </div>
 
@@ -49,7 +52,7 @@
                 <img src="../resources/Chef2.jpg" alt="Tacos del norte de México">
                 <h5 class="tiny-name baby">Tacos del norte de México</h5>
                 <p class="detail baby">Martha Juarez</p>
-                <div>
+                <div class="rate-stars">
                     <h5 class="tiny-name baby">2.5</h5>
                     <img src="../resources/star.svg" alt="">
                     <img src="../resources/star.svg" alt="">
