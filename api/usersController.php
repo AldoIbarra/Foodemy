@@ -130,9 +130,31 @@
             echo json_encode(["success" => false, "message" => $resultadoFuncion[1]]); 
         } 
         exit;
-    }
+    } elseif ($option == 'blockUser') { 
+        header('Content-Type: application/json');
     
+        try {
+            if (empty($_POST['id_usuario']) || !is_numeric($_POST['id_usuario'])) {
+                throw new Exception("El ID del usuario es inválido.");
+            }
     
+            $id_usuario = (int) $_POST['id_usuario'];
+            $resultadoFuncion = UserClass::blockUser($id_usuario); 
+    
+            if ($resultadoFuncion[0]) { 
+                ob_clean();
+                http_response_code(200); 
+                echo json_encode(["success" => true, "message" => $resultadoFuncion[1]]);
+            } else { 
+                throw new Exception($resultadoFuncion[1]);
+            }
+        } catch (Exception $e) {
+            ob_clean();
+            http_response_code(400);
+            echo json_encode(["success" => false, "message" => $e->getMessage()]);
+        }
+        exit;
+    }    
 
     
 ?>

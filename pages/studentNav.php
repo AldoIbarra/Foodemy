@@ -1,4 +1,8 @@
 
+<?php
+require("../../config/sessionVerif.php");
+?>
+
     <nav class="back-eerie">
         <h1 class="title poppy">Foodemy</h1>
         <button id="category-button">
@@ -13,10 +17,18 @@
         </div>
         <div class="col-3 cart-user">
             <a class="cart-icon" href="../userCart/userCart.php">
-                <img src="../resources/whiteCart.svg" alt="">
+            <img src="../resources/whiteCart.svg" alt="">
+
             </a>
             <div class="user-menu">
-                <img src="../resources/user.svg" alt="">
+            <?php
+                    if($_SESSION){
+                        echo '<figure><img src="data:image/jpeg;base64,'.$_SESSION['Foto_Perfil'].'" alt="profile" width="50px" height="50px"></figure>';
+                        
+                    }else{
+                        echo '<figure><img src="../whiteCart.svg" alt="profile"></figure>';
+                    }
+                ?>
                 <div class="user-dropdown">
                     <p class="dropdown-item" id="user_name"></p>
                     <a class="dropdown-item" href="../userprofile/userprofile.php">Perfil</a>

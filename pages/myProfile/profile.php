@@ -29,7 +29,15 @@
         <!-- ===== ===== User Main-Profile ===== ===== -->
         <section class="userProfile">
             <div class="profile">
-                <figure><img src="../resources/perfil5.jpg" alt="profile" width="250px" height="250px"></figure>
+            <?php
+                    if($_SESSION){
+                        echo '<figure><img src="data:image/jpeg;base64,'.$_SESSION['Foto_Perfil'].'" alt="profile" width="250px" height="250px"></figure>';
+                        
+                    }else{
+                        echo '<figure><img src="../resources/perfil5.jpg" alt="profile" width="250px" height="250px"></figure>';
+                    }
+                ?>
+                
             </div>
         </section>
 

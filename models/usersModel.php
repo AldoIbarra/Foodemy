@@ -77,6 +77,11 @@
                     $_SESSION['Fecha_Registro'] = $user["Fecha_Registro"];
                     $_SESSION['Fecha_Actualizacion'] = $user["Fecha_Actualizacion"];
                     $_SESSION['Rol'] = $user["Rol"];
+
+                    if ($_SESSION['Foto_Perfil']) {
+                        // Convierte el contenido BLOB de la foto a Base64
+                        $_SESSION['Foto_Perfil'] = base64_encode($_SESSION['Foto_Perfil']);
+                    }
                 
                     return ["success" => true, "message" => "Inicio de sesión exitoso"];
                 } else {
@@ -187,6 +192,35 @@
             } catch (PDOException $e) {
                 error_log("Error al obtener los usuarios: " . $e->getMessage()); // Registrar el error
                 return [false, "Error al obtener los usuarios: " . $e->getMessage()];
+            }
+        }
+        
+
+        static function blockUser($id_usuario) {
+            self::initializeConnection();
+            
+            try {
+                // Verificar si el usuario existe
+                $user = UserClass::getUserById($id_usuario);
+                if (!$user) {
+                    return [false, "El usuario con ID $id_usuario no existe."];
+                }
+        
+                // Alternar estatus
+                $value = $user["Estatus"] == 1 ? 0 : 1;
+        
+                // Ejecutar procedimiento almacenado
+                $sql = "CALL Gestionar_Estatus_Usuario(:id_usuario, :value);";
+                $consulta = self::$connection->prepare($sql);
+                $consulta->execute([
+                    ':id_usuario' => $id_usuario,
+                    ':value' => $value
+                ]);
+        
+                return [true, "Estado del usuario actualizado con éxito"];
+            } catch (PDOException $e) {
+                error_log("Error al bloquear/desbloquear usuario: " . $e->getMessage());
+                return [false, "Error al bloquear/desbloquear usuario: " . $e->getMessage()];
             }
         }
         

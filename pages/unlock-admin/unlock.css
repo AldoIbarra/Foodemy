@@ -47,6 +47,23 @@
     transition: ease-in-out 0.4s;
 }
 
+.block-button {
+    color: #FFFDF7;
+    font-family: "Outfit-Bold";
+    border: none;
+    background-color: #ae0b0b; 
+    font-size: 20px;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.block-button:hover {
+    background-color: #FFFDF7;
+    color: #ae0b0b; 
+    transition: ease-in-out 0.4s;
+}
+
 
 /* Estilo de la foto de perfil */
 .profile-pic {
