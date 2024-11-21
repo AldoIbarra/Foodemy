@@ -55,6 +55,10 @@ function updateCourseInfo(course) {
 
     const averageRating = course.Promedio_Calificacion;
 
+    // Actualizar el contador de niveles
+    const levelsCountElement = document.querySelector('#levels-count');
+    levelsCountElement.textContent = `${course.niveles.length} niveles`;
+
     // Generar las estrellas y agregarlas al contenedor
     starsContainer.innerHTML = generateStars(averageRating);
 
@@ -72,8 +76,31 @@ function updateCourseInfo(course) {
             </video>
             <div>
                 <h4 class="name">${level.Nivel_Titulo}</h4>
+                <h4 class="tiny-name">${level.Nivel_Descripcion}</h4>
             </div>
         `;
+
+        // Verificar si hay archivos extras (propiedad `archivos`)
+        if (level.archivos && level.archivos.length > 0) {
+            const extrasSection = document.createElement('div');
+            extrasSection.classList.add('extras-section');
+            extrasSection.innerHTML = `
+                <h5 class="extras-title">Archivos Extras</h5>
+                <div class="extras-container">
+                    ${level.archivos.map(file => `
+                        <div class="extra-item">
+                            <i class="fa fa-file-alt extra-icon" aria-hidden="true"></i>
+                            <a href="../${file.Archivo_Ruta}" target="_blank" class="extra-link">
+                                ${file.Archivo_Nombre || "Archivo Extra"}
+                            </a>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            levelElement.appendChild(extrasSection);
+        }
+        
+
         levelsContainer.appendChild(levelElement);
     });
 

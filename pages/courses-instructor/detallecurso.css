@@ -22,8 +22,11 @@
 
 
   #bannerSection .img-container img {
-    max-width: 100%;    /* Asegura que la imagen no se desborde del contenedor */
-    height: auto;       /* Mantiene la proporción de la imagen */
+    max-width: 100%; /* Para que no se salga del contenedor */
+    max-height: 400px; /* Limitar la altura máxima */
+    object-fit: cover; /* Asegurar que la imagen se recorte adecuadamente */
+    display: block; /* Eliminar espacio extra si es inline */
+    margin: auto;
 }
 
 #levelSection .levels .level img {
@@ -100,3 +103,70 @@
   
   /*# sourceMappingURL=course.css.map */
   
+
+  /* Sección de Archivos Extras */
+  .extras-section {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    /* Alinear hacia la derecha */
+    margin-left: auto;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    max-width: 60%; /* Ajustar el ancho máximo para un diseño limpio */
+}
+
+
+.extras-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.extras-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.extra-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  width: auto;
+  max-width: 300px;
+}
+
+.extra-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.extra-icon {
+  color: #007BFF;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.extra-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.extra-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}

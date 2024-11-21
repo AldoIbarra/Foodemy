@@ -36,7 +36,7 @@
             <div class="col-12">
                 <div class="headers">
                     <h3 class="title">Contenido</h3>
-                    <h4 class="description">3 niveles</h4>
+                    <h4 id="levels-count" class="description">3 niveles</h4>
                 </div>
                 <div class="levels">
                     <div class="level">

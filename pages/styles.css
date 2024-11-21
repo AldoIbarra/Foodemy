@@ -124,6 +124,21 @@
   transition: ease-in-out 0.4s;
 }
 
+.blue-button {
+  color: #FFFDF7;
+  font-family: "Outfit-Bold";
+  border: none;
+  background-color: #0d6ae3;
+  font-size: 25px;
+  border-radius: 25px;
+  padding: 0px 15px 5px 15px;
+}
+.blue-button:hover {
+  background-color: #FFFDF7;
+  color: #0d6ae3;
+  transition: ease-in-out 0.4s;
+}
+
 nav {
   display: flex;
   flex-direction: row;

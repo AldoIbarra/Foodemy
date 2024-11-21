@@ -1,4 +1,5 @@
 <?php
+    require("../../config/sessionVerif.php");
     $titlename = "Foodemy";
     $stylename = "addlevel.css";
     $javascript = "addlevel.js";
