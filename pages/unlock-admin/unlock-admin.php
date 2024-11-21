@@ -1,9 +1,16 @@
 <?php
+    require("../../config/sessionVerif.php");
     $titlename = "Desbloquear Usuarios - Admin";
     $stylename = "unlock.css";
     $javascript = "unlock.js";
    
     require_once("../header.php");
+
+    if($_SESSION['Rol'] == 'Administrador'){
+        require_once("../teacherNav.php");
+    }else{
+        header("Location:../dashboard/dashboard.php");
+    }
 ?>
 
 <section id="unlockSection" class="back-eerie">

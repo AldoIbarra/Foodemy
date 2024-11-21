@@ -4,6 +4,17 @@
         session_start();
     }
 
+    // Verificamos si 'option' está definida en $_POST o $_GET
+    if (isset($_POST['option'])) {
+        $option = $_POST['option'];
+    } elseif (isset($_GET['option'])) {
+        $option = $_GET['option'];
+    } else {
+        // Si no existe la opción, mostramos un mensaje de error
+        echo json_encode(["success" => false, "message" => "Opción no válida"]);
+        exit;
+    }
+
 
     if($_POST['option'] == 'signUp'){
         header('Content-Type: application/json');
@@ -96,7 +107,32 @@
                     echo json_encode($json_response);
             }
             exit;
+    } elseif ($option == 'getAllUsersExcept') { 
+        header('Content-Type: application/json');
+    
+        if (!isset($_SESSION['ID_Usuario'])) {
+            http_response_code(400);
+            echo json_encode(array("status" => "error", "message" => "No se encontró el ID del usuario en la sesión."));
+            exit;
+        }
+    
+        $id_admin = $_SESSION['ID_Usuario'];
+    
+        $resultadoFuncion = UserClass::getAllUsersExcept($id_admin); 
+    
+        if ($resultadoFuncion[0]) { 
+            ob_clean();
+            http_response_code(200); 
+            echo json_encode(["success" => true, "Usuarios" => $resultadoFuncion[1]]); 
+        } else { 
+            ob_clean();
+            http_response_code(400); 
+            echo json_encode(["success" => false, "message" => $resultadoFuncion[1]]); 
+        } 
+        exit;
     }
+    
+    
 
     
 ?>

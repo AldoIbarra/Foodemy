@@ -162,5 +162,34 @@
                 return $usuario;
             }
         }
+
+        static function getAllUsersExcept($id_admin) {
+            self::initializeConnection();
+        
+            try {
+                // Ejemplo para procesar el campo BLOB a Base64
+            $sqlSelectUsuarios = "SELECT * FROM Usuario WHERE ID_Usuario != :id_admin;";
+            $consultaSelectUsuarios = self::$connection->prepare($sqlSelectUsuarios);
+            $consultaSelectUsuarios->execute(array(':id_admin'=>$id_admin));
+            $usuarios = $consultaSelectUsuarios->fetchAll(PDO::FETCH_ASSOC);
+
+            // Procesar la foto para convertirla en una cadena Base64
+            foreach ($usuarios as &$usuario) {
+                if ($usuario['Foto_Perfil']) {
+                    // Convierte el contenido BLOB de la foto a Base64
+                    $usuario['Foto_Perfil'] = base64_encode($usuario['Foto_Perfil']);
+                }
+            }
+
+            return [true, $usuarios];
+
+        
+            } catch (PDOException $e) {
+                error_log("Error al obtener los usuarios: " . $e->getMessage()); // Registrar el error
+                return [false, "Error al obtener los usuarios: " . $e->getMessage()];
+            }
+        }
+        
+        
     }
 ?>
