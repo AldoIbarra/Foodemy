@@ -153,6 +153,154 @@
                 }
             }
         }
+
+        
+            static function getCourseById($id_curso) {
+                self::initializeConnection(); // Asegurarse de que la conexión está inicializada
+        
+                try {
+                    // Consulta principal para obtener la información básica del curso
+                    $query = "
+                    SELECT 
+                        c.ID_Curso,
+                        c.Titulo AS Curso_Titulo,
+                        c.Descripcion AS Curso_Descripcion,
+                        c.Imagen AS Curso_Imagen,
+                        c.Precio AS Curso_Precio,
+                        c.Fecha_Creacion_Curso,
+                        c.Estatus AS Curso_Estatus,
+                        u.ID_Usuario AS Instructor_ID,
+                        u.Nombre_Completo AS Instructor_Nombre,
+                        cat.Titulo AS Categoria_Titulo,
+                        COUNT(DISTINCT n.ID_Nivel) AS Total_Niveles,
+                        AVG(com.Calificacion) AS Promedio_Calificacion,
+                        COUNT(DISTINCT cv.ID_Ventas) AS Total_Ventas
+                    FROM 
+                        Curso c
+                    JOIN 
+                        Usuario u ON c.ID_Usuario_Instructor = u.ID_Usuario
+                    JOIN 
+                        Categoria cat ON c.ID_Categoria = cat.ID_Categoria
+                    LEFT JOIN 
+                        Nivel n ON c.ID_Curso = n.ID_Curso
+                    LEFT JOIN 
+                        Comentario com ON c.ID_Curso = com.ID_Curso
+                    LEFT JOIN 
+                        Cursos_Vendidos_Comprados cv ON c.ID_Curso = cv.ID_Curso
+                    WHERE 
+                        c.ID_Curso = :id
+                    GROUP BY 
+                        c.ID_Curso
+                    ";
+        
+                    // Ejecutamos la consulta
+                    $stmt = self::$connection->prepare($query);
+                    $stmt->execute([':id' => $id_curso]);
+                    $course = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+                    if ($course) {
+                        // Consultamos los niveles asociados al curso
+                        $levelQuery = "
+                        SELECT 
+                            n.ID_Nivel,
+                            n.Titulo AS Nivel_Titulo,
+                            n.Descripcion AS Nivel_Descripcion,
+                            n.Precio AS Nivel_Precio,
+                            n.Video AS Nivel_Video
+                        FROM 
+                            Nivel n
+                        WHERE 
+                            n.ID_Curso = :id
+                        ORDER BY 
+                            n.ID_Nivel ASC
+                        ";
+                        $stmtLevel = self::$connection->prepare($levelQuery);
+                        $stmtLevel->execute([':id' => $id_curso]);
+                        $levels = $stmtLevel->fetchAll(PDO::FETCH_ASSOC);
+        
+                        // Para cada nivel, obtenemos los archivos extras si existen
+                        foreach ($levels as &$level) {
+                            $filesQuery = "
+                            SELECT 
+                                na.ID_Archivo,
+                                na.Archivo AS Archivo_Ruta
+                            FROM 
+                                Nivel_Archivo na
+                            WHERE 
+                                na.ID_Nivel = :id_nivel
+                            ";
+                            $stmtFiles = self::$connection->prepare($filesQuery);
+                            $stmtFiles->execute([':id_nivel' => $level['ID_Nivel']]);
+                            $files = $stmtFiles->fetchAll(PDO::FETCH_ASSOC);
+        
+                            // Añadimos los archivos al nivel
+                            if ($files) {
+                                $level['archivos'] = $files;
+                            }
+                        }
+        
+                        // Añadimos los niveles al resultado del curso
+                        $course['niveles'] = $levels;
+        
+                        // Consultamos los comentarios asociados al curso
+                        $commentsQuery = "
+                        SELECT 
+                            com.ID_Comentario,
+                            com.Texto AS Comentario_Texto,
+                            com.Calificacion AS Comentario_Calificacion,
+                            com.Fecha_Hora_Creacion AS Comentario_Fecha,
+                            com.Estatus AS Comentario_Estatus,
+                            com.Fecha_Eliminacion AS Comentario_Eliminacion,
+                            com.Causa_Eliminacion AS Comentario_Causa,
+                            u.Nombre_Completo AS Usuario_Nombre,
+                            u.Foto_Perfil AS Usuario_Foto
+                        FROM 
+                            Comentario com
+                        JOIN 
+                            Usuario u ON com.ID_Usuario_Estudiante = u.ID_Usuario
+                        WHERE 
+                            com.ID_Curso = :id
+                        ORDER BY 
+                            com.Fecha_Hora_Creacion DESC
+                        ";
+                        $stmtComments = self::$connection->prepare($commentsQuery);
+                        $stmtComments->execute([':id' => $id_curso]);
+                        $comments = $stmtComments->fetchAll(PDO::FETCH_ASSOC);
+
+                        // Reemplaza los valores NULL con algo más adecuado
+                        foreach ($comments as &$comment) {
+                            $comment['Comentario_Eliminacion'] = $comment['Comentario_Eliminacion'] ?? 'No Eliminado';
+                            $comment['Comentario_Causa'] = $comment['Comentario_Causa'] ?? 'N/A';
+                        }
+
+                        // Procesa la foto del usuario (BLOB -> Base64)
+                        foreach ($comments as &$comment) {
+                            if ($comment['Usuario_Foto']) {
+                                // Convierte el BLOB a Base64
+                                $comment['Usuario_Foto'] = base64_encode($comment['Usuario_Foto']);
+                            } else {
+                                // Si no hay foto, puedes establecer un valor predeterminado
+                                $comment['Usuario_Foto'] = 'ruta/a/imagen/default.jpg'; // o null si no deseas mostrar nada
+                            }
+                        }
+        
+                        // Depuración: Verificar la consulta de comentarios
+                        error_log('Comentarios obtenidos: ' . print_r($comments, true));
+        
+                        // Añadimos los comentarios al resultado del curso
+                        $course['comentarios'] = !empty($comments) ? $comments : [];
+        
+                        return $course;
+                    } else {
+                        return null; // Si no se encuentra el curso
+                    }
+                } catch (PDOException $e) {
+                    return ["error" => true, "message" => "Error al obtener el curso: " . $e->getMessage()];
+                }
+            }
+
+        
+        
         
         
     }

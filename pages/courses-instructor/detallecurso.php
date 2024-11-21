@@ -1,4 +1,5 @@
 <?php
+    require("../../config/sessionVerif.php");
     $titlename = "Foodemy";
     $stylename = "detallecurso.css";
     $javascript = "detallecurso.js";

@@ -153,10 +153,50 @@
             echo json_encode(["success" => false, "message" => $resultadoFuncion[1]]); 
         } 
         exit;
+    } elseif ($option == 'getCourseById') {
+        header('Content-Type: application/json'); // Especificamos que la respuesta será en formato JSON
+    
+        try {
+            // Verificamos que el ID del curso esté presente
+            if (!isset($_POST['id_curso']) && !isset($_GET['id_curso'])) {
+                throw new Exception("ID del curso no proporcionado.");
+            }
+    
+            // Obtenemos el ID del curso desde el POST o GET
+            $id_curso = isset($_POST['id_curso']) ? $_POST['id_curso'] : $_GET['id_curso'];
+    
+            // Llamamos al modelo para obtener la información del curso
+            $course = CourseClass::getCourseById($id_curso);
+    
+            if ($course) {
+                ob_clean();
+                // Si el curso existe, devolvemos los datos en formato JSON
+                echo json_encode([
+                    "success" => true,
+                    "course" => $course
+                ]);
+            } else {
+                ob_clean();
+                // Si el curso no existe, respondemos con un mensaje de error
+                echo json_encode([
+                    "success" => false,
+                    "message" => "No se encontró el curso con ID: $id_curso"
+                ]);
+            }
+        } catch (Exception $e) {
+            // Si ocurre algún error, devolvemos el mensaje de error
+            echo json_encode([
+                "success" => false,
+                "message" => $e->getMessage()
+            ]);
+        }
+        exit;
     } else {
         ob_clean();
         header('Content-Type: application/json');
         echo json_encode(["success" => false, "message" => "Opción no válida"]);
         exit;
-    }  
+    }
+    
+     
 ?>

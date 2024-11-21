@@ -19,9 +19,9 @@
             <img src="../resources/user.svg" alt="">
             <div class="user-dropdown">
                 <p class="dropdown-item" id="user_name"></p>
-                <a class="dropdown-item" href="../userprofile/userprofile.php">Perfil</a>
-                <a class="dropdown-item" href="../cotizacionesAuth/cotizacionesAuth.php">Cursos</a>
-                <a class="dropdown-item" href="../favorites/favorites.php">Ventas</a>
+                <a class="dropdown-item" href="../myProfile/myProfile.php">Perfil</a>
+                <a class="dropdown-item" href="../courses-instructor/courses-instructor.php">Cursos</a>
+                <a class="dropdown-item" href="../sales/sales.php">Ventas</a>
                 <a class="dropdown-item" href="../../config/cerrarSesion.php">Cerrar sesión</a>
             </div>
         </div>

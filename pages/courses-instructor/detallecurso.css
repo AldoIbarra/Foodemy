@@ -18,9 +18,35 @@
     flex-direction: row;
     justify-content: space-between;
   }
+  
+
+
   #bannerSection .img-container img {
-    height: 100%;
-  }
+    max-width: 100%;    /* Asegura que la imagen no se desborde del contenedor */
+    height: auto;       /* Mantiene la proporción de la imagen */
+}
+
+#levelSection .levels .level img {
+    max-width: 10px;    /* Ajusta el tamaño de las imágenes de nivel */
+    max-height: 10px;   /* Evita que las imágenes se agranden demasiado */
+    object-fit: contain; /* Mantiene la proporción de la imagen */
+}
+
+#commentSection .comments-body .comments-container .comment img {
+    max-width: 50px;    /* Ajusta el tamaño de las imágenes de los comentarios */
+    max-height: 50px;   /* Evita que las imágenes se agranden demasiado */
+    border-radius: 20px;
+    object-fit: contain; /* Mantiene la proporción de la imagen */
+}
+
+#levelSection .levels .level video {
+  width: 50%; /* Ajusta el tamaño según tus necesidades */
+  max-width: 200px; /* Asegura que no se estiren demasiado */
+  margin-right: 10px; /* Espacio entre los videos y otros elementos */
+}
+
+
+
   
   #levelSection {
     padding: 20px 0px;
