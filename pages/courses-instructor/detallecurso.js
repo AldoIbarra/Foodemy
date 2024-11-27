@@ -1,3 +1,16 @@
+var session;
+$( document ).ready(function() {
+    $.ajaxSetup({cache: false})
+    $.get('../../api/getSession.php', function (data) {
+        if(data){
+            session = JSON.parse(data);
+            console.log(session);
+        }else{
+            console.error("Error al analizar JSON");
+        }
+    });
+});
+
 // Esperar a que el documento esté completamente cargado
 document.addEventListener('DOMContentLoaded', function () {
     // Obtener el ID del curso desde la URL

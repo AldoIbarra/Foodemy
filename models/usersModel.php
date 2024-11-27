@@ -16,7 +16,7 @@
             try{
                 $sqlInsert="CALL Crear_Usuario(:name, :gender, :bornDate, :photo, :email, :password, :userType);";
                 $consultaInsert= self::$connection->prepare($sqlInsert);
-                $consultaInsert->execute(array(
+                $consultaInsert->execute([
                     ':name'=>$name,
                     ':gender'=>$gender,
                     ':bornDate'=>$bornDate,
@@ -24,16 +24,15 @@
                     ':email'=>$email,
                     ':password'=>$password,
                     ':userType'=>$userType
-                ));
+                ]);
         
-                return array(true,"insertado con exito");
+                return [true, "Usuario registrado correctamente."];
             
-            }catch(PDOException $e){
-                if ($e->errorInfo[1] == 1062) {
-                    $cadena = "El usuario ya ha sido agregado.";
-                    return array(false, $cadena);
+            } catch (PDOException $e) {
+                if ($e->errorInfo[1] == 1062) { // Código de error para clave duplicada
+                    return [false, "El usuario ya existe."];
                 } else {
-                    return array(false, "Error al agregar usuario: " . $e->getMessage());
+                    return [false, "Error al agregar usuario: " . $e->getMessage()];
                 }
             }
         }

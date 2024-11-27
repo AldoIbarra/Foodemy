@@ -21,16 +21,17 @@ require("../../config/sessionVerif.php");
         <div class="user-menu">
         <?php
                     if($_SESSION){
-                        echo '<figure><img src="data:image/jpeg;base64,'.$_SESSION['Foto_Perfil'].'" alt="profile" width="50px" height="50px"></figure>';
+                        echo '<img src="data:image/jpeg;base64,'.$_SESSION['Foto_Perfil'].'" alt="profile" width="50px" height="50px">';
                         
                     }else{
-                        echo '<figure><img src="../whiteCart.svg" alt="profile"></figure>';
+                        echo '<img src="../whiteCart.svg" alt="profile">';
                     }
                 ?>
             <div class="user-dropdown">
                 <p class="dropdown-item" id="user_name"></p>
-                <a class="dropdown-item" href="../myProfile/myProfile.php">Perfil</a>
+                <a class="dropdown-item" href="../myProfile/profile.php">Perfil</a>
                 <a class="dropdown-item" href="../courses-instructor/courses-instructor.php">Cursos</a>
+                <a class="dropdown-item" href="../addcourse/addcourse.php">Agregar curso</a>
                 <a class="dropdown-item" href="../sales/sales.php">Ventas</a>
                 <a class="dropdown-item" href="../../config/cerrarSesion.php">Cerrar sesión</a>
             </div>

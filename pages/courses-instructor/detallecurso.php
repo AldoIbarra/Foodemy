@@ -5,6 +5,12 @@
     $javascript = "detallecurso.js";
    
     require_once("../header.php");
+   
+    if($_SESSION['Rol'] == 'Instructor'){
+        require_once("../teacherNav.php");
+    }else{
+        header("Location:../dashboard/dashboard.php");
+    }
 ?>
 
 <section id="bannerSection" class="back-prussian">

@@ -89,10 +89,6 @@
   color: #6AC25C;
 }
 
-.yellow {
-  color: #efdd13;
-}
-
 .back-poppy {
   background-color: #E32D40;
 }
@@ -125,21 +121,6 @@
 .red-button:hover {
   background-color: #FFFDF7;
   color: #E32D40;
-  transition: ease-in-out 0.4s;
-}
-
-.blue-button {
-  color: #FFFDF7;
-  font-family: "Outfit-Bold";
-  border: none;
-  background-color: #0d6ae3;
-  font-size: 25px;
-  border-radius: 25px;
-  padding: 0px 15px 5px 15px;
-}
-.blue-button:hover {
-  background-color: #FFFDF7;
-  color: #0d6ae3;
   transition: ease-in-out 0.4s;
 }
 
@@ -199,6 +180,8 @@ nav .cart-user .cart-icon img {
 }
 nav .cart-user .user-menu img {
   width: 4vw;
+  max-height: 4vw;
+  object-fit: contain;
 }
 
 .user-menu.show .user-dropdown {
@@ -238,9 +221,4 @@ nav .cart-user .user-menu img {
   font-size: 20px;
 }
 
-.fa {
-  color: #FFD700; /* Color dorado */
-  font-size: 18px; /* Tamaño de las estrellas */
-  margin-right: 5px; /* Espaciado entre las estrellas */
-}
 /*# sourceMappingURL=styles.css.map */

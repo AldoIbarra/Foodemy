@@ -21,10 +21,10 @@ require("../../config/sessionVerif.php");
         <div class="user-menu">
         <?php
                     if($_SESSION){
-                        echo '<figure><img src="data:image/jpeg;base64,'.$_SESSION['Foto_Perfil'].'" alt="profile" width="50px" height="50px"></figure>';
+                        echo '<img src="data:image/jpeg;base64,'.$_SESSION['Foto_Perfil'].'" alt="profile" width="50px" height="50px">';
                         
                     }else{
-                        echo '<figure><img src="../whiteCart.svg" alt="profile"></figure>';
+                        echo '<img src="../whiteCart.svg" alt="profile">';
                     }
                 ?>
             <div class="user-dropdown">

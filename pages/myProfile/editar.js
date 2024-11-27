@@ -3,15 +3,13 @@ var nombre;
 var sexo;
 var fechaN;
 var session;
-var id;
-
 $( document ).ready(function() {
     $.ajaxSetup({cache: false})
     $.get('../../api/getSession.php', function (data) {
-        console.log(data);
         if(data){
             session = JSON.parse(data);
             console.log(session);
+            setProfileValues();
         }else{
             console.error("Error al analizar JSON");
         }
@@ -72,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
         nombre = document.getElementById('nombre')?.value.trim() || '';
         sexo = document.getElementById('sexo')?.value || '';
         fechaN = document.getElementById('fecha')?.value || '';
-        id = document.getElementById('id')?.value.trim() || '';
        
         let TODOcorrecto = 3;
 
@@ -122,7 +119,7 @@ function updateInfo(){
             name: nombre,
             gender: sexo,
             bornDate: fechaN,
-            id: id,
+            id: session.ID_Usuario,
             option: 'updateInfo'
         },
         success: function(data) {
@@ -135,4 +132,11 @@ function updateInfo(){
             console.log(error);
         },
     });
+}
+
+function setProfileValues(){
+    $('#nombre').val(session.Nombre_Completo);
+    $("#sexo").val(session.Genero);
+    $('#fecha').val(session.Fecha_Nacimiento);
+    document.getElementById("imagenPrevisualizada").src = 'data:image/jpeg;base64,' + session.Foto_Perfil;
 }

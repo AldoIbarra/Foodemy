@@ -44,13 +44,7 @@
                             </div>
                             <div>
                             <h3 class= "option baby"> Nombre completo: </h3>
-                            <?php
-                                if($_SESSION){
-                                    echo '<input value="'.$_SESSION['Nombre_Completo'].'" class="input" type="text" required id="nombre" name="nombre">';
-                                }else{
-                                    echo '<input class="input" type="text" required id="nombre" name="nombre">';
-                                }
-                            ?>
+                            <input class="input" type="text" required id="nombre" name="nombre">
                         </div>
                 </div>
                         
@@ -62,10 +56,10 @@
                             <div>
                             <h3 class= "option baby"> Género: </h3>
                             <select  class= "option eerie" id="sexo" name="sexo" >
-                                <option <?= $_SESSION && ($_SESSION['Genero'] == '' || $_SESSION['Genero'] == null) ? ' selected="selected"' : '';?> value="">--Seleccionar--</option>
-                                <option <?= $_SESSION && $_SESSION['Genero'] == 'Femenino' ? ' selected="selected"' : '';?> value="Femenino">Femenino</option>
-                                <option <?= $_SESSION && $_SESSION['Genero'] == 'Masculino' ? ' selected="selected"' : '';?>  value="Masculino">Masculino</option>
-                                <option <?= $_SESSION && $_SESSION['Genero'] == 'Otro' ? ' selected="selected"' : '';?>  value="Otro">Otro</option>
+                                <option value="">--Seleccionar--</option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Otro">Otro</option>
                             </select>
                         </div>
                 </div>
@@ -75,7 +69,7 @@
                             <i class="fa-solid fa-cake-candles"></i>
                             </div>
                             <div>
-                            <input <?= $_SESSION && $_SESSION['Fecha_Nacimiento'] != '' && $_SESSION['Fecha_Nacimiento'] != null ? 'value="'.$_SESSION['Fecha_Nacimiento'].'"' : '';?>  class="input" max="2006-01-01" type="date" id="fecha" name="fecha" >
+                            <input class="input" max="2006-01-01" type="date" id="fecha" name="fecha" >
                         </div>
                 </div>
 

@@ -1,3 +1,16 @@
+var session;
+$( document ).ready(function() {
+    $.ajaxSetup({cache: false})
+    $.get('../../api/getSession.php', function (data) {
+        if(data){
+            session = JSON.parse(data);
+            console.log(session);
+        }else{
+            console.error("Error al analizar JSON");
+        }
+    });
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     const numberOfCategories = document.getElementById('course-category');
 
@@ -47,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
             for (let i = 1; i <= numLevels ; i++) {
                 $("#addlevel").append(`
                     <form action="" class="level-info" id="level-form-${i}">
-                        <h2>Nivel ${i}</h2>
+                        <h2 class="baby">Nivel ${i}</h2>
                         <div class="title-price-container">
                             <input type="text" id="level-title-${i}" class="description" placeholder="Titulo del nivel">
                             <input type="number" id="level-price-${i}" class="description" placeholder="Precio">

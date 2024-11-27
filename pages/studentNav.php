@@ -16,17 +16,16 @@ require("../../config/sessionVerif.php");
             <input type="text" name="search-bar" id="search-bar" placeholder="Busca algún curso...">
         </div>
         <div class="col-3 cart-user">
-            <a class="cart-icon" href="../userCart/userCart.php">
-            <img src="../resources/whiteCart.svg" alt="">
-
+            <a class="cart-icon" href="../userCart/userCart.php"> 
+                <img src="../resources/whiteCart.svg" alt="">
             </a>
             <div class="user-menu">
-            <?php
+                <?php
                     if($_SESSION){
-                        echo '<figure><img src="data:image/jpeg;base64,'.$_SESSION['Foto_Perfil'].'" alt="profile" width="50px" height="50px"></figure>';
+                        echo '<img src="data:image/jpeg;base64,'.$_SESSION['Foto_Perfil'].'" alt="profile" width="50px" height="50px">';
                         
                     }else{
-                        echo '<figure><img src="../whiteCart.svg" alt="profile"></figure>';
+                        echo '<img src="../whiteCart.svg" alt="profile">';
                     }
                 ?>
                 <div class="user-dropdown">

@@ -189,7 +189,7 @@ header {
   box-shadow: none;
 }
 
-.container .userProfile .profile figure img {
+.container .userProfile .profile img {
   width: 18rem;
   height: 18rem;
   border-radius: 50%;
@@ -446,7 +446,7 @@ header {
 }
 
 .timeline_about .contact_info .heading,
-.timeline_about .basic_info .heading {
+.timeline_about .userDetails .heading {
   font-size: var(--xs-fs);
   color: var(--f4-color);
   text-transform: uppercase;
@@ -454,25 +454,25 @@ header {
 }
 
 .timeline_about .contact_info ul,
-.timeline_about .basic_info ul {
+.timeline_about .userDetails ul {
   margin-bottom: var(--m-1-5);
 }
 
 .timeline_about .contact_info ul li,
-.timeline_about .basic_info ul li {
+.timeline_about .userDetails ul li {
   display: flex;
   margin: var(--m-0-5) 0;
 }
 
 .timeline_about .contact_info ul li h1,
-.timeline_about .basic_info ul li h1 {
+.timeline_about .userDetails ul li h1 {
   font-weight: 500;
   font-size: var(--m-fs);
   min-width: 12rem;
 }
 
 .timeline_about .contact_info ul li span,
-.timeline_about .basic_info ul li span {
+.timeline_about .userDetails ul li span {
   font-size: var(--m-fs);
 }
 

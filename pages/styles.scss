@@ -188,6 +188,8 @@ nav{
         .user-menu{
             img{
                 width: 4vw;
+                max-height: 4vw;
+                object-fit:contain;
             }
         }
     }
