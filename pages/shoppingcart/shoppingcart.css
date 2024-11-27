@@ -21,10 +21,9 @@
     100% { transform: translateX(-10px); }
   }
   
-  .cart-icon {
+  .movement {
     animation: swing 1s ease-in-out infinite;
   }
-  
 
 .cart-item {
     display: flex;

@@ -35,6 +35,7 @@
   src: url(resources/outfit/Outfit-Thin.ttf) format(truetype);
 }
 .title {
+  text-decoration: none;
   font-family: "Outfit-Bold";
   font-size: 48px;
 }
@@ -175,8 +176,12 @@ nav .cart-user {
 nav .cart-user .cart-icon {
   margin-right: 15px;
 }
+nav .cart-user .cart-icon:nth-child(1) img {
+  padding-top: 9px;
+}
 nav .cart-user .cart-icon img {
   width: 3vw;
+  height: 2.5vw;
 }
 nav .cart-user .user-menu img {
   width: 4vw;

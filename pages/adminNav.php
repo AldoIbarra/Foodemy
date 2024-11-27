@@ -3,7 +3,7 @@ require("../../config/sessionVerif.php");
 ?>
 
 <nav class="back-eerie">
-    <h1 class="title poppy">Foodemy</h1>
+    <a href="../dashboard/dashboard.php" class="title poppy">Foodemy</a>
     <button id="category-button">
         <h4 class="baby option">Cursos</h4>
         <img src="../resources/dropdown.svg" alt="">

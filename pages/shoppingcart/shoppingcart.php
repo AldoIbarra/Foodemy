@@ -1,9 +1,22 @@
 <?php
+    require("../../config/sessionVerif.php");
     $titlename = "Foodemy - Carrito de Compras";
     $stylename = "shoppingcart.css"; 
     $javascript = "shoppingcart.js"; 
 
     require_once("../header.php");
+   
+    require_once("../header.php");
+
+    switch ($_SESSION['Rol']) {
+        case 'Estudiante':
+            require_once("../studentNav.php");
+            break;
+        default:
+            header("Location:../login/login.php");
+            require_once("../emptyNav.php");
+            break;
+    }
 ?>
 
 <section id="cartSection" class="back-eerie">
@@ -12,7 +25,7 @@
            <!-- COLUMNA DE CURSOS A PAGAR -->
 <div class="col-8">
     <div class="header-container">
-        <img src="../resources/shopping-cart.svg" alt="Carrito de Compras" class="cart-icon">
+        <img src="../resources/shopping-cart.svg" alt="Carrito de Compras" class="cart-icon movement">
         <h1 class="title baby">  Carrito de Compras</h1>
     </div>
                 <!--DATOS DUMMY -->

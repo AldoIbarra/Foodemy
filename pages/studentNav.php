@@ -4,7 +4,7 @@ require("../../config/sessionVerif.php");
 ?>
 
     <nav class="back-eerie">
-        <h1 class="title poppy">Foodemy</h1>
+        <a href="../dashboard/dashboard.php" class="title poppy">Foodemy</a>
         <button id="category-button">
             <h4 class="baby option">Cursos</h4>
             <img src="../resources/dropdown.svg" alt="">
@@ -16,7 +16,10 @@ require("../../config/sessionVerif.php");
             <input type="text" name="search-bar" id="search-bar" placeholder="Busca algún curso...">
         </div>
         <div class="col-3 cart-user">
-            <a class="cart-icon" href="../userCart/userCart.php"> 
+            <a class="cart-icon" href="../chats/chats.php"> 
+                <img src="../resources/chat.svg" alt="">
+            </a>
+            <a class="cart-icon" href="../shoppingcart/shoppingcart.php"> 
                 <img src="../resources/whiteCart.svg" alt="">
             </a>
             <div class="user-menu">
@@ -30,7 +33,7 @@ require("../../config/sessionVerif.php");
                 ?>
                 <div class="user-dropdown">
                     <p class="dropdown-item" id="user_name"></p>
-                    <a class="dropdown-item" href="../userprofile/userprofile.php">Perfil</a>
+                    <a class="dropdown-item" href="../myProfile/profile.php">Perfil</a>
                     <a class="dropdown-item" href="../cotizacionesAuth/cotizacionesAuth.php">Cursos</a>
                     <a class="dropdown-item" href="../favorites/favorites.php">Kardex</a>
                     <a class="dropdown-item" href="../../config/cerrarSesion.php">Cerrar sesión</a>

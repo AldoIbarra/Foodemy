@@ -43,6 +43,7 @@ $prussian: #003054;
 $mantis: #6AC25C;
 
 .title{
+    text-decoration: none;
     font-family: 'Outfit-Bold';
     font-size: 48px;
 }
@@ -181,8 +182,14 @@ nav{
         
         .cart-icon{
             margin-right: 15px;
+            &:nth-child(1){
+                img{
+                    padding-top: 9px;
+                }
+            }
             img {
                 width: 3vw;
+                height: 2.5vw;
             }
         }
         .user-menu{

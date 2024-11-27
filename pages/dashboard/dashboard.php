@@ -6,10 +6,19 @@
    
     require_once("../header.php");
    
-    if($_SESSION){
-        require_once("../studentNav.php");
-    }else{
-        require_once("../emptyNav.php");
+    switch ($_SESSION['Rol']) {
+        case 'Estudiante':
+            require_once("../studentNav.php");
+            break;
+        case 'Instructor':
+            require_once("../teacherNav.php");
+            break;
+        case 'Administrador':
+            require_once("../adminNav.php");
+            break;
+        default:
+            require_once("../emptyNav.php");
+            break;
     }
 ?>
 

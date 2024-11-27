@@ -223,6 +223,25 @@
             ]);
         }
         exit;
+    } elseif ($option == 'getAllCourses') {
+        ob_clean(); 
+        try {
+            $resultadoFuncion = CourseClass::getAllCourses(); 
+            if ($resultadoFuncion[0]) {
+                echo json_encode(["success" => true, "courses" => $resultadoFuncion[1]]); 
+                // Envolver en un objeto con 'success' y 'categories' 
+            } else {
+                echo json_encode(["success" => false, "message" => $resultadoFuncion[1]]); 
+            } 
+            exit;
+        } catch (Exception $e) {
+            // Si ocurre algún error, devolvemos el mensaje de error
+            echo json_encode([
+                "success" => false,
+                "message" => $e->getMessage()
+            ]);
+        }
+        
     } else {
         ob_clean();
         header('Content-Type: application/json');

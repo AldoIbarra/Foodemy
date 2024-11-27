@@ -369,6 +369,28 @@
                     return false;
                 }
             }
+
+
+            static function getAllCourses() {
+                self::initializeConnection();
+            
+                try {
+                    $sqlSelect = "CALL ObtenerTodosLosCursos();"; 
+                    $consultaSelect = self::$connection->prepare($sqlSelect);
+                    $consultaSelect->execute();
+                    $cursos = $consultaSelect->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($cursos as &$curso) {
+                        if ($curso['Foto_Perfil']) {
+                            $curso['Foto_Perfil'] = base64_encode($curso['Foto_Perfil']);
+                        }
+                    }
+            
+                    return [true, $cursos];
+                } catch (PDOException $e) {
+                    return array(false, "Error al obtener cursos: " . $e->getMessage());
+                }
+            }
             
         
     }

@@ -1,9 +1,23 @@
 <?php
+    require("../../config/sessionVerif.php");
     $titlename = "Foodemy";
     $stylename = "chats.css";
     $javascript = "chats.js";
    
     require_once("../header.php");
+
+    switch ($_SESSION['Rol']) {
+        case 'Estudiante':
+            require_once("../studentNav.php");
+            break;
+        case 'Instructor':
+            require_once("../teacherNav.php");
+            break;
+        default:
+            header("Location:../login/login.php");
+            require_once("../emptyNav.php");
+            break;
+    }
 ?>
 
 <section id="chats-body" class="back-eerie">

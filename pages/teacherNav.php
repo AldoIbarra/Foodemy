@@ -3,7 +3,7 @@ require("../../config/sessionVerif.php");
 ?>
 
 <nav class="back-eerie">
-    <h1 class="title poppy">Foodemy</h1>
+    <a href="../dashboard/dashboard.php" class="title poppy">Foodemy</a>
     <button id="category-button">
         <h4 class="baby option">Cursos</h4>
         <img src="../resources/dropdown.svg" alt="">
@@ -15,18 +15,21 @@ require("../../config/sessionVerif.php");
         <input type="text" name="search-bar" id="search-bar" placeholder="Busca algún curso...">
     </div>
     <div class="col-3 cart-user">
+        <a class="cart-icon" href="../chats/chats.php"> 
+            <img src="../resources/chat.svg" alt="">
+        </a>
         <a class="cart-icon" href="../userCart/userCart.php">
             <img src="../resources/whiteCart.svg" alt="">
         </a>
         <div class="user-menu">
-        <?php
-                    if($_SESSION){
-                        echo '<img src="data:image/jpeg;base64,'.$_SESSION['Foto_Perfil'].'" alt="profile" width="50px" height="50px">';
-                        
-                    }else{
-                        echo '<img src="../whiteCart.svg" alt="profile">';
-                    }
-                ?>
+            <?php
+                if($_SESSION){
+                    echo '<img src="data:image/jpeg;base64,'.$_SESSION['Foto_Perfil'].'" alt="profile" width="50px" height="50px">';
+                    
+                }else{
+                    echo '<img src="../whiteCart.svg" alt="profile">';
+                }
+            ?>
             <div class="user-dropdown">
                 <p class="dropdown-item" id="user_name"></p>
                 <a class="dropdown-item" href="../myProfile/profile.php">Perfil</a>
