@@ -75,7 +75,7 @@
                         <input class="input" type="text" required id="apellido" name="apellido">
                     </div>
                 </div>
-                <button class="red-button checkout-button" onclick="payCourse();">Proceder al pago</button>
+                <button class="red-button checkout-button" id="submitButton" onclick="payCourse();">Proceder al pago</button>
 
                 <!-- SECCIÓN DE SUGERENCIAS -->
                 <!-- <div class="suggestions">
