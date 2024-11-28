@@ -1,5 +1,6 @@
 var session;
 var courseId;
+var cursoComprado = false;
 const urlParams = new URLSearchParams(window.location.search);
 $( document ).ready(function() {
     $.ajaxSetup({cache: false})
@@ -8,9 +9,9 @@ $( document ).ready(function() {
             session = JSON.parse(data);
             console.log(session);
             console.log(session.Rol);
-            if(session.Rol == "Estudiante" || session.Rol == "Instructor"){
+            if(session.Rol == "Estudiante"){
                 courseId = urlParams.get('id');
-                setBuyButton();
+                setBuyButton(courseId);
             }
         }else{
             console.error("Error al analizar JSON");
@@ -163,6 +164,52 @@ function generateStars(rating) {
     return starsHTML;
 }
 
-function setBuyButton(){
-    $('.price-and-button').append('<a href="../shoppingcart/shoppingcart.php?id=' + courseId + '" class="red-button">Comprar</a>');
+function setBuyButton(thisCourseId){
+    $.ajax({
+        type: "GET",
+        url: "../../api/courseController.php?",
+        data: {
+            option: "doesStudentHaveCourse",
+            courseId: thisCourseId
+        },
+        dataType: "json",
+        success: function (response) {
+            if(!response.result[0].CursoComprado){
+                $('.price-and-button').append('<a href="../shoppingcart/shoppingcart.php?id=' + courseId + '" class="red-button">Comprar</a>');
+            }else{
+                cursoComprado = true;
+                $('#comment-button').prop("disabled", false);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error('Error en la solicitud:', error);
+        }
+    });
+}
+
+function comment(){
+    if(!$('#comment-text').val() == ''){
+        formData = new FormData();
+
+        formData.append('courseId', courseId);
+        formData.append('userId', session.ID_Usuario);
+        formData.append('comment', $('#comment-text').val());
+        formData.append('rank', 5);
+        formData.append('option', 'makeAComment');
+
+        $.ajax({
+            type: "POST",
+            url: "../../api/courseController.php",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(xhr, status, error) {
+                console.log('error');
+                console.log(error);
+            },
+        });
+    }
 }

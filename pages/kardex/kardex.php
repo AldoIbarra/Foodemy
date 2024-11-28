@@ -1,9 +1,17 @@
 <?php 
+    require("../../config/sessionVerif.php");
     $titlename = "Foodemy";
     $stylename = "kardex.css";
     $javascript = "kardex.js";
 
     require_once("../header.php");
+
+    if($_SESSION && $_SESSION['Rol'] == 'Estudiante'){
+        require_once("../studentNav.php");
+    }else{
+        header("Location:../login/login.php");
+        require_once("../emptyNav.php");
+    }
 ?>
 
 <section id="bannerSection" class="back-prussian">

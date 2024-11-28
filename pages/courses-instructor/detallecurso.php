@@ -13,6 +13,9 @@
         case 'Instructor':
             require_once("../teacherNav.php");
             break;
+        case 'Administrador':
+            require_once("../teacherNav.php");
+            break;
         default:
             header("Location:../login/login.php");
             require_once("../emptyNav.php");
@@ -81,6 +84,10 @@
         <div class="row">
             <div class="col-12 comments-body">
                 <h3 class="title">Comentarios</h3>
+                <div class="make-a-comment">
+                    <textarea name="" id="comment-text"></textarea>
+                    <button id="comment-button" class="red-button" onclick="comment();">Comentar</button>
+                </div>
                 <div class="comments-container">
                     <div class="comment">
                         <img src="../resources/profilepic.png" alt="">

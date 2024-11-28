@@ -99,37 +99,36 @@
                         </div>
                         <!--Visible únicamente para los administradores-->
                         <!-- Botón de reporte -->
-    <div class="contenedor-der">
-        <button class="big-name boton-reporte" onclick="openReportMenu(this)">Reportar</button>
-    </div>
-    
-    <!-- Formulario flotante para reporte -->
-    <div class="report-menu" style="display:none;">
-        <p>Selecciona un motivo:</p>
-        <div>
-        <label>
-            <input type="radio" name="reportReason" value="spam"> Spam
-        </label>
-</div>
-<div>
-        <label>
-            <input type="radio" name="reportReason" value="estafa"> Estafa
-        </label>
-</div>
-<div>
-        <label>
-            <input type="radio" name="reportReason" value="odio"> Contenido que incita al odio
-        </label>
-</div>
-<div>
-        <label>
-            <input type="radio" name="reportReason" value="acoso"> Acoso
-        </label>
-</div>
-        <button onclick="submitReport(this)">Enviar</button>
-        <button onclick="closeReportMenu(this)">Cancelar</button>
-    </div>
-                        <!------------------------------------------------>
+                        <div class="contenedor-der">
+                            <button class="big-name boton-reporte" onclick="openReportMenu(this)">Reportar</button>
+                        </div>
+                        
+                        <!-- Formulario flotante para reporte -->
+                        <div class="report-menu" style="display:none;">
+                            <p>Selecciona un motivo:</p>
+                            <div>
+                                <label>
+                                    <input type="radio" name="reportReason" value="spam"> Spam
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="radio" name="reportReason" value="estafa"> Estafa
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="radio" name="reportReason" value="odio"> Contenido que incita al odio
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="radio" name="reportReason" value="acoso"> Acoso
+                                </label>
+                            </div>
+                            <button onclick="submitReport(this)">Enviar</button>
+                            <button onclick="closeReportMenu(this)">Cancelar</button>
+                        </div>
                     </div>
                     <div class="comment">
                         <img src="../resources/profilepic.png" alt="">

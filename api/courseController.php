@@ -266,6 +266,50 @@
             echo json_encode(["status" => "error", "message" => $resultadoFuncion[1]]);
         }
         exit;
+    } elseif ($option == 'doesStudentHaveCourse') {
+        ob_clean();
+        $id = $_SESSION['ID_Usuario'];
+        $courseId = $_GET['courseId'];
+        try {
+            $resultadoFuncion = CourseClass::doesStudentHaveCourse($id, $courseId); 
+            if ($resultadoFuncion[0]) {
+                echo json_encode(["success" => true, "result" => $resultadoFuncion[1]]); 
+                // Envolver en un objeto con 'success' y 'categories' 
+            } else {
+                echo json_encode(["success" => false, "message" => $resultadoFuncion[1]]); 
+            } 
+            exit;
+        } catch (Exception $e) {
+            // Si ocurre algún error, devolvemos el mensaje de error
+            echo json_encode([
+                "success" => false,
+                "message" => $e->getMessage()
+            ]);
+        }
+        
+    }elseif($_POST['option'] == 'makeAComment'){
+        header('Content-Type: application/json');
+
+        $courseId = $_POST['courseId'];
+        $userId = $_POST['userId'];
+        $comment = $_POST['comment'];
+        $rank = $_POST['rank'];
+
+        if(empty($courseId) || empty($userId) || empty($comment) || empty($rank)){
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "Todos los campos son obligatorios."]);
+            exit;
+        }
+
+        $resultadoFuncion = CourseClass::makeAComment($courseId,$userId ,  $comment, $rank);
+
+        // Manejo de respuesta de la función
+        if ($resultadoFuncion[0]) {
+            echo json_encode(["status" => "success", "data" => $resultadoFuncion[1]]);
+        } else {
+            echo json_encode(["status" => "error", "message" => $resultadoFuncion[1]]);
+        }
+        exit;
     } else {
         ob_clean();
         header('Content-Type: application/json');

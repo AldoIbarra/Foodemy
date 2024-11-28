@@ -100,6 +100,19 @@
   #commentSection .comments-body .comments-container .comment .texts-container .name-and-stars img {
     margin-left: 10px;
   }
+  #commentSection .comments-body .make-a-comment {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+  }
+  #commentSection .comments-body .make-a-comment textarea{
+    resize: none;
+    outline: none;
+    border-radius: 10px;
+    width: 100%;
+    margin: 10px 0px 20px 0px;
+  }
   
   /*# sourceMappingURL=course.css.map */
   

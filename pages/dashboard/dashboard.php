@@ -5,21 +5,24 @@
     $javascript = "dashboard.js";
    
     require_once("../header.php");
-   
-    switch ($_SESSION['Rol']) {
-        case 'Estudiante':
-            require_once("../studentNav.php");
-            break;
-        case 'Instructor':
-            require_once("../teacherNav.php");
-            break;
-        case 'Administrador':
-            require_once("../adminNav.php");
-            break;
-        default:
-            require_once("../emptyNav.php");
-            break;
+
+    if($_SESSION){
+        switch ($_SESSION['Rol']) {
+            case 'Estudiante':
+                require_once("../studentNav.php");
+                break;
+            case 'Instructor':
+                require_once("../teacherNav.php");
+                break;
+            case 'Administrador':
+                require_once("../adminNav.php");
+                break;
+        }
+    }else{
+        require_once("../emptyNav.php");
     }
+   
+    
 ?>
 
 

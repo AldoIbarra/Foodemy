@@ -417,7 +417,43 @@
                     }
                 }
             }
+
+            static function doesStudentHaveCourse($userId, $courseId) {
+                self::initializeConnection();
+                try {
+                    $sqlSelect = "SELECT VerificarCompraCurso(:userId, :courseId) AS CursoComprado;"; 
+                    $consultaSelect = self::$connection->prepare($sqlSelect);
+                    $consultaSelect->execute([':userId'=>$userId, ':courseId'=>$courseId]);
+                    $result = $consultaSelect->fetchAll(PDO::FETCH_ASSOC);
             
-        
+                    return [true, $result];
+                } catch (PDOException $e) {
+                    return array(false, "Error al obtener instructores: " . $e->getMessage());
+                }
+            }
+    
+            static function makeAComment($courseId, $userId, $comment, $rank){
+                self::initializeConnection();
+                
+                try{
+                    $sqlInsert="CALL AgregarComentario(:courseId, :userId, :comment, :rank);";
+                    $consultaInsert= self::$connection->prepare($sqlInsert);
+                    $consultaInsert->execute([
+                        ':courseId'=>$courseId,
+                        ':userId'=>$userId,
+                        ':comment'=>$comment,
+                        ':rank'=>$rank
+                    ]);
+            
+                    return [true, "Comentario registrado."];
+                
+                } catch (PDOException $e) {
+                    if ($e->errorInfo[1] == 1062) { // Código de error para clave duplicada
+                        return [false, "El usuario ya existe."];
+                    } else {
+                        return [false, "Error al agregar usuario: " . $e->getMessage()];
+                    }
+                }
+            }
     }
 ?>
