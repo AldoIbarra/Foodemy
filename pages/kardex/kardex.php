@@ -39,13 +39,6 @@
                     <label for="categoria" class="option eerie">Categoría:</label>
                     <select id="number-of-categories" required>
                         <option value="todas">Todas</option>
-                        <option value="Cocina Saludable">Cocina Saludable</option>
-                        <option value="Cocina Internacional">Cocina Internacional</option>
-                        <option value="Repostería y Pastelería">Repostería y Pastelería</option>
-                        <option value="Cocina Vegetariana y Vegana">Cocina Vegetariana y Vegana</option>
-                        <option value="Técnicas de Cocina Básicas">Técnicas de Cocina Básicas</option>
-                        <option value="Cocina de Temporada">Cocina de Temporada</option>
-                        <option value="Platos Rápidos">Platos Rápidos</option>
                     </select>
 
                     <label for="estado" class="option eerie">Estado del curso:</label>
@@ -54,18 +47,12 @@
                         <option value="terminados">Solo cursos terminados</option>
                     </select>
 
-                    <label for="activo" class="option eerie">Cursos activos:</label>
-                    <select id="activo">
-                        <option value="todos">Todos</option>
-                        <option value="activos">Solo cursos activos</option>
-                    </select>
-
                     </div>
-                          <button class="red-button" id="filtrar">Filtrar</button>
+                          <button class="red-button" onclick="getStudentKardex();">Filtrar</button>
                     </div>
                 </div>
                 <div class="col-12 kardex">
-                    <!-- Los resultados del Kardex se cargarán aquí -->
+                    
                 </div>
             </div>
         </div>

@@ -312,5 +312,21 @@
             }
         }
 
+
+        static function getStudentKardex($studentId, $categoryId, $courseStatus, $dateIni, $dateFin) {
+            self::initializeConnection();
+        
+            try {
+                $sqlSelect = "CALL ObtenerCursosAlumno(:studentId, :categoryId, :courseStatus, :dateIni, :dateFin);"; 
+                $consultaSelect = self::$connection->prepare($sqlSelect);
+                $consultaSelect->execute([':studentId'=>$studentId, ':categoryId'=>$categoryId, ':courseStatus'=>$courseStatus, ':dateIni'=>$dateIni, ':dateFin'=>$dateFin]);
+                $courses = $consultaSelect->fetchAll(PDO::FETCH_ASSOC);
+        
+                return [true, $courses];
+            } catch (PDOException $e) {
+                return array(false, "Error al obtener instructores: " . $e->getMessage());
+            }
+        }
+
     }
 ?>

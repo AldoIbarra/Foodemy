@@ -1,66 +1,77 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const btnFiltrar = document.getElementById('filtrar');
-    btnFiltrar.addEventListener('click', function() {
-        const fechaInicio = document.getElementById('fecha-inscripcion-inicio').value;
-        const fechaFin = document.getElementById('fecha-inscripcion-fin').value;
-        const categoria = document.getElementById('number-of-categories').value; // Cambiado a 'number-of-categories'
-        const estado = document.getElementById('estado').value;
-        const activo = document.getElementById('activo').value;
-        
-        // Llamar a la función que obtiene y muestra los datos del Kardex
-        cargarKardex(fechaInicio, fechaFin, categoria, estado, activo);
+var session;
+$( document ).ready(function() {
+    $.ajaxSetup({cache: false})
+    $.get('../../api/getSession.php', function (data) {
+        if(data){
+            session = JSON.parse(data);
+            console.log(session);
+            getCategories();
+        }else{
+            console.error("Error al analizar JSON");
+        }
     });
-    
-    function cargarKardex(fechaInicio, fechaFin, categoria, estado, activo) {
-        // Simulación de datos de ejemplo
-        const cursos = [
-            { nombre: 'Curso de Cocina Internacional', fechaInscripcion: '2024-01-10', ultimaEntrada: '2024-02-05', fechaTerminacion: '2024-03-10', estado: 'completo', categoria: 'Cocina Internacional', activo: false, progreso: 100 },
-            { nombre: 'Curso de Repostería y Pastelería', fechaInscripcion: '2024-02-15', ultimaEntrada: '2024-03-01', fechaTerminacion: null, estado: 'incompleto', categoria: 'Repostería y Pastelería', activo: true, progreso: 60 },
-            { nombre: 'Cocina de Temporada', fechaInscripcion: '2024-05-29', ultimaEntrada: '2024-09-14', fechaTerminacion: null, estado: 'incompleto', categoria: 'Cocina de Temporada', activo: true, progreso: 20 },
-            // Agregar más cursos según sea necesario
-        ];
-
-        // Filtrar datos según los criterios seleccionados
-        const cursosFiltrados = cursos.filter(curso => {
-            const inscripcionValida = (!fechaInicio || new Date(curso.fechaInscripcion) >= new Date(fechaInicio)) &&
-                                      (!fechaFin || new Date(curso.fechaInscripcion) <= new Date(fechaFin));
-            const categoriaValida = categoria === 'todas' || curso.categoria === categoria;
-            const estadoValido = estado === 'todos' || (estado === 'terminados' && curso.estado === 'completo'); 
-            const activoValido = activo === 'todos' || (activo === 'activos' && curso.activo);
-
-            return inscripcionValida && categoriaValida && estadoValido && activoValido;
-        });
-
-        mostrarKardex(cursosFiltrados);
-    }
-
-    function mostrarKardex(cursos) {
-        const kardexContainer = document.querySelector('.kardex');
-        kardexContainer.innerHTML = ''; // Limpiar resultados anteriores
-        
-        cursos.forEach(curso => {
-            const card = document.createElement('div');
-            card.className = 'card';
-            
-            const progreso = curso.progreso || 0; // Si no hay progreso, poner 0
-            const progresoBar = `
-                <div class="progreso-barra">
-                    <div class="progreso" style="width: ${progreso}%;"></div>
-                </div>
-            `;
-            
-            card.innerHTML = `
-                <h3 class="name eerie">${curso.nombre}</h3>
-                <p><strong>Fecha de Inscripción:</strong> ${curso.fechaInscripcion}</p>
-                <p><strong>Última Entrada:</strong> ${curso.ultimaEntrada || 'N/A'}</p>
-                <p><strong>Fecha de Terminación:</strong> ${curso.fechaTerminacion || 'En curso'}</p>
-                <p><strong>Estado:</strong> ${curso.estado === 'completo' ? 'Completo' : 'Incompleto'}</p>
-                <p><strong>Categoría:</strong> ${curso.categoria}</p>
-                <p><strong>Activo:</strong> ${curso.activo ? 'Sí' : 'No'}</p>
-                <p><strong>Progreso:</strong> ${progreso}%</p>
-                ${progresoBar}
-            `;
-            kardexContainer.appendChild(card);
-        });
-    }
 });
+
+function getCategories (){
+    const params = new URLSearchParams({ option: 'getAllCategories' });
+    $.ajax({
+        type: "GET",
+        url: "../../api/categoryController.php?" + params.toString(),
+        dataType: "json",
+        success: function (response) {
+            if (response.success && Array.isArray(response.categories)) {
+                console.log(response.categories);
+                response.categories.forEach(element => {
+                    var categoryElement = '<option value="' + element.ID_Categoria + '">' + element.Titulo + '</option>'
+                    $('#number-of-categories').append(categoryElement);
+                });
+            } else {
+                console.error('Error al cargar categorías:', response);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error('Error en la solicitud:', error);
+        }
+    });
+}
+
+function getStudentKardex(){
+    var dateIni = $('#fecha-inscripcion-inicio').val();
+    var dateFin = $('#fecha-inscripcion-fin').val();
+    var categoryId = $('#number-of-categories').find(":selected").val();
+    var courseStatus = 1;
+    var studentId = session.ID_Usuario;
+    console.log(dateIni);
+    console.log(dateFin);
+    console.log(categoryId);
+    console.log(courseStatus);
+    $.ajax({
+        type: "GET",
+        url: "../../api/usersController.php?",
+        data: {
+            option: "getStudentKardex",
+            dateIni: dateIni,
+            dateFin: dateFin,
+            categoryId: categoryId,
+            courseStatus: courseStatus,
+            studentId: studentId
+        },
+        dataType: "json",
+        success: function (response) {
+            console.log(response.courses);
+            setCourses(response.courses);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error en la solicitud:', error);
+        }
+    });
+}
+
+function setCourses(courses){
+    $(".kardex").empty();
+    courses.forEach(course => {
+        var fechaT = course.Fecha_Terminacion == null ? 'Sin terminar' : course.Fecha_Terminacion;
+        var val = '<div class="course"><a  href="../courses-instructor/detallecurso.php?id=' + course.IdCurso + '"><h2>' + course.Curso + '</h2></a><div class="courseItem"><h4>Fecha de inscripción</h4><p id="inscriptionDate">' + course.Fecha_Inscripcion + '</p></div><div class="courseItem"><h4>Fecha de terminación</h4><p id="terminationDate">' + fechaT + '</p></div><div class="courseItem"><h4>Estado</h4><p id="statusInf">' + course.Estatus_Curso + '</p></div><div class="courseItem"><h4>Categoría</h4><p id="categoryInfo">' + course.Categoria + '</p></div></div>';
+        $('.kardex').append(val);
+    });
+}

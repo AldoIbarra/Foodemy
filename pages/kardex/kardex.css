@@ -1,21 +1,15 @@
 #bannerSection {
-  background-color: #003054; /* Color de fondo azul */
-  min-height: 100vh; /* Asegura que el contenedor ocupe al menos el 100% del alto de la ventana */
+  background-color: #003054;
+  min-height: 100vh;
   display: flex;
-  padding: 20px; /* Añadir algo de relleno si es necesario */
+  padding: 20px;
 }
-
 #bannerSection .text-container .filtros {
   display: flex;
   flex-direction: column;
   margin-top: 40px;
-  width: 100%; /* Ajusta al 100% */
+  width: 100%;
 }
-
-#bannerSection .text-container h1 {
-  margin-left: 60px;
-}
-
 #bannerSection .text-container .filtros .filtros-row {
   background: white;
   padding: 1rem;
@@ -23,50 +17,8 @@
   max-width: 1200px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 100%; /* Para usar todo el ancho */
+  width: 100%;
 }
-
-.filtros-fechas {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 20px;
-  gap: 10px;
-}
-
-
-.filtros-fechas label {
-  width: auto; 
-  margin-right: 10px; 
-}
-
-.filtros-fechas input {
-  width: 10%;
-}
-
-.filtros-fechas .option.a {
-  width: auto; 
-  margin-left: 10px;
-  margin-right: 10px; 
-}
-
-.filtros-selects {
-  display: flex;
-  justify-content: flex-start; 
-  align-items: center;
-  margin-bottom: 20px;
-  gap: 10px; 
-}
-
-.filtros-selects label {
-  width: auto; 
-  margin-right: 10px; 
-}
-
-.filtros-selects select {
-  width: 50%; /* Ajustar el ancho del select */
-}
-
 #bannerSection .text-container .filtros select {
   width: 40%;
   font-family: "Outfit-Regular";
@@ -79,9 +31,11 @@
   outline: none;
   cursor: pointer;
 }
-
-#bannerSection .text-container .filtros input[type="date"] {
-  width: 30%; /* Hacer que los inputs ocupen todo el ancho del contenedor */
+#bannerSection .text-container .filtros select:focus {
+  border-color: #6AC25C;
+}
+#bannerSection .text-container .filtros input[type=date] {
+  width: 30%;
   font-family: "Outfit-Regular";
   font-size: 18px;
   background-color: #FFFDF7;
@@ -92,37 +46,82 @@
   outline: none;
   cursor: pointer;
 }
-
-#bannerSection .text-container .filtros select:focus,
-#bannerSection .text-container .filtros input[type="date"]:focus {
+#bannerSection .text-container .filtros input[type=date]:focus {
   border-color: #6AC25C;
 }
-
 #bannerSection .text-container .filtros button {
-  background-color: #E32D40; /* Botón rojo */
+  background-color: #E32D40;
   color: #fff;
   border: none;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
-  width: 100%; /* Botón ocupa todo el ancho */
+  width: 100%;
 }
-
 #bannerSection .text-container .filtros button:hover {
   background-color: #C81D32;
+}
+#bannerSection .text-container h1 {
+  margin-left: 60px;
+}
+
+.filtros-fechas {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+.filtros-fechas label {
+  width: auto;
+  margin-right: 10px;
+}
+.filtros-fechas input {
+  width: 10%;
+}
+.filtros-fechas .option.a {
+  width: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.filtros-selects {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+.filtros-selects label {
+  width: auto;
+  margin-right: 10px;
+}
+.filtros-selects select {
+  width: 50%;
 }
 
 .kardex {
   margin: 20px auto;
   margin-top: 20px;
+  padding: 15px;
+  width: 91.5%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+}
+.kardex .course {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 10px;
-  padding: 15px;
-  width: 91.5%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-  gap: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.kardex .course a {
+  text-decoration: none;
+  color: #E32D40;
+}
+.kardex .course a h2 {
+  font-size: 40px;
 }
 
 .error {
@@ -134,15 +133,14 @@
   font-size: 18px;
   padding: 10px;
   border-radius: 5px;
-  background-color: #FFFDF7; 
+  background-color: #FFFDF7;
   color: #202020;
   width: 100%;
   box-sizing: border-box;
 }
-
 .input-field:focus {
   outline: none;
-  border-color: #6AC25C; 
+  border-color: #6AC25C;
 }
 
 .progreso-barra {
@@ -166,15 +164,15 @@
 .card {
   border: 3px solid #E32D40;
   border-radius: 8px;
-  margin-bottom: 40px;
+  margin-bottom: 41px;
   padding: 1rem;
   background: #fff;
 }
-
 .card h3 {
   margin-top: 0;
 }
-
 .card p {
   margin: 5px 0;
 }
+
+/*# sourceMappingURL=kardex.css.map */

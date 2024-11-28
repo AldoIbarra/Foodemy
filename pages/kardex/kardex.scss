@@ -1,0 +1,184 @@
+$color_1: #003054;
+$color_2: #fff;
+$color_3: #202020;
+$color_4: white;
+$font-family_1: "Outfit-Regular";
+$background-color_1: #003054;
+$background-color_2: #FFFDF7;
+$background-color_3: #E32D40;
+$background-color_4: #C81D32;
+$background-color_5: #f9f9f9;
+$background-color_6: #e0e0e0;
+$background-color_7: #6AC25C;
+$border-color_1: #6AC25C;
+
+#bannerSection {
+	background-color: $background-color_1;
+	min-height: 100vh;
+	display: flex;
+	padding: 20px;
+	.text-container {
+		.filtros {
+			display: flex;
+			flex-direction: column;
+			margin-top: 40px;
+			width: 100%;
+			.filtros-row {
+				background: white;
+				padding: 1rem;
+				margin: 1rem auto;
+				max-width: 1200px;
+				border-radius: 8px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				width: 100%;
+			}
+			select {
+				width: 40%;
+				font-family: $font-family_1;
+				font-size: 18px;
+				background-color: $background-color_2;
+				color: $color_1;
+				border: 2px solid #E32D40;
+				padding: 10px;
+				border-radius: 10px;
+				outline: none;
+				cursor: pointer;
+				&:focus {
+					border-color: $border-color_1;
+				}
+			}
+			input[type="date"] {
+				width: 30%;
+				font-family: $font-family_1;
+				font-size: 18px;
+				background-color: $background-color_2;
+				color: $color_1;
+				border: 2px solid #E32D40;
+				padding: 10px;
+				border-radius: 10px;
+				outline: none;
+				cursor: pointer;
+				&:focus {
+					border-color: $border-color_1;
+				}
+			}
+			button {
+				background-color: $background-color_3;
+				color: $color_2;
+				border: none;
+				padding: 10px;
+				border-radius: 5px;
+				cursor: pointer;
+				margin-top: 20px;
+				width: 100%;
+				&:hover {
+					background-color: $background-color_4;
+				}
+			}
+		}
+		h1 {
+			margin-left: 60px;
+		}
+	}
+}
+.filtros-fechas {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-bottom: 20px;
+	gap: 10px;
+	label {
+		width: auto;
+		margin-right: 10px;
+	}
+	input {
+		width: 10%;
+	}
+	.option.a {
+		width: auto;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+}
+.filtros-selects {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-bottom: 20px;
+	gap: 10px;
+	label {
+		width: auto;
+		margin-right: 10px;
+	}
+	select {
+		width: 50%;
+	}
+}
+.kardex {
+	margin: 20px auto;
+	margin-top: 20px;
+	padding: 15px;
+	width: 91.5%;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	gap: 20px;
+    .course{
+        background-color: $background-color_5;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        a{
+            text-decoration: none;
+            color: #E32D40;
+            h2{
+                font-size: 40px;
+            }
+        }
+    }
+}
+.error {
+	border: 1px solid red;
+}
+.input-field {
+	font-family: $font-family_1;
+	font-size: 18px;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: $background-color_2;
+	color: $color_3;
+	width: 100%;
+	box-sizing: border-box;
+	&:focus {
+		outline: none;
+		border-color: $border-color_1;
+	}
+}
+.progreso-barra {
+	width: 100%;
+	background-color: $background-color_6;
+	border-radius: 5px;
+	overflow: hidden;
+	margin-top: 10px;
+}
+.progreso {
+	height: 20px;
+	background-color: $background-color_7;
+	text-align: center;
+	line-height: 20px;
+	color: $color_4;
+	font-size: 14px;
+	width: 0%;
+}
+.card {
+	border: 3px solid #E32D40;
+	border-radius: 8px;
+	margin-bottom: 41px;
+	padding: 1rem;
+	background: #fff;
+	h3 {
+		margin-top: 0;
+	}
+	p {
+		margin: 5px 0;
+	}
+}
