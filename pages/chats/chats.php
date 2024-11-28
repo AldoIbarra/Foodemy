@@ -27,10 +27,15 @@
             </div>
             <div class="col-8 back-prussian baby chat">
                 <div class="name-container">
-                    <img id="chatimg" src="" alt="">
+                    <img id="chatimg"  src="../resources/profilepic.png" alt="">
                     <h3 id="chatName"></h3>
                 </div>
                 <div class="messages">
+                    <h1 id="previousMsg">Envia mensajes a tus estudiantes o Instructores</h1>
+                    <div class="message you">
+                        <img src="../resources/profilepic.png" alt="">
+                        <p class="message-content">asdasdasdassssssssssssssssss</p>
+                    </div>
                     <div class="message me">
                         <p class="message-content">Hola Instructor, ¿la salsa de almeja tiene que ser de la que sale en el video?</p>
                         <img src="../resources/profilepic.png" alt="">
@@ -46,7 +51,7 @@
                 </div>
                 <div class="message-bar">
                     <textarea class="baby" name="" id="messageContainer"></textarea>
-                    <button onclick="sendMsg();">
+                    <button onclick="sendMsg();" id="sendMsgBtn">
                         <img src="../resources/send.png" alt="">
                     </button>
                 </div>

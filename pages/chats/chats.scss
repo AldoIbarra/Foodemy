@@ -47,14 +47,19 @@
             height: 70vh;
             display: flex;
             flex-direction: column;
-            flex-wrap: wrap;
-            align-content: space-around;
+            flex-wrap: nowrap;
+            overflow-y: scroll;
+            #previousMsg{
+                padding: 50px;
+                text-align: center;
+            }
             .message{
                 display: flex;
                 flex-direction: row;
                 flex-wrap: nowrap;
                 align-items: center;
                 margin: 5px 0px 5px 0px;
+                width: 95%;
                 p{
                     margin: 0px;
                     background-color: rgba($color: #fffdf7, $alpha: 0.15);
@@ -62,7 +67,11 @@
                     border-radius: 10px;
                 }
                 img{
-                    max-width: 50px
+                    width: 2vw;
+                    height: 2vw;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin-right: 20px;
                 }
                 &.me{
                     justify-content: flex-end;
