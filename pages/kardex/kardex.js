@@ -39,7 +39,7 @@ function getStudentKardex(){
     var dateIni = $('#fecha-inscripcion-inicio').val();
     var dateFin = $('#fecha-inscripcion-fin').val();
     var categoryId = $('#number-of-categories').find(":selected").val();
-    var courseStatus = 1;
+    var courseStatus = $('#estado').find(":selected").val();
     var studentId = session.ID_Usuario;
     console.log(dateIni);
     console.log(dateFin);

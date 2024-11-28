@@ -113,6 +113,15 @@
     width: 100%;
     margin: 10px 0px 20px 0px;
   }
+  #commentSection .comments-body .make-a-comment .button-and-rank-container{
+    display: flex;
+    align-items: center;
+
+  }
+  #commentSection .comments-body .make-a-comment .button-and-rank-container select{
+    margin-right: 10px;
+
+  }
   
   /*# sourceMappingURL=course.css.map */
   
@@ -182,4 +191,11 @@
 .extra-link:hover {
   color: #0056b3;
   text-decoration: underline;
+}
+
+#markEnded .button-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
 }

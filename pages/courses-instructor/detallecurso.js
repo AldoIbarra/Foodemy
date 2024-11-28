@@ -1,6 +1,7 @@
 var session;
 var courseId;
 var cursoComprado = false;
+var cursoTerminado = false;
 const urlParams = new URLSearchParams(window.location.search);
 $( document ).ready(function() {
     $.ajaxSetup({cache: false})
@@ -174,11 +175,16 @@ function setBuyButton(thisCourseId){
         },
         dataType: "json",
         success: function (response) {
-            if(!response.result[0].CursoComprado){
+            console.log(response);
+            if(!response.result.comprado){
                 $('.price-and-button').append('<a href="../shoppingcart/shoppingcart.php?id=' + courseId + '" class="red-button">Comprar</a>');
             }else{
                 cursoComprado = true;
                 $('#comment-button').prop("disabled", false);
+            }
+            if(response.result.terminado){
+                $('#markAsEndedContainer').empty();
+                cursoTerminado = true;
             }
         },
         error: function (xhr, status, error) {
@@ -188,13 +194,22 @@ function setBuyButton(thisCourseId){
 }
 
 function comment(){
+    if(!cursoComprado){
+        alert('Solo puedes comentar si has comprado el curso');
+        return;
+    }
+    if(!cursoTerminado){
+        alert('Tienes que terminar el curso para comentar y calificar');
+        return;
+    }
+    var stars = $('#rank-stars').find(":selected").val();
     if(!$('#comment-text').val() == ''){
         formData = new FormData();
 
         formData.append('courseId', courseId);
         formData.append('userId', session.ID_Usuario);
         formData.append('comment', $('#comment-text').val());
-        formData.append('rank', 5);
+        formData.append('rank', stars);
         formData.append('option', 'makeAComment');
 
         $.ajax({
@@ -205,6 +220,7 @@ function comment(){
             contentType: false,
             success: function(data) {
                 console.log(data);
+                location.reload();
             },
             error: function(xhr, status, error) {
                 console.log('error');
@@ -212,4 +228,29 @@ function comment(){
             },
         });
     }
+}
+
+function markCourse(){
+    
+    formData = new FormData();
+    formData.append('option', 'markCourse');
+    formData.append('courseId', courseId);
+    formData.append('UserId', session.ID_Usuario);
+
+    $.ajax({
+        type: "POST",
+        url: "../../api/courseController.php",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(data) {
+            console.log(data);
+            alert('¡Curso terminado!, ¡Felicidades!');
+            location.reload();
+        },
+        error: function(xhr, status, error) {
+            console.log('error');
+            console.log(error);
+        },
+    });
 }

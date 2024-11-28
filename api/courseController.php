@@ -270,14 +270,24 @@
         ob_clean();
         $id = $_SESSION['ID_Usuario'];
         $courseId = $_GET['courseId'];
+
         try {
             $resultadoFuncion = CourseClass::doesStudentHaveCourse($id, $courseId); 
             if ($resultadoFuncion[0]) {
-                echo json_encode(["success" => true, "result" => $resultadoFuncion[1]]); 
-                // Envolver en un objeto con 'success' y 'categories' 
+                $estadoCurso = $resultadoFuncion[1]; // Obtenemos el resultado estructurado
+                echo json_encode([
+                    "success" => true,
+                    "result" => [
+                        "comprado" => $estadoCurso['comprado'],
+                        "terminado" => $estadoCurso['terminado']
+                    ]
+                ]);
             } else {
-                echo json_encode(["success" => false, "message" => $resultadoFuncion[1]]); 
-            } 
+                echo json_encode([
+                    "success" => false,
+                    "message" => $resultadoFuncion[1] // Mensaje de error devuelto
+                ]);
+            }
             exit;
         } catch (Exception $e) {
             // Si ocurre algún error, devolvemos el mensaje de error
@@ -302,6 +312,27 @@
         }
 
         $resultadoFuncion = CourseClass::makeAComment($courseId,$userId ,  $comment, $rank);
+
+        // Manejo de respuesta de la función
+        if ($resultadoFuncion[0]) {
+            echo json_encode(["status" => "success", "data" => $resultadoFuncion[1]]);
+        } else {
+            echo json_encode(["status" => "error", "message" => $resultadoFuncion[1]]);
+        }
+        exit;
+    }elseif($_POST['option'] == 'markCourse'){
+        header('Content-Type: application/json');
+
+        $courseId = $_POST['courseId'];
+        $userId = $_POST['UserId'];
+
+        if(empty($courseId) || empty($userId)){
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "Todos los campos son obligatorios."]);
+            exit;
+        }
+
+        $resultadoFuncion = CourseClass::markCourse($courseId,$userId);
 
         // Manejo de respuesta de la función
         if ($resultadoFuncion[0]) {

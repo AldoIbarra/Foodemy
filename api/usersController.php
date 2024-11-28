@@ -236,7 +236,7 @@
         $dateIni = $_GET['dateIni'] == '' ? null : $_GET['dateIni'];
         $dateFin = $_GET['dateFin'] == '' ? null : $_GET['dateFin'];
         $categoryId = $_GET['categoryId'] == 'todas' ? null : $_GET['categoryId'];
-        $courseStatus = $_GET['courseStatus'];
+        $courseStatus = $_GET['courseStatus'] == 'Todos' ? null : $_GET['courseStatus'];
         $studentId = $_GET['studentId'];
         try {
             $resultadoFuncion = UserClass::getStudentKardex($studentId, $categoryId, $courseStatus, $dateIni, $dateFin); 

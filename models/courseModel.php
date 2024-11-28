@@ -421,16 +421,29 @@
             static function doesStudentHaveCourse($userId, $courseId) {
                 self::initializeConnection();
                 try {
-                    $sqlSelect = "SELECT VerificarCompraCurso(:userId, :courseId) AS CursoComprado;"; 
+                    // Llamar al Stored Procedure VerificarCompraYEstadoCurso
+                    $sqlSelect = "CALL VerificarCompraYEstadoCurso(:userId, :courseId);";
                     $consultaSelect = self::$connection->prepare($sqlSelect);
-                    $consultaSelect->execute([':userId'=>$userId, ':courseId'=>$courseId]);
-                    $result = $consultaSelect->fetchAll(PDO::FETCH_ASSOC);
+                    $consultaSelect->execute([':userId' => $userId, ':courseId' => $courseId]);
             
-                    return [true, $result];
+                    // Obtener el resultado del Stored Procedure
+                    $result = $consultaSelect->fetch(PDO::FETCH_ASSOC);
+            
+                    if ($result) {
+                        // Procesar los valores del resultado
+                        $cursoComprado = isset($result['CursoComprado']) && $result['CursoComprado'] == 1;
+                        $cursoTerminado = isset($result['CursoTerminado']) && $result['CursoTerminado'] == 1;
+            
+                        return [true, ['comprado' => $cursoComprado, 'terminado' => $cursoTerminado]];
+                    } else {
+                        return [false, "No se encontró información del curso"];
+                    }
                 } catch (PDOException $e) {
-                    return array(false, "Error al obtener instructores: " . $e->getMessage());
+                    return [false, "Error al obtener estado del curso: " . $e->getMessage()];
                 }
             }
+            
+            
     
             static function makeAComment($courseId, $userId, $comment, $rank){
                 self::initializeConnection();
@@ -446,6 +459,30 @@
                     ]);
             
                     return [true, "Comentario registrado."];
+                
+                } catch (PDOException $e) {
+                    if ($e->errorInfo[1] == 1062) { // Código de error para clave duplicada
+                        return [false, "El usuario ya existe."];
+                    } else {
+                        return [false, "Error al agregar usuario: " . $e->getMessage()];
+                    }
+                }
+            }
+            
+            
+    
+            static function markCourse($courseId, $userId){
+                self::initializeConnection();
+                
+                try{
+                    $sqlInsert="CALL MarcarCursoComoTerminado(:userId, :courseId);";
+                    $consultaInsert= self::$connection->prepare($sqlInsert);
+                    $consultaInsert->execute([
+                        ':userId'=>$userId,
+                        ':courseId'=>$courseId
+                    ]);
+            
+                    return [true, "Curso marcado."];
                 
                 } catch (PDOException $e) {
                     if ($e->errorInfo[1] == 1062) { // Código de error para clave duplicada

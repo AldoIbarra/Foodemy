@@ -79,6 +79,16 @@
     </div>
 </section>
 
+<section id="markEnded" class="back-eerie baby">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 button-container" id="markAsEndedContainer">
+                <button class="red-button" onclick="markCourse();">Marcar curso como terminado</button>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="commentSection" class="back-eerie baby">
     <div class="container">
         <div class="row">
@@ -86,7 +96,16 @@
                 <h3 class="title">Comentarios</h3>
                 <div class="make-a-comment">
                     <textarea name="" id="comment-text"></textarea>
-                    <button id="comment-button" class="red-button" onclick="comment();">Comentar</button>
+                    <div class="button-and-rank-container">
+                        <select name="rank-stars" id="rank-stars">
+                            <option value="1">1 Estrella</option>
+                            <option value="2">2 Estrella</option>
+                            <option value="3">3 Estrella</option>
+                            <option value="4">4 Estrella</option>
+                            <option value="5">5 Estrella</option>
+                        </select>
+                        <button id="comment-button" class="red-button" onclick="comment();">Comentar</button>
+                    </div>
                 </div>
                 <div class="comments-container">
                     <div class="comment">

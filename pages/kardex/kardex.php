@@ -43,8 +43,9 @@
 
                     <label for="estado" class="option eerie">Estado del curso:</label>
                     <select id="estado">
-                        <option value="todos">Todos</option>
-                        <option value="terminados">Solo cursos terminados</option>
+                        <option value="Todos">Todos</option>
+                        <option value="Nuevo">Nuevos</option>
+                        <option value="Terminado">Terminados</option>
                     </select>
 
                     </div>
