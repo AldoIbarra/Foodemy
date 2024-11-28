@@ -5,11 +5,18 @@
     $javascript = "detallecurso.js";
    
     require_once("../header.php");
-   
-    if($_SESSION['Rol'] == 'Instructor'){
-        require_once("../teacherNav.php");
-    }else{
-        header("Location:../dashboard/dashboard.php");
+
+    switch ($_SESSION['Rol']) {
+        case 'Estudiante':
+            require_once("../studentNav.php");
+            break;
+        case 'Instructor':
+            require_once("../teacherNav.php");
+            break;
+        default:
+            header("Location:../login/login.php");
+            require_once("../emptyNav.php");
+            break;
     }
 ?>
 

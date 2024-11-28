@@ -111,6 +111,7 @@
 }
 
 .red-button {
+  display: flex;
   color: #FFFDF7;
   font-family: "Outfit-Bold";
   border: none;
@@ -118,6 +119,11 @@
   font-size: 25px;
   border-radius: 25px;
   padding: 0px 15px 5px 15px;
+  text-decoration: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 }
 .red-button:hover {
   background-color: #FFFDF7;

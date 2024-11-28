@@ -6,12 +6,28 @@
 #dashboardSection {
   padding: 70px 0px;
 }
+#dashboardSection .course {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  text-align: left;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 20px;
+  border-radius: 20px;
+}
 #dashboardSection .course div {
   display: flex;
 }
 #dashboardSection .course div img {
   margin-top: -8px;
   margin-left: 5px;
+}
+#dashboardSection .course:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /*# sourceMappingURL=dashboard.css.map */

@@ -19,9 +19,6 @@ require("../../config/sessionVerif.php");
             <a class="cart-icon" href="../chats/chats.php"> 
                 <img src="../resources/chat.svg" alt="">
             </a>
-            <a class="cart-icon" href="../shoppingcart/shoppingcart.php"> 
-                <img src="../resources/whiteCart.svg" alt="">
-            </a>
             <div class="user-menu">
                 <?php
                     if($_SESSION){

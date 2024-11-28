@@ -23,20 +23,12 @@
 <section id="chats-body" class="back-eerie">
     <div class="container">
         <div class="row">
-            <div class="col-4 contact-list back-eerie baby">
-                <div class="contact">
-                    <img src="../resources/profilepic.png" alt="">
-                    <h4>Eliud Ramirez</h4>
-                </div>
-                <hr>
-                <div class="contact">
-                    <img src="../resources/profilepic.png" alt="">
-                    <h4>Manuel Chapa</h4>
-                </div>
+            <div class="col-4 contact-list back-eerie" id="contact-list">
             </div>
             <div class="col-8 back-prussian baby chat">
                 <div class="name-container">
-                    <h3>Eliud Ramirez</h3>
+                    <img id="chatimg" src="" alt="">
+                    <h3 id="chatName"></h3>
                 </div>
                 <div class="messages">
                     <div class="message me">
@@ -53,8 +45,8 @@
                     </div>
                 </div>
                 <div class="message-bar">
-                    <input type="text" class="baby">
-                    <button>
+                    <textarea class="baby" name="" id="messageContainer"></textarea>
+                    <button onclick="sendMsg();">
                         <img src="../resources/send.png" alt="">
                     </button>
                 </div>

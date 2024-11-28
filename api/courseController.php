@@ -242,6 +242,30 @@
             ]);
         }
         
+    } elseif ($option == 'buyCourse') {
+        header('Content-Type: application/json');
+
+        $ID_Usuario_Instructor = $_POST['ID_Usuario_Instructor'];
+        $ID_Usuario_Estudiante = $_POST['ID_Usuario_Estudiante'];
+        $ID_Curso = $_POST['ID_Curso'];
+        $Total_Pagado = $_POST['Total_Pagado'];
+        $Forma_Pago = $_POST['Forma_Pago'];
+        $Curso_Comprado_Totalmente = $_POST['Curso_Comprado_Totalmente'];
+
+        if(empty($ID_Usuario_Instructor) || empty($ID_Usuario_Estudiante) || empty($ID_Curso) || empty($Total_Pagado) || empty($Forma_Pago) || empty($Curso_Comprado_Totalmente)){
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "Todos los campos son obligatorios."]);
+            exit;
+        }
+
+        $resultadoFuncion = CourseClass::buyCourse($ID_Usuario_Instructor, $ID_Usuario_Estudiante, $ID_Curso, $Total_Pagado, $Forma_Pago, $Curso_Comprado_Totalmente);
+
+        if ($resultadoFuncion[0]) {
+            echo json_encode(["status" => "success", "response" => $resultadoFuncion[1]]);
+        } else {
+            echo json_encode(["status" => "error", "message" => $resultadoFuncion[1]]);
+        }
+        exit;
     } else {
         ob_clean();
         header('Content-Type: application/json');

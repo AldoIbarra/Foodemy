@@ -37,60 +37,7 @@
 </section>
 <section id="dashboardSection" class="back-prussian">
     <div class="container">
-        <div class="row">
-            <div class="col-3 course">
-                <img src="../resources/Chef2.png" alt="">
-                <h5 class="tiny-name baby">Tacos del norte de México</h5>
-                <p class="detail baby">Martha Juarez</p>
-                <div>
-                    <h5 class="tiny-name baby">2.5</h5>
-                    <img src="../resources/star.svg" alt="">
-                    <img src="../resources/star.svg" alt="">
-                    <img src="../resources/half-star.svg" alt="">
-                </div>
-                <h4 class="big-name baby">$100</h4>
-            </div>
-            <div class="col-3 course">
-                <img src="../resources/Chef3.png" alt="">
-                <h5 class="tiny-name baby">Comida china fácil</h5>
-                <p class="detail baby">Manuel Chapa</p>
-                <div>
-                    <h5 class="tiny-name baby">5</h5>
-                    <img src="../resources/star.svg" alt="">
-                    <img src="../resources/star.svg" alt="">
-                    <img src="../resources/star.svg" alt="">
-                    <img src="../resources/star.svg" alt="">
-                    <img src="../resources/star.svg" alt="">
-                </div>
-                <h4 class="big-name baby">$100</h4>
-            </div>
-            <div class="col-3 course">
-                <img src="../resources/Chef4.png" alt="">
-                <h5 class="tiny-name baby">Comida típica brasileña</h5>
-                <p class="detail baby">Eliud Ramirez</p>
-                <div>
-                    <h5 class="tiny-name baby">5</h5>
-                    <img src="../resources/star.svg" alt="">
-                    <img src="../resources/star.svg" alt="">
-                    <img src="../resources/star.svg" alt="">
-                    <img src="../resources/star.svg" alt="">
-                    <img src="../resources/star.svg" alt="">
-                </div>
-                <h4 class="big-name baby">$100</h4>
-            </div>
-            <div class="col-3 course">
-                <img src="../resources/Chef5.png" alt="">
-                <h5 class="tiny-name baby">Cenas romanticas francesas</h5>
-                <p class="detail baby">José Urrutia</p>
-                <div>
-                    <h5 class="tiny-name baby">3.5</h5>
-                    <img src="../resources/star.svg" alt="">
-                    <img src="../resources/star.svg" alt="">
-                    <img src="../resources/star.svg" alt="">
-                    <img src="../resources/half-star.svg" alt="">
-                </div>
-                <h4 class="big-name baby">$100</h4>
-            </div>
+        <div class="row" id="principal-courses">
         </div>
     </div>
 </section>

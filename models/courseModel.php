@@ -391,6 +391,32 @@
                     return array(false, "Error al obtener cursos: " . $e->getMessage());
                 }
             }
+    
+            static function buyCourse($ID_Usuario_Instructor, $ID_Usuario_Estudiante, $ID_Curso, $Total_Pagado, $Forma_Pago, $Curso_Comprado_Totalmente){
+                self::initializeConnection();
+                
+                try{
+                    $sqlInsert="CALL Comprar_Curso(:ID_Usuario_Instructor, :ID_Usuario_Estudiante, :ID_Curso, :Total_Pagado, :Forma_Pago, :Curso_Comprado_Totalmente);";
+                    $consultaInsert= self::$connection->prepare($sqlInsert);
+                    $consultaInsert->execute([
+                        ':ID_Usuario_Instructor'=>$ID_Usuario_Instructor,
+                        ':ID_Usuario_Estudiante'=>$ID_Usuario_Estudiante,
+                        ':ID_Curso'=>$ID_Curso,
+                        ':Total_Pagado'=>$Total_Pagado,
+                        ':Forma_Pago'=>$Forma_Pago,
+                        ':Curso_Comprado_Totalmente'=>$Curso_Comprado_Totalmente
+                    ]);
+            
+                    return [true, "Usuario registrado correctamente."];
+                
+                } catch (PDOException $e) {
+                    if ($e->errorInfo[1] == 1062) { // Código de error para clave duplicada
+                        return [false, "Este usuario ya ha comprado este curso."];
+                    } else {
+                        return [false, "Error al comprar el curso: " . $e->getMessage()];
+                    }
+                }
+            }
             
         
     }

@@ -119,6 +119,7 @@ $mantis: #6AC25C;
 }
 
 .red-button{
+    display: flex;
     color: $baby;
     font-family: 'Outfit-Bold';
     border: none;
@@ -126,6 +127,11 @@ $mantis: #6AC25C;
     font-size: 25px;
     border-radius: 25px;
     padding: 0px 15px 5px 15px;
+    text-decoration: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
     &:hover{
         background-color: $baby;
         color: $poppy;

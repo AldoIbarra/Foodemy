@@ -1,10 +1,17 @@
 var session;
+var courseId;
+const urlParams = new URLSearchParams(window.location.search);
 $( document ).ready(function() {
     $.ajaxSetup({cache: false})
     $.get('../../api/getSession.php', function (data) {
         if(data){
             session = JSON.parse(data);
             console.log(session);
+            console.log(session.Rol);
+            if(session.Rol == "Estudiante" || session.Rol == "Instructor"){
+                courseId = urlParams.get('id');
+                setBuyButton();
+            }
         }else{
             console.error("Error al analizar JSON");
         }
@@ -14,10 +21,10 @@ $( document ).ready(function() {
 // Esperar a que el documento esté completamente cargado
 document.addEventListener('DOMContentLoaded', function () {
     // Obtener el ID del curso desde la URL
-    const urlParams = new URLSearchParams(window.location.search);
     const courseId = urlParams.get('id');
     if (!courseId || isNaN(courseId)) {
         console.error('ID de curso no válido');
+        window.location.href = 'http://localhost/foodemy/pages/dashboard/dashboard.php';
         return;
     }
     console.log(window.location.search);
@@ -154,4 +161,8 @@ function generateStars(rating) {
         }
     }
     return starsHTML;
+}
+
+function setBuyButton(){
+    $('.price-and-button').append('<a href="../shoppingcart/shoppingcart.php?id=' + courseId + '" class="red-button">Comprar</a>');
 }

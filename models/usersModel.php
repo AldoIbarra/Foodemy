@@ -223,5 +223,94 @@
             }
         }
 
+
+        static function getTeachersByStudentId($StudentId) {
+            self::initializeConnection();
+        
+            try {
+                $sqlSelect = "CALL ObtenerInstructoresPorEstudiante(:StudentId);"; 
+                $consultaSelect = self::$connection->prepare($sqlSelect);
+                $consultaSelect->execute([':StudentId'=>$StudentId]);
+                $teachers = $consultaSelect->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($teachers as &$teacher) {
+                    if ($teacher['Foto_Estudiante']) {
+                        $teacher['Foto_Estudiante'] = base64_encode($teacher['Foto_Estudiante']);
+                    }
+                    if ($teacher['Foto_Instructor']) {
+                        $teacher['Foto_Instructor'] = base64_encode($teacher['Foto_Instructor']);
+                    }
+                }
+        
+                return [true, $teachers];
+            } catch (PDOException $e) {
+                return array(false, "Error al obtener instructores: " . $e->getMessage());
+            }
+        }
+
+
+        static function getStudentsByTeacherId($TeacherId) {
+            self::initializeConnection();
+        
+            try {
+                $sqlSelect = "CALL ObtenerEstudiantesPorInstructor(:TeacherId);"; 
+                $consultaSelect = self::$connection->prepare($sqlSelect);
+                $consultaSelect->execute([':TeacherId'=>$TeacherId]);
+                $students = $consultaSelect->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($students as &$student) {
+                    if ($student['Foto_Estudiante']) {
+                        $student['Foto_Estudiante'] = base64_encode($student['Foto_Estudiante']);
+                    }
+                    if ($student['Foto_Instructor']) {
+                        $student['Foto_Instructor'] = base64_encode($student['Foto_Instructor']);
+                    }
+                }
+        
+                return [true, $students];
+            } catch (PDOException $e) {
+                return array(false, "Error al obtener instructores: " . $e->getMessage());
+            }
+        }
+
+
+        static function getMessagesBetweenUsers($userId, $user2Id) {
+            self::initializeConnection();
+        
+            try {
+                $sqlSelect = "CALL ObtenerMensajesEntreUsuarios(:userId, :user2Id);"; 
+                $consultaSelect = self::$connection->prepare($sqlSelect);
+                $consultaSelect->execute([':userId'=>$userId, ':user2Id'=>$user2Id]);
+                $messages = $consultaSelect->fetchAll(PDO::FETCH_ASSOC);
+        
+                return [true, $messages];
+            } catch (PDOException $e) {
+                return array(false, "Error al obtener instructores: " . $e->getMessage());
+            }
+        }
+    
+        static function sendMsg($emmiter, $receiver, $message){
+            self::initializeConnection();
+            
+            try{
+                $sqlInsert="CALL AgregarMensaje(:emmiter, :receiver, :message);";
+                $consultaInsert= self::$connection->prepare($sqlInsert);
+                $consultaInsert->execute([
+                    ':emmiter'=>$emmiter,
+                    ':receiver'=>$receiver,
+                    ':message'=>$message
+                ]);
+        
+                return [true, "Mensaje enviado."];
+            
+            } catch (PDOException $e) {
+                if ($e->errorInfo[1] == 1062) { // Código de error para clave duplicada
+                    return [false, "El usuario ya existe."];
+                } else {
+                    return [false, "Error al agregar usuario: " . $e->getMessage()];
+                }
+            }
+        }
+
     }
 ?>

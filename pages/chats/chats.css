@@ -1,16 +1,45 @@
 #chats-body .contact-list .contact {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  padding: 10px;
   align-items: center;
-  justify-content: space-evenly;
-  padding: 7px 0px;
+  border-radius: 10px;
+}
+#chats-body .contact-list .contact img {
+  width: 4vw;
+  height: 4vw;
+  border-radius: 50%;
+  object-fit: cover;
+}
+#chats-body .contact-list .contact h4 {
+  margin-left: 15px;
+}
+#chats-body .contact-list .contact:hover {
+  background-color: rgba(255, 253, 247, 0.15);
+}
+#chats-body .chat {
+  margin-top: 0.43vw;
+  padding-top: 0.8vw;
 }
 #chats-body .chat .name-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   height: 10vh;
   background-color: #16242f;
   padding: 10px;
   border-radius: 10px;
+}
+#chats-body .chat .name-container img {
+  width: 4vw;
+  height: 4vw;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
 }
 #chats-body .chat .messages {
   height: 70vh;
@@ -46,7 +75,8 @@
   height: 9vh;
   display: flex;
 }
-#chats-body .chat .message-bar input {
+#chats-body .chat .message-bar textarea {
+  resize: none;
   width: 90%;
   border: none;
   border-radius: 10px;

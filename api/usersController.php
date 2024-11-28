@@ -146,7 +146,92 @@
             echo json_encode(["success" => false, "message" => $e->getMessage()]);
         }
         exit;
-    }    
+    } elseif ($option == 'getTeachersByStudentId') {
+        ob_clean(); 
+
+        $id = $_SESSION['ID_Usuario'];
+        try {
+            $resultadoFuncion = UserClass::getTeachersByStudentId($id); 
+            if ($resultadoFuncion[0]) {
+                echo json_encode(["success" => true, "teachers" => $resultadoFuncion[1]]); 
+                // Envolver en un objeto con 'success' y 'categories' 
+            } else {
+                echo json_encode(["success" => false, "message" => $resultadoFuncion[1]]); 
+            } 
+            exit;
+        } catch (Exception $e) {
+            // Si ocurre algún error, devolvemos el mensaje de error
+            echo json_encode([
+                "success" => false,
+                "message" => $e->getMessage()
+            ]);
+        }
+        
+    } elseif ($option == 'getStudentsByTeacherId') {
+        ob_clean(); 
+
+        $id = $_SESSION['ID_Usuario'];
+        try {
+            $resultadoFuncion = UserClass::getStudentsByTeacherId($id); 
+            if ($resultadoFuncion[0]) {
+                echo json_encode(["success" => true, "students" => $resultadoFuncion[1]]); 
+                // Envolver en un objeto con 'success' y 'categories' 
+            } else {
+                echo json_encode(["success" => false, "message" => $resultadoFuncion[1]]); 
+            } 
+            exit;
+        } catch (Exception $e) {
+            // Si ocurre algún error, devolvemos el mensaje de error
+            echo json_encode([
+                "success" => false,
+                "message" => $e->getMessage()
+            ]);
+        }
+        
+    } elseif ($option == 'getMessagesBetweenUsers') {
+        ob_clean(); 
+        $user2Id = (int)$_GET['user2Id'];
+        $id = $_SESSION['ID_Usuario'];
+        try {
+            $resultadoFuncion = UserClass::getMessagesBetweenUsers($id, $user2Id); 
+            if ($resultadoFuncion[0]) {
+                echo json_encode(["success" => true, "messages" => $resultadoFuncion[1]]); 
+                // Envolver en un objeto con 'success' y 'categories' 
+            } else {
+                echo json_encode(["success" => false, "message" => $resultadoFuncion[1]]); 
+            } 
+            exit;
+        } catch (Exception $e) {
+            // Si ocurre algún error, devolvemos el mensaje de error
+            echo json_encode([
+                "success" => false,
+                "message" => $e->getMessage()
+            ]);
+        }
+        
+    }else if($_POST['option'] == 'sendMesage'){
+        header('Content-Type: application/json');
+
+        $emmiter = $_POST['emmiter'];
+        $receiver = $_POST['receiver'];
+        $message = $_POST['message'];
+
+        if(empty($emmiter) || empty($receiver) || empty($message)){
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "Todos los campos son obligatorios."]);
+            exit;
+        }
+
+        $resultadoFuncion = UserClass::sendMsg($emmiter, $receiver, $message);
+
+        // Manejo de respuesta de la función
+        if ($resultadoFuncion[0]) {
+            echo json_encode(["status" => "success", "data" => $resultadoFuncion[1]]);
+        } else {
+            echo json_encode(["status" => "error", "message" => $resultadoFuncion[1]]);
+        }
+        exit;
+    } 
 
     
 ?>
