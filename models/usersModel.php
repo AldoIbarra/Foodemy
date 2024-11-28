@@ -328,5 +328,21 @@
             }
         }
 
+
+        static function getSalesReport($teacherId, $categoryId, $dateIni, $dateFin) {
+            self::initializeConnection();
+        
+            try {
+                $sqlSelect = "CALL ReporteVentasInstructor (:teacherId, :dateIni, :dateFin, :categoryId);"; 
+                $consultaSelect = self::$connection->prepare($sqlSelect);
+                $consultaSelect->execute([':teacherId'=>$teacherId, ':dateIni'=>$dateIni, ':dateFin'=>$dateFin, ':categoryId'=>$categoryId]);
+                $courses = $consultaSelect->fetchAll(PDO::FETCH_ASSOC);
+        
+                return [true, $courses];
+            } catch (PDOException $e) {
+                return array(false, "Error al obtener instructores: " . $e->getMessage());
+            }
+        }
+
     }
 ?>

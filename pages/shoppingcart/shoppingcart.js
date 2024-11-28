@@ -17,55 +17,6 @@ $( document ).ready(function() {
     });
 });
 
-// Selecciona los inputs y el botón
-const numTarjeta = document.getElementById('tarjeta');
-const fecha = document.getElementById('fecha');
-const cvv = document.getElementById('cvv');
-const nombre = document.getElementById('nombre');
-const apellido = document.getElementById('apellido');
-const submitButton = document.getElementById('submitButton');
-
-// Función para validar si un string contiene solo números
-    function isOnlyNumbers(value) {
-            return /^\d+$/.test(value); // Solo dígitos
-    }
-
-// Función para validar si un string contiene solo letras
-    function isOnlyLetters(value) {
-            return /^[a-zA-Z]+$/.test(value); // Solo letras (mayúsculas o minúsculas)
-    }
-
-// Función para validar si un string es una fecha válida (YYYY-MM-DD)
-     function isValidDate(value) {
-        return /^(0[1-9]|1[0-2])\/\d{4}$/.test(value) && !isNaN(new Date(value).getTime());
-     }
-
-
-// Función que verifica si los inputs están llenos
-function checkInputs() {
-
-    const isNumbersValid = numTarjeta.value.trim() !== "" && isOnlyNumbers(onlyNumbers.value.trim());
-    const isNumbersValid2 = cvv.value.trim() !== "" && isOnlyNumbers(onlyNumbers.value.trim());
-    const isLettersValid = nombre.value.trim() !== "" && isOnlyLetters(onlyLetters.value.trim());
-    const isLettersValid2 = apellido.value.trim() !== "" && isOnlyLetters(onlyLetters.value.trim());
-    const isDateValid = fecha.value.trim() !== "" && isValidDate(validDate.value.trim());
-
-    // Habilitar el botón solo si todos los campos están llenos y son válidos
-    if (isNumbersValid && isLettersValid && isNumbersValid2  && isLettersValid2 && isDateValid ) {
-        submitButton.disabled = false;
-    } else {
-        submitButton.disabled = true;
-    }
-}
-
-// Escucha los eventos de los inputs
-numTarjeta.addEventListener('input', checkInputs);
-fecha.addEventListener('input', checkInputs);
-cvv.addEventListener('input', checkInputs);
-nombre.addEventListener('input', checkInputs);
-apellido.addEventListener('input', checkInputs);
-
-
 document.addEventListener("DOMContentLoaded", function() {
     // // Funcionalidad para los botones "Agregar"
     // const addButtons = document.querySelectorAll(".add-button");
@@ -166,6 +117,10 @@ function setCourseInfo(){
 }
 
 function payCourse(){
+    if($('#tarjeta').val() == '' || $('#fecha').val() == '' || $('#cvv').val() == '' || $('#nombre').val() == '' || $('#apellido').val() == ''){
+        alert('Debes llenar los campos de pago');
+        return;
+    }
     console.log('manda a pagar el curso');
     console.log(course);
     formData = new FormData();

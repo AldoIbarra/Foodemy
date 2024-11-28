@@ -174,16 +174,6 @@ ul li a.active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.tablas, #resumen-ventas, #tabla-cursos {
-  background: white;
-  padding: 1rem;
-  max-width: 1200px;
-  margin: 20px auto;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: none;
-}
-
 table, th, td {
   border: 3px solid #b22102;
   border-collapse: collapse;

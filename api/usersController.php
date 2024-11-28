@@ -255,6 +255,29 @@
             ]);
         }
         
+    } elseif ($option == 'getSalesReport') {
+        ob_clean(); 
+        $dateIni = $_GET['dateIni'] == '' ? null : $_GET['dateIni'];
+        $dateFin = $_GET['dateFin'] == '' ? null : $_GET['dateFin'];
+        $categoryId = $_GET['categoryId'] == 'todas' ? null : $_GET['categoryId'];
+        $teacherId = $_GET['teacherId'];
+        try {
+            $resultadoFuncion = UserClass::getSalesReport($teacherId, $categoryId, $dateIni, $dateFin); 
+            if ($resultadoFuncion[0]) {
+                echo json_encode(["success" => true, "courses" => $resultadoFuncion[1]]); 
+                // Envolver en un objeto con 'success' y 'categories' 
+            } else {
+                echo json_encode(["success" => false, "message" => $resultadoFuncion[1]]); 
+            } 
+            exit;
+        } catch (Exception $e) {
+            // Si ocurre algún error, devolvemos el mensaje de error
+            echo json_encode([
+                "success" => false,
+                "message" => $e->getMessage()
+            ]);
+        }
+        
     } 
 
     

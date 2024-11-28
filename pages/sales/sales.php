@@ -1,9 +1,17 @@
 <?php 
+    require("../../config/sessionVerif.php");
     $titlename = "Foodemy";
     $stylename = "sales.css";
     $javascript = "sales.js";
 
     require_once("../header.php");
+
+    if($_SESSION && $_SESSION['Rol'] == 'Instructor'){
+        require_once("../teacherNav.php");
+    }else{
+        header("Location:../login/login.php");
+        require_once("../emptyNav.php");
+    }
 ?>
 
 <section id="bannerSection" class="back-prussian">
@@ -31,52 +39,26 @@
                     <label for="categoria" class="option eerie">Categoría:</label>
                     <select id="number-of-categories" required>
                         <option value="todas">Todas</option>
-                        <option value="Cocina Saludable">Cocina Saludable</option>
-                        <option value="Cocina Internacional">Cocina Internacional</option>
-                        <option value="Repostería y Pastelería">Repostería y Pastelería</option>
-                        <option value="Cocina Vegetariana y Vegana">Cocina Vegetariana y Vegana</option>
-                        <option value="Técnicas de Cocina Básicas">Técnicas de Cocina Básicas</option>
-                        <option value="Cocina de Temporada">Cocina de Temporada</option>
-                        <option value="Platos Rápidos">Platos Rápidos</option>
                     </select>
 
-                    <label for="activo" class="option eerie">Cursos activos:</label>
-                        <select id="activo">
-                            <option value="todos">Todos</option>
-                            <option value="activos">Solo cursos activos</option>
-                        </select>
-
-                    <label for="tipo-reporte" class="option eerie">Tipo de Reporte:</label>
-                        <select id="tipo-reporte">
-                            <option value="general">General</option>
-                            <option value="detallado">Detallado</option>
-                        </select>
-
                     </div>
-                          <button class="red-button" id="filtrar-ventas">Filtrar</button>
+                          <button class="red-button" onclick="getSalesReport();">Filtrar</button>
                     </div>
                 </div>
 
                 <div class="tablas">
                     <table id="tabla-ventas">
-                        <thead>
-                            <tr id="cabecera-tabla-ventas">
-
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
+                        
                     </table>
                 </div>
 
-                <div id="tabla-cursos">
+                <!-- <div id="tabla-cursos">
                     <caption></caption>
                 </div>
 
                 <div id="resumen-ventas">
-                  <!-- Resumen de ingresos por forma de pago -->
-                </div>
+                  Resumen de ingresos por forma de pago
+                </div> -->
 
             </div>
         </div>

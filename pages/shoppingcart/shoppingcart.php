@@ -56,7 +56,7 @@
                 <div>
                     <div>
                         <h3 class= "option baby"> Número de la tarjeta: </h3>
-                        <input class="input" type="text" required id="tarjeta" name="tarjeta">
+                        <input class="input" type="number" required id="tarjeta" name="tarjeta">
                     </div>
                     <div>
                         <h3 class= "option baby"> Fecha de vencimiento: </h3>
@@ -75,7 +75,7 @@
                         <input class="input" type="text" required id="apellido" name="apellido">
                     </div>
                 </div>
-                <button class="red-button checkout-button" id="submitButton" onclick="payCourse();">Proceder al pago</button>
+                <button class="red-button checkout-button" onclick="payCourse();">Proceder al pago</button>
 
                 <!-- SECCIÓN DE SUGERENCIAS -->
                 <!-- <div class="suggestions">
